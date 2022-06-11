@@ -1,0 +1,18 @@
+GET http://localhost:8000/api/plaid/transactions
+
+###
+GET http://localhost:8000/api/plaid/accounts
+
+###
+GET http://localhost:8000/api/plaid/identity
+
+###
+GET http://localhost:8000/api/plaid/item
+
+
+###
+GET http://localhost:8000/api/plaid/balance
+
+###
+GET http://localhost:8000/api/plaid/categories
+

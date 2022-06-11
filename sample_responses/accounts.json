@@ -1,0 +1,209 @@
+[
+  {
+    "id": 1,
+    "plaidAccountId": "18Kgbb6lnAtdM3qxaAn3uQKZ56DAoWsZ3z5XQ",
+    "name": "Plaid Checking",
+    "officialName": "Plaid Gold Standard 0% Interest Checking",
+    "type": "depository",
+    "subType": "checking",
+    "currentBalance": "110",
+    "availableBalance": "100",
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "plaidAccountId": "oa8eMM15A6HoPyrNRWMyC8DxLP4jQ6fkrjR5p",
+    "name": "Plaid Credit Card",
+    "officialName": "Plaid Diamond 12.5% APR Interest Credit Card",
+    "type": "credit",
+    "subType": "credit card",
+    "currentBalance": "410",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "plaidAccountId": "EXodjjV9ZLiKoE56qrpEF1GAZlKazWF9VyXeV",
+    "name": "Plaid 401k",
+    "officialName": null,
+    "type": "investment",
+    "subType": "401k",
+    "currentBalance": "23631.9805",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "plaidAccountId": "WnlWmmXRrBCGDn5p1w3nt7ojWPpKqGFwvRlyX",
+    "name": "Plaid Student Loan",
+    "officialName": null,
+    "type": "loan",
+    "subType": "student",
+    "currentBalance": "65262",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "plaidAccountId": "p4EQ11M5G6ieM1z5PaN1tl7abqQywVfEkwLjp",
+    "name": "Plaid CD",
+    "officialName": "Plaid Bronze Standard 0.2% Interest CD",
+    "type": "depository",
+    "subType": "cd",
+    "currentBalance": "1000",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "plaidAccountId": "8XabllJpzoiRkBdDWzaBT91Vj8RbonuKznwpr",
+    "name": "Plaid IRA",
+    "officialName": null,
+    "type": "investment",
+    "subType": "ira",
+    "currentBalance": "320.76",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "plaidAccountId": "LXneLLpV8AiDNa57dovatGvjbeDaoKtlo7PKP",
+    "name": "Plaid Saving",
+    "officialName": "Plaid Silver Standard 0.1% Interest Saving",
+    "type": "depository",
+    "subType": "savings",
+    "currentBalance": "210",
+    "availableBalance": "200",
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "plaidAccountId": "gqQx44Mb1DIaMzeoRJgzCvr7y3lGXnf4rogR4",
+    "name": "Plaid Money Market",
+    "officialName": "Plaid Platinum Standard 1.85% Interest Money Market",
+    "type": "depository",
+    "subType": "money market",
+    "currentBalance": "43200",
+    "availableBalance": "43200",
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "plaidAccountId": "AXMzaawnjoi1pvZBzj8vcejPAX1QpWu6y81JB",
+    "name": "Plaid Mortgage",
+    "officialName": null,
+    "type": "loan",
+    "subType": "mortgage",
+    "currentBalance": "56302.06",
+    "availableBalance": null,
+    "isoCurrencyCode": "GBP",
+    "item": {
+      "id": 1,
+      "status": "good",
+      "institution": {
+        "logo": "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",
+        "id": 1,
+        "plaidInstitutionId": "ins_59",
+        "name": "Barclays (UK) - Online Banking: Personal",
+        "color": "#007eb6",
+        "url": "https://www.barclays.co.uk/"
+      }
+    }
+  }
+]
