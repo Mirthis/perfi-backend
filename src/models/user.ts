@@ -123,7 +123,7 @@ User.init(
   },
 );
 
-User.beforeSave(async (user: User, _options) => {
+User.beforeSave(async (user: User) => {
   if (user.changed('password')) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
   }

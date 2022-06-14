@@ -16,7 +16,7 @@ import {
   getItemByPlaidItemId,
   updateItemTransactionsCursor,
 } from '../models/item';
-import { createOrUpdateTransactions } from '../models/transaction';
+import { createOrUpdateTransactions } from '../models/transaction-queries';
 import { createOrUpdateAccounts } from '../models/account';
 
 const router = express.Router();

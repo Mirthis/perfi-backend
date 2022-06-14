@@ -1,9 +1,10 @@
 import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
 import {
-  getTransactionsByAccountAndUser,
   getTransactionsByUserId,
-} from '../models/transaction';
+  getAccountTransactionsSummary,
+  getTransactions,
+} from '../models/transaction-queries';
 
 const router = express.Router();
 
@@ -19,11 +20,25 @@ router.get('/', isAuthenticated, async (req, res) => {
 
 router.get('/account/:accountId', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorize');
-
   // const item = await getItemByUserId(req.user.id);
   // if(!item) throw Error('User has no items');
 
-  const transactions = await getTransactionsByAccountAndUser(
+  // const transactions = await getTransactionsByAccount(
+  //   Number(req.params.accountId),
+  //   req.user.id,
+  //   req.body,
+  // );
+  const transactions = await getTransactions(req.user.id, req.body);
+  res.json(transactions);
+});
+
+router.get('/account/:accountId/summary', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorize');
+  console.log(req.body);
+  // const item = await getItemByUserId(req.user.id);
+  // if(!item) throw Error('User has no items');
+
+  const transactions = await getAccountTransactionsSummary(
     Number(req.params.accountId),
     req.user.id,
   );

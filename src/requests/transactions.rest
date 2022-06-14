@@ -2,4 +2,11 @@ GET http://localhost:8000/api/transactions
 
 ###
 GET http://localhost:8000/api/transactions/account/1
-'
+Content-Type: application/json
+
+{
+  "accountIds": [5,4]
+}
+
+###
+GET http://localhost:8000/api/transactions/account/1/summary

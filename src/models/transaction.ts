@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/indent */
-import {
-  Transaction as PlaidTransaction,
-  TransactionPaymentChannelEnum,
-} from 'plaid';
+import { TransactionPaymentChannelEnum } from 'plaid';
 import {
   Model,
   DataTypes,
@@ -12,8 +9,7 @@ import {
   ForeignKey,
 } from 'sequelize';
 import { sequelize } from '../utils/db';
-import Account, { getAccountByPlaidAccountId } from './account';
-import Item from './item';
+import Account from './account';
 
 class Transaction extends Model<
   InferAttributes<Transaction>,
@@ -142,73 +138,10 @@ Transaction.init(
     modelName: 'transaction',
     defaultScope: {
       attributes: {
-        exclude: ['createdAt', 'updatedAt', 'unofficialCurrencyCode'],
+        exclude: ['id', 'createdAt', 'updatedAt', 'unofficialCurrencyCode'],
       },
     },
   },
 );
-
-// eslint-disable-next-line import/prefer-default-export
-export const createOrUpdateTransactions = async (
-  transactions: PlaidTransaction[],
-) => {
-  const accIds = new Map<string, number>();
-  const pendingQueries = transactions.map(async (transaction) => {
-    const plaidAccountId = transaction.account_id;
-    let accountId = accIds.get(plaidAccountId);
-    if (!accountId) {
-      const { id } = (await getAccountByPlaidAccountId(
-        plaidAccountId,
-      )) as Account;
-      accountId = id;
-      accIds.set(plaidAccountId, id);
-    }
-
-    const transValues = {
-      pladiTransactionId: transaction.transaction_id,
-      accountId,
-      name: transaction.name,
-      amount: transaction.amount,
-      transactionDate: new Date(transaction.date),
-      pending: transaction.pending,
-      pladiCategoryId: transaction.category_id,
-      category: transaction.category ? transaction.category[0] : null,
-      subCategory: transaction.category ? transaction.category[1] : null,
-      paymentChannel: transaction.payment_channel,
-      address: transaction.location.address,
-      city: transaction.location.city,
-      country: transaction.location.country,
-      isoCurrencyCode: transaction.iso_currency_code,
-      unofficialCurrencyCode: transaction.unofficial_currency_code,
-      merchantName: transaction.merchant_name,
-    };
-
-    Transaction.upsert(transValues);
-  });
-  await Promise.all(pendingQueries);
-};
-
-export const getTransactionsByUserId = async (userId: number) => {
-  const transactions = await Item.findAll({
-    include: { model: Account, include: [Transaction] },
-    where: { userId },
-  });
-  return transactions;
-};
-
-export const getTransactionsByAccountAndUser = async (
-  accountId: number,
-  userId: number,
-) => {
-  const transactions = await Transaction.findAll({
-    include: {
-      model: Account,
-      where: { id: accountId },
-      include: [{ model: Item, where: { userId }, attributes: [] }],
-      attributes: [],
-    },
-  });
-  return transactions;
-};
 
 export default Transaction;

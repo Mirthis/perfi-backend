@@ -10,12 +10,12 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   }
 });
 
-router.post('/logout', (req, res, _next) => {
+router.post('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
 
-router.get('/test-auth', isAuthenticated, (_req, res, _next) => {
+router.get('/test-auth', isAuthenticated, (_req, res) => {
   res.send('All good');
 });
 

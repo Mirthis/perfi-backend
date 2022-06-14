@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    'no-console': 'off',
     // '@typescript-eslint/no-explicit-any': 2,
     // 'implicit-arrow-linebreak': 0,
     // 'object-curly-newline': [
@@ -22,7 +23,6 @@ module.exports = {
     //   },
     // ],
     // '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    // 'no-console': 'off',
     // 'operator-linebreak': 'off',
     // "@typescript-eslint/semi": ["error"],
     // "@typescript-eslint/explicit-function-return-type": "off",

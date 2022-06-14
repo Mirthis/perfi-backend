@@ -10,7 +10,6 @@ const errorHandler = (
   error: Error,
   _request: Request,
   response: Response,
-  _next: NextFunction,
 ): void => {
   console.log('Error midleware');
   const returnMessageName = [
@@ -30,7 +29,7 @@ const errorHandler = (
   // _next(error);
 };
 
-morgan.token('body', (request, _response) => {
+morgan.token('body', (request) => {
   const data = request.body;
   return JSON.stringify(data);
 });
@@ -44,7 +43,7 @@ export const isAuthenticated = (
   if (req.isAuthenticated()) {
     return next();
   }
-  return res.redirect('/login');
+  return res.status(404).json('Unauthorized');
 };
 
 export default {
