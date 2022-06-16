@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/indent */
+/* eslint-disable import/no-cycle */
+
 import { TransactionPaymentChannelEnum } from 'plaid';
 import {
   Model,
@@ -10,6 +12,8 @@ import {
 } from 'sequelize';
 import { sequelize } from '../utils/db';
 import Account from './account';
+import Category from './category';
+import PlaidCategory from './plaidCategory';
 
 class Transaction extends Model<
   InferAttributes<Transaction>,
@@ -17,7 +21,7 @@ class Transaction extends Model<
 > {
   declare id: CreationOptional<number>;
 
-  declare pladiTransactionId: string;
+  declare plaidTransactionId: string;
 
   declare accountId: ForeignKey<Account['id']>;
 
@@ -29,11 +33,9 @@ class Transaction extends Model<
 
   declare pending: boolean;
 
-  declare pladiCategoryId: string | null;
+  declare plaidCategoryId: ForeignKey<PlaidCategory['id']>;
 
-  declare category: string | null;
-
-  declare subCategory: string | null;
+  declare categoryId: ForeignKey<Category['id']>;
 
   declare paymentChannel: TransactionPaymentChannelEnum;
 
@@ -62,7 +64,7 @@ Transaction.init(
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    pladiTransactionId: {
+    plaidTransactionId: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -82,18 +84,6 @@ Transaction.init(
     pending: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    pladiCategoryId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    subCategory: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     paymentChannel: {
       type: DataTypes.STRING,

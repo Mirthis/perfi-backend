@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      pladiTransactionId: {
+      plaidTransactionId: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
@@ -38,17 +38,25 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      pladiCategoryId: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      plaidCategoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'plaid_categories',
+          },
+          key: 'id',
+        },
+        allowNull: false,
       },
-      category: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      subCategory: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      categoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'categories',
+          },
+          key: 'id',
+        },
+        allowNull: false,
       },
       paymentChannel: {
         type: Sequelize.STRING,
@@ -88,7 +96,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, _Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('transactions');
   },
 };

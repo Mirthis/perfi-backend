@@ -1,0 +1,4544 @@
+[
+  {
+    "plaidcategoryid": 10000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Overdraft",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10002000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "ATM",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10003000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Late Payment",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10004000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Fraud Dispute",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10005000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Foreign Transaction",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10006000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Wire Transfer",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10007000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Insufficient Funds",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10008000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Cash Advance",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 10009000,
+    "plaidgroup": "special",
+    "plaidcategory": "Bank Fees",
+    "plaidsubcategory": "Excess Activity",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 11000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Cash Advance",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Animal Shelter",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Assisted Living Services",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12002001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Assisted Living Services",
+    "plaidsubcategory2": "Facilities and Nursing Homes",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12002002,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Assisted Living Services",
+    "plaidsubcategory2": "Caretakers",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Cemetery",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Courts",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Day Care and Preschools",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12006000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Disabled Persons Services",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12007000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Drug and Alcohol Services",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 12008000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12008001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Vocational Schools",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008002,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Tutoring and Educational Services",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008003,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Primary and Secondary Schools",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008004,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Fraternities and Sororities",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008005,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Driving Schools",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008006,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Dance Schools",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008007,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Culinary Lessons and Schools",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008008,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Computer Training",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008009,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Colleges and Universities",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008010,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Art School",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12008011,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Education",
+    "plaidsubcategory2": "Adult Education",
+    "perficategory": "Education"
+  },
+  {
+    "plaidcategoryid": 12009000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Government Departments and Agencies",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12010000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Government Lobbyists",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12011000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Housing Assistance and Shelters",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12012000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Law Enforcement",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12012001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Law Enforcement",
+    "plaidsubcategory2": "Police Stations",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12012002,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Law Enforcement",
+    "plaidsubcategory2": "Fire Stations",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12012003,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Law Enforcement",
+    "plaidsubcategory2": "Correctional Institutions",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12013000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Libraries",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12014000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Military",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12015000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Organizations and Associations",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12015001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Organizations and Associations",
+    "plaidsubcategory2": "Youth Organizations",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12015002,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Organizations and Associations",
+    "plaidsubcategory2": "Environmental",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12015003,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Organizations and Associations",
+    "plaidsubcategory2": "Charities and Non-Profits",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12016000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Post Offices",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12017000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Public and Social Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12018000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Religious",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12018001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Religious",
+    "plaidsubcategory2": "Temple",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12018002,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Religious",
+    "plaidsubcategory2": "Synagogues",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12018003,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Religious",
+    "plaidsubcategory2": "Mosques",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12018004,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Religious",
+    "plaidsubcategory2": "Churches",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12019000,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Senior Citizen Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 12019001,
+    "plaidgroup": "place",
+    "plaidcategory": "Community",
+    "plaidsubcategory": "Senior Citizen Services",
+    "plaidsubcategory2": "Retirement",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 13000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Bar",
+    "perficategory": "Drinks"
+  },
+  {
+    "plaidcategoryid": 13001001,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Bar",
+    "plaidsubcategory2": "Wine Bar",
+    "perficategory": "Drinks"
+  },
+  {
+    "plaidcategoryid": 13001002,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Bar",
+    "plaidsubcategory2": "Sports Bar",
+    "perficategory": "Drinks"
+  },
+  {
+    "plaidcategoryid": 13001003,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Bar",
+    "plaidsubcategory2": "Hotel Lounge",
+    "perficategory": "Drinks"
+  },
+  {
+    "plaidcategoryid": 13002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Breweries",
+    "perficategory": "Drinks"
+  },
+  {
+    "plaidcategoryid": 13003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Internet Cafes",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004001,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Strip Club",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004002,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Night Clubs",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004003,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Karaoke",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004004,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Jazz and Blues Cafe",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004005,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Hookah Lounges",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13004006,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Nightlife",
+    "plaidsubcategory2": "Adult Entertainment",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 13005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005001,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Winery",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005002,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Vegan and Vegetarian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005003,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Turkish",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005004,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Thai",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005005,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Swiss",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005006,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Sushi",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005007,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Steakhouses",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005008,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Spanish",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005009,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Seafood",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005010,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Scandinavian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005011,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Portuguese",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005012,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Pizza",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005013,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Moroccan",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005014,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Middle Eastern",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005015,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Mexican",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005016,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Mediterranean",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005017,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Latin American",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005018,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Korean",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005019,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Juice Bar",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005020,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Japanese",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005021,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Italian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005022,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Indonesian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005023,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Indian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005024,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Ice Cream",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005025,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Greek",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005026,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "German",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005027,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Gastropub",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005028,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "French",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005029,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Food Truck",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005030,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Fish and Chips",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005031,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Filipino",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005032,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Fast Food",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005033,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Falafel",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005034,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Ethiopian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005035,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Eastern European",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005036,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Donuts",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005037,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Distillery",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005038,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Diners",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005039,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Dessert",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005040,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Delis",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005041,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Cupcake Shop",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005042,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Cuban",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005043,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Coffee Shop",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005044,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Chinese",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005045,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Caribbean",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005046,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Cajun",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005047,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Cafe",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005048,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Burrito",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005049,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Burgers",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005050,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Breakfast Spot",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005051,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Brazilian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005052,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Barbecue",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005053,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Bakery",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005054,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Bagel Shop",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005055,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Australian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005056,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Asian",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005057,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "American",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005058,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "African",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 13005059,
+    "plaidgroup": "place",
+    "plaidcategory": "Food and Drink",
+    "plaidsubcategory": "Restaurants",
+    "plaidsubcategory2": "Afghan",
+    "perficategory": "Eating Out"
+  },
+  {
+    "plaidcategoryid": 14000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001001,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Psychologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001002,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Pregnancy and Sexual Health",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001003,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Podiatrists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001004,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Physical Therapy",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001005,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Optometrists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001006,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Nutritionists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001007,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Nurses",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001008,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Mental Health",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001009,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Medical Supplies and Labs",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001010,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Hospitals, Clinics and Medical Centers",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001011,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Emergency Services",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001012,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Dentists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001013,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Counseling and Therapy",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001014,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Chiropractors",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001015,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Blood Banks and Centers",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001016,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Alternative Medicine",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14001017,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Healthcare Services",
+    "plaidsubcategory2": "Acupuncture",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002001,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Urologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002002,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Respiratory",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002003,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Radiologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002004,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Psychiatrists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002005,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Plastic Surgeons",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002006,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Pediatricians",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002007,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Pathologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002008,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Orthopedic Surgeons",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002009,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Ophthalmologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002010,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Oncologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002011,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Obstetricians and Gynecologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002012,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Neurologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002013,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Internal Medicine",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002014,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "General Surgery",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002015,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Gastroenterologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002016,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Family Medicine",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002017,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Ear, Nose and Throat",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002018,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Dermatologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002019,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Cardiologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 14002020,
+    "plaidgroup": "place",
+    "plaidcategory": "Healthcare",
+    "plaidsubcategory": "Physicians",
+    "plaidsubcategory2": "Anesthesiologists",
+    "perficategory": "Health and Wellbeing"
+  },
+  {
+    "plaidcategoryid": 15000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Interest",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 15001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Interest",
+    "plaidsubcategory": "Interest Earned",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 15002000,
+    "plaidgroup": "special",
+    "plaidcategory": "Interest",
+    "plaidsubcategory": "Interest Charged",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 16000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Payment",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 16001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Payment",
+    "plaidsubcategory": "Credit Card",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 16002000,
+    "plaidgroup": "special",
+    "plaidcategory": "Payment",
+    "plaidsubcategory": "Rent",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 16003000,
+    "plaidgroup": "special",
+    "plaidcategory": "Payment",
+    "plaidsubcategory": "Loan",
+    "perficategory": "Finance"
+  },
+  {
+    "plaidcategoryid": 17000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001001,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Theatrical Productions",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001002,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Symphony and Opera",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001003,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Sports Venues",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001004,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Social Clubs",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001005,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Psychics and Astrologers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001006,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Party Centers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001007,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Music and Show Venues",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001008,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Museums",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001009,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Movie Theatres",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001010,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Fairgrounds and Rodeos",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001011,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Entertainment",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001012,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Dance Halls and Saloons",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001013,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Circuses and Carnivals",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001014,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Casinos and Gaming",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001015,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Bowling",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001016,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Billiards and Pool",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001017,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Art Dealers and Galleries",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001018,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Arcades and Amusement Parks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17001019,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Arts and Entertainment",
+    "plaidsubcategory2": "Aquarium",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Athletic Fields",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Baseball",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Basketball",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Batting Cages",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17006000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Boating",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17007000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Campgrounds and RV Parks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17008000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Canoes and Kayaks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17009000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Combat Sports",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17010000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Cycling",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17011000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Dance",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17012000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Equestrian",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17013000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Football",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17014000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Go Carts",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17015000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Golf",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17016000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Gun Ranges",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17017000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Gymnastics",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17018000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Gyms and Fitness Centers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17019000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Hiking",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17020000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Hockey",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17021000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Hot Air Balloons",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17022000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Hunting and Fishing",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17023000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Landmarks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17023001,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Landmarks",
+    "plaidsubcategory2": "Monuments and Memorials",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17023002,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Landmarks",
+    "plaidsubcategory2": "Historic Sites",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17023003,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Landmarks",
+    "plaidsubcategory2": "Gardens",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17023004,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Landmarks",
+    "plaidsubcategory2": "Buildings and Structures",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17024000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Miniature Golf",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025001,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "plaidsubcategory2": "Rivers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025002,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "plaidsubcategory2": "Mountains",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025003,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "plaidsubcategory2": "Lakes",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025004,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "plaidsubcategory2": "Forests",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17025005,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Outdoors",
+    "plaidsubcategory2": "Beaches",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17026000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Paintball",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17027000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Parks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17027001,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Parks",
+    "plaidsubcategory2": "Playgrounds",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17027002,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Parks",
+    "plaidsubcategory2": "Picnic Areas",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17027003,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Parks",
+    "plaidsubcategory2": "Natural Parks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17028000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Personal Trainers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17029000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Race Tracks",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17030000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Racquet Sports",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17031000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Racquetball",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17032000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Rafting",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17033000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Recreation Centers",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17034000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Rock Climbing",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17035000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Running",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17036000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Scuba Diving",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17037000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Skating",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17038000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Skydiving",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17039000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Snow Sports",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17040000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Soccer",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17041000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Sports and Recreation Camps",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17042000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Sports Clubs",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17043000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Stadiums and Arenas",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17044000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Swimming",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17045000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Tennis",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17046000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Water Sports",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17047000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Yoga and Pilates",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 17048000,
+    "plaidgroup": "place",
+    "plaidcategory": "Recreation",
+    "plaidsubcategory": "Zoo",
+    "perficategory": "Entertainment"
+  },
+  {
+    "plaidcategoryid": 18000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Writing, Copywriting and Technical Writing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Search Engine Marketing and Optimization",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Public Relations",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Promotional Items",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Print, TV, Radio and Outdoor Advertising",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Online Advertising",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Market Research and Consulting",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Direct Mail and Email Marketing Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Creative Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18001010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Advertising and Marketing",
+    "plaidsubcategory2": "Advertising Agencies and Media Buyers",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Art Restoration",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Audiovisual",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automation and Control Systems",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18006000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Towing",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Motorcycle, Moped and Scooter Repair",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Maintenance and Repair",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Car Wash and Detail",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Car Appraisers",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Auto Transmission",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Auto Tires",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Auto Smog Check",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18006009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Auto Oil and Lube",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 18007000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Business and Strategy Consulting",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18008000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Business Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18008001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Business Services",
+    "plaidsubcategory2": "Printing and Publishing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18009000,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Cable",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18010000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Chemicals and Gasses",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18011000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Cleaning",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18012000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Computers",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18012001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Computers",
+    "plaidsubcategory2": "Maintenance and Repair",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18012002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Computers",
+    "plaidsubcategory2": "Software Development",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Specialty",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Roofers",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Painting",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Masonry",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Infrastructure",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Heating, Ventilating and Air Conditioning",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Electricians",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Contractors",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Carpet and Flooring",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18013010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Construction",
+    "plaidsubcategory2": "Carpenters",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18014000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Credit Counseling and Bankruptcy Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18015000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Dating and Escort",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18016000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Employment Agencies",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18017000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Engineering",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18018000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Entertainment",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18018001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Entertainment",
+    "plaidsubcategory2": "Media",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18019000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Events and Event Planning",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Taxes",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Student Aid and Grants",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Stock Brokers",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Loans and Mortgages",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Holding and Investment Offices",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Fund Raising",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Financial Planning and Investments",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Credit Reporting",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Collections",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Check Cashing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020011,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Business Brokers and Franchises",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020012,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Banking and Finance",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020013,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "ATMs",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18020014,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Financial",
+    "plaidsubcategory2": "Accounting and Bookkeeping",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18021000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Food and Beverage",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18021001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Food and Beverage",
+    "plaidsubcategory2": "Distribution",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18021002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Food and Beverage",
+    "plaidsubcategory2": "Catering",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18022000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Funeral Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18023000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Geological",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18024000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Upholstery",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Tree Service",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Swimming Pool Maintenance and Services",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Storage",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Roofers",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Pools and Spas",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Plumbing",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Pest Control",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Painting",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Movers",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024011,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Mobile Homes",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024012,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Lighting Fixtures",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024013,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Landscaping and Gardeners",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024014,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Kitchens",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024015,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Interior Design",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024016,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Housewares",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024017,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Home Inspection Services",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024018,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Home Appliances",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024019,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Heating, Ventilation and Air Conditioning",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024020,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Hardware and Services",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024021,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Fences, Fireplaces and Garage Doors",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024022,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Electricians",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024023,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Doors and Windows",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024024,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Contractors",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024025,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Carpet and Flooring",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024026,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Carpenters",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18024027,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Home Improvement",
+    "plaidsubcategory2": "Architects",
+    "perficategory": "Housing"
+  },
+  {
+    "plaidcategoryid": 18025000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Household",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18026000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Human Resources",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18027000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Immigration",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18028000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Import and Export",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18029000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Industrial Machinery and Vehicles",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18030000,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Insurance",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18031000,
+    "plaidgroup": "digital",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Internet Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18032000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Leather",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18033000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Legal",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18034000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Logging and Sawmills",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18035000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Machine Shops",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18036000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Management",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Apparel and Fabric Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Chemicals and Gasses",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Computers and Office Machines",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Electrical Equipment and Components",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Food and Beverage",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Furniture and Fixtures",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Glass Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Industrial Machinery and Equipment",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Leather Goods",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Metal Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037011,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Nonmetallic Mineral Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037012,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Paper Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037013,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Petroleum",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037014,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Plastic Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037015,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Rubber Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037016,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Service Instruments",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037017,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Textiles",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037018,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Tobacco",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037019,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Transportation Equipment",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18037020,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Manufacturing",
+    "plaidsubcategory2": "Wood Products",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18038000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Media Production",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18039000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Metals",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18040000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Mining",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18040001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Mining",
+    "plaidsubcategory2": "Coal",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18040002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Mining",
+    "plaidsubcategory2": "Metal",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18040003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Mining",
+    "plaidsubcategory2": "Non-Metallic Minerals",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18041000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "News Reporting",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18042000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Oil and Gas",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18043000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Packaging",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18044000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Paper",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Tattooing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Tanning Salons",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Spas",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Skin Care",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Piercing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Massage Clinics and Therapists",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Manicures and Pedicures",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Laundry and Garment Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Hair Salons and Barbers",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18045010,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Personal Care",
+    "plaidsubcategory2": "Hair Removal",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18046000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Petroleum",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18047000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Photography",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18048000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Plastics",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18049000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Rail",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Real Estate Development and Title Companies",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Real Estate Appraiser",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Real Estate Agents",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Property Management",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050005,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Corporate Housing",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050006,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Commercial Real Estate",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050007,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Building and Land Surveyors",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050008,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Boarding Houses",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050009,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Apartments, Condos and Houses",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18050010,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Real Estate",
+    "plaidsubcategory2": "Rent",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18051000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Refrigeration and Ice",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18052000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Renewable Energy",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18053000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Repair Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18054000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Research",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18055000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Rubber",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18056000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Scientific",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18057000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Security and Safety",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18058000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Shipping and Freight",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18059000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Software Development",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18060000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Storage",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18061000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Subscription",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18062000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Tailors",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18063000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Telecommunication Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18064000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Textiles",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18065000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Tourist Information and Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18066000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Transportation",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18067000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Travel Agents and Tour Operators",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18068000,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18068001,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "plaidsubcategory2": "Water",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18068002,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "plaidsubcategory2": "Sanitary and Waste Management",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18068003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "plaidsubcategory2": "Heating, Ventilating, and Air Conditioning",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18068004,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "plaidsubcategory2": "Gas",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18068005,
+    "plaidgroup": "special",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Utilities",
+    "plaidsubcategory2": "Electric",
+    "perficategory": "Utilities"
+  },
+  {
+    "plaidcategoryid": 18069000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Veterinarians",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18070000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Water and Waste Management",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18071000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Web Design and Development",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18072000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Welding",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18073000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Agriculture and Forestry",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18073001,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Agriculture and Forestry",
+    "plaidsubcategory2": "Crop Production",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18073002,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Agriculture and Forestry",
+    "plaidsubcategory2": "Forestry",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18073003,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Agriculture and Forestry",
+    "plaidsubcategory2": "Livestock and Animals",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18073004,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Agriculture and Forestry",
+    "plaidsubcategory2": "Services",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 18074000,
+    "plaidgroup": "place",
+    "plaidcategory": "Service",
+    "plaidsubcategory": "Art and Graphic Design",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 19000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19001000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Adult",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Antiques",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Arts and Crafts",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Auctions",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005001,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Used Car Dealers",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005002,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Salvage Yards",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005003,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "RVs and Motor Homes",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005004,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Motorcycles, Mopeds and Scooters",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005005,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Classic and Antique Car",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005006,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Car Parts and Accessories",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19005007,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Automotive",
+    "plaidsubcategory2": "Car Dealers and Leasing",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19006000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Beauty Products",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19007000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Bicycles",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19008000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Boat Dealers",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19009000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Bookstores",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19010000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Cards and Stationery",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19011000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Children",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012001,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Women's Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012002,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Swimwear",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012003,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Shoe Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012004,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Men's Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012005,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Lingerie Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012006,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Kids' Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012007,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Boutique",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19012008,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Clothing and Accessories",
+    "plaidsubcategory2": "Accessories Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19013000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Computers and Electronics",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19013001,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Computers and Electronics",
+    "plaidsubcategory2": "Video Games",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19013002,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Computers and Electronics",
+    "plaidsubcategory2": "Mobile Phones",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19013003,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Computers and Electronics",
+    "plaidsubcategory2": "Cameras",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19014000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Construction Supplies",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19015000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Convenience Stores",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19016000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Costumes",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19017000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Dance and Music",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19018000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Department Stores",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19019000,
+    "plaidgroup": "digital",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Digital Purchase",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19020000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Discount Stores",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19021000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Electrical Equipment",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19022000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Equipment Rental",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19023000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Flea Markets",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19024000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Florists",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19025000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Food and Beverage Store",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19025001,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Food and Beverage Store",
+    "plaidsubcategory2": "Specialty",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19025002,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Food and Beverage Store",
+    "plaidsubcategory2": "Health Food",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19025003,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Food and Beverage Store",
+    "plaidsubcategory2": "Farmers Markets",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19025004,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Food and Beverage Store",
+    "plaidsubcategory2": "Beer, Wine and Spirits",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19026000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Fuel Dealer",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19027000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Furniture and Home Decor",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19028000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Gift and Novelty",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19029000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Glasses and Optometrist",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19030000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Hardware Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19031000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Hobby and Collectibles",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19032000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Industrial Supplies",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19033000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Jewelry and Watches",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19034000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Luggage",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19035000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Marine Supplies",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19036000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Music, Video and DVD",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19037000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Musical Instruments",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19038000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Newsstands",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19039000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Office Supplies",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040001,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Women's Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040002,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Swimwear",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040003,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Shoe Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040004,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Men's Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040005,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Lingerie Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040006,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Kids' Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040007,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Boutique",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19040008,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Outlet",
+    "plaidsubcategory2": "Accessories Store",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19041000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Pawn Shops",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19042000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Pets",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19043000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Pharmacies",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19044000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Photos and Frames",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19045000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Shopping Centers and Malls",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19046000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Sporting Goods",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19047000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Supermarkets and Groceries",
+    "perficategory": "Groceries"
+  },
+  {
+    "plaidcategoryid": 19048000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Tobacco",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19049000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Toys",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19050000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Vintage and Thrift",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19051000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Warehouses and Wholesale Stores",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19052000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Wedding and Bridal",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19053000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Wholesale",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 19054000,
+    "plaidgroup": "place",
+    "plaidcategory": "Shops",
+    "plaidsubcategory": "Lawn and Garden",
+    "perficategory": "Shopping"
+  },
+  {
+    "plaidcategoryid": 20000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Tax",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 20001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Tax",
+    "plaidsubcategory": "Refund",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 20002000,
+    "plaidgroup": "special",
+    "plaidcategory": "Tax",
+    "plaidsubcategory": "Payment",
+    "perficategory": "Misc"
+  },
+  {
+    "plaidcategoryid": 21000000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Internal Account Transfer",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21002000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "ACH",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21003000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Billpay",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21004000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Check",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21005000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Credit",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21006000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Debit",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21007000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Deposit",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21007001,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Deposit",
+    "plaidsubcategory2": "Check",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21007002,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Deposit",
+    "plaidsubcategory2": "Cash",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21008000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Keep the Change Savings Program",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21009000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Payroll",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21009001,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Payroll",
+    "plaidsubcategory2": "Benefits",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010001,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Venmo",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010002,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Square Cash",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010003,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Square",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010004,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "PayPal",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010005,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Dwolla",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010006,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Coinbase",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010007,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Chase QuickPay",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010008,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Acorns",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010009,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Digit",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010010,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Betterment",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21010011,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Third Party",
+    "plaidsubcategory2": "Plaid",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21011000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Wire",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21012000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Withdrawal",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21012001,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Withdrawal",
+    "plaidsubcategory2": "Check",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21012002,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Withdrawal",
+    "plaidsubcategory2": "ATM",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 21013000,
+    "plaidgroup": "special",
+    "plaidcategory": "Transfer",
+    "plaidsubcategory": "Save As You Go",
+    "perficategory": "Transfer"
+  },
+  {
+    "plaidcategoryid": 22000000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22001000,
+    "plaidgroup": "special",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Airlines and Aviation Services",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22002000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Airports",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22003000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Boat",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22004000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Bus Stations",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22005000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Car and Truck Rentals",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22006000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Car Service",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22006001,
+    "plaidgroup": "special",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Car Service",
+    "plaidsubcategory2": "Ride Share",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22007000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Charter Buses",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22008000,
+    "plaidgroup": "special",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Cruises",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22009000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Gas Stations",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22010000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Heliports",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22011000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Limos and Chauffeurs",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012001,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Resorts",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012002,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Lodges and Vacation Rentals",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012003,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Hotels and Motels",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012004,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Hostels",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012005,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Cottages and Cabins",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22012006,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Lodging",
+    "plaidsubcategory2": "Bed and Breakfasts",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22013000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Parking",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22014000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Public Transportation Services",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 22015000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Rail",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 22016000,
+    "plaidgroup": "special",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Taxi",
+    "perficategory": "Transport"
+  },
+  {
+    "plaidcategoryid": 22017000,
+    "plaidgroup": "special",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Tolls and Fees",
+    "perficategory": "Travel"
+  },
+  {
+    "plaidcategoryid": 22018000,
+    "plaidgroup": "place",
+    "plaidcategory": "Travel",
+    "plaidsubcategory": "Transportation Centers",
+    "perficategory": "Travel"
+  }
+]

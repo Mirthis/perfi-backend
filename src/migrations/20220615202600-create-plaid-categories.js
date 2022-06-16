@@ -1,52 +1,37 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('items', {
+    await queryInterface.createTable('plaid_categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      plaidItemId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      userId: {
+      categoryId: {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'users',
+            tableName: 'categories',
           },
           key: 'id',
         },
         allowNull: false,
       },
-      accessToken: {
+      code: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      institutionId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'institutions',
-          },
-          key: 'id',
-        },
-        allowNull: true,
-      },
-      status: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      transactionCursor: {
+      name_lvl1: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      consentExpirationTime: {
-        type: Sequelize.DATE,
+      name_lvl2: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      name_lvl3: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
       createdAt: {
@@ -60,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('items');
+    await queryInterface.dropTable('plaid_categories');
   },
 };

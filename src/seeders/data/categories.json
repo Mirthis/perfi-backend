@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Bills"
+  },
+  {
+    "name": "Cash"
+  },
+  {
+    "name": "Charity"
+  },
+  {
+    "name": "Drinks"
+  },
+  {
+    "name": "Eating Out"
+  },
+  {
+    "name": "Education"
+  },
+  {
+    "name": "Entertainment"
+  },
+  {
+    "name": "Finance"
+  },
+  {
+    "name": "Groceries"
+  },
+  {
+    "name": "Health and Wellbeing"
+  },
+  {
+    "name": "Housing"
+  },
+  {
+    "name": "Misc"
+  },
+  {
+    "name": "Shopping"
+  },
+  {
+    "name": "Transfer"
+  },
+  {
+    "name": "Transport"
+  },
+  {
+    "name": "Travel"
+  },
+  {
+    "name": "Utilities"
+  }
+]

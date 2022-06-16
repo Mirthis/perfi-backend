@@ -1,7 +1,2 @@
-DROP TABLE transactions;
-DROP TABLE accounts;
-DROP TABLE items;
-DROP TABLE institutions;
-DROP TABLE migrations;
-DROP TABLE sessions;
-DROP TABLE users;
+DROP TABLE users, sessions, institutions, items, accounts,transactions, categories, plaid_categories;
+TRUNCATE TABLE users, sessions, institutions, items, accounts,transactions, categories, plaid_categories;

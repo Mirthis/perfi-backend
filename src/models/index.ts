@@ -4,6 +4,8 @@ import Item from './item';
 import Institution from './institution';
 import Account from './account';
 import Transaction from './transaction';
+import PlaidCategory from './plaidCategory';
+import Category from './category';
 
 User.hasMany(Item);
 Item.belongsTo(User);
@@ -17,4 +19,25 @@ Item.hasMany(Account);
 Account.hasMany(Transaction);
 Transaction.belongsTo(Account);
 
-export { User, Session, Item, Institution };
+PlaidCategory.hasMany(Transaction);
+Transaction.belongsTo(PlaidCategory);
+
+Category.hasMany(Transaction);
+Transaction.belongsTo(Category);
+
+Category.hasMany(PlaidCategory);
+PlaidCategory.belongsTo(Category);
+
+User.hasMany(Category);
+Category.belongsTo(User);
+
+export {
+  User,
+  Session,
+  Item,
+  Institution,
+  Account,
+  Transaction,
+  Category,
+  PlaidCategory,
+};

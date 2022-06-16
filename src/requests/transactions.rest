@@ -10,3 +10,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8000/api/transactions/account/1/summary
+
+###
+GET http://localhost:8000/api/transactions/categorySummary

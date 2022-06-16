@@ -18,6 +18,7 @@ import {
 } from '../models/item';
 import { createOrUpdateTransactions } from '../models/transaction-queries';
 import { createOrUpdateAccounts } from '../models/account';
+import { getErrorMessage } from '../utils/logger';
 
 const router = express.Router();
 
@@ -33,35 +34,6 @@ const configuration = new Configuration({
 });
 
 const plaidClient = new PlaidApi(configuration);
-
-type ErrorWithMessage = {
-  message: string;
-};
-
-function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'message' in error &&
-    typeof (error as Record<string, unknown>).message === 'string'
-  );
-}
-
-function toErrorWithMessage(maybeError: unknown): ErrorWithMessage {
-  if (isErrorWithMessage(maybeError)) return maybeError;
-
-  try {
-    return new Error(JSON.stringify(maybeError));
-  } catch {
-    // fallback in case there's an error stringifying the maybeError
-    // like with circular references for example.
-    return new Error(String(maybeError));
-  }
-}
-
-function getErrorMessage(error: unknown) {
-  return toErrorWithMessage(error).message;
-}
 
 const fetchTransactionUpdates = async (plaidItemId: string) => {
   const { accessToken, transactionCursor: lastCursor } =
@@ -280,6 +252,12 @@ router.get('/categories', async (_req, res) => {
   const response = await plaidClient.categoriesGet({});
   const { categories } = response.data;
   res.json(categories);
+});
+
+router.get('/update_transactions', async (req, res) => {
+  const { plaidItemId } = req.body;
+  const stats = await updateTransactions(plaidItemId);
+  res.json(stats);
 });
 
 export default router;

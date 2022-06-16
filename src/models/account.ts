@@ -120,6 +120,7 @@ export const getAccountByPlaidAccountId = async (plaidAccountId: string) => {
   const account = await Account.findOne({
     where: { plaidAccountId },
   });
+  if (!account) throw Error('Account id not found');
   return account;
 };
 
