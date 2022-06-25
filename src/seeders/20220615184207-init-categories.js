@@ -1,8 +1,8 @@
 const data = require('./data/categories.json');
 
 const categories = data.map((d) => ({
+  ...d,
   userId: -1,
-  name: d.name,
   createdAt: new Date(),
   updatedAt: new Date(),
 }));

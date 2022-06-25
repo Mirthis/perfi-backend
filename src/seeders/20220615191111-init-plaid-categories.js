@@ -10,7 +10,6 @@ module.exports = {
       (prev, curr) => ({ ...prev, [curr.name]: curr.id }),
       {},
     );
-    console.log(categoriesMapping);
 
     const plaidCategories = data.map((d) => {
       const categoryId = categoriesMapping[d.perficategory];

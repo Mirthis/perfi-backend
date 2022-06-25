@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import morgan from 'morgan';
 import { Request, Response, NextFunction } from 'express';
 import logger from './logger';
@@ -10,6 +11,7 @@ const errorHandler = (
   error: Error,
   _request: Request,
   response: Response,
+  _next: NextFunction,
 ): void => {
   console.log('Error midleware');
   const returnMessageName = [

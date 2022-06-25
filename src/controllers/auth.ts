@@ -1,12 +1,17 @@
 import express from 'express';
 import passport from 'passport';
+import { getErrorMessage } from '../utils/logger';
 import { isAuthenticated } from '../utils/middleware';
 
 const router = express.Router();
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  if (req.user) {
-    res.status(200).json({ id: req.user.id, email: req.user.email });
+  try {
+    if (req.user) {
+      res.status(200).json({ id: req.user.id, email: req.user.email });
+    }
+  } catch (err: unknown) {
+    console.error(`Error fetching transactions: ${getErrorMessage(err)}`);
   }
 });
 

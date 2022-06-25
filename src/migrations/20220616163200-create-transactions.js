@@ -30,9 +30,13 @@ module.exports = {
         type: Sequelize.DECIMAL,
         allowNull: false,
       },
-      transactionDate: {
-        type: Sequelize.DATE,
+      txDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false,
+      },
+      txDatetime: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       pending: {
         type: Sequelize.BOOLEAN,

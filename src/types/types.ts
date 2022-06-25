@@ -23,3 +23,17 @@ export type AccountWhereClause =
       >
     >
   | undefined;
+
+export interface GetCategoriesSummaryOptions {
+  accountIds?: number[];
+  startDate?: Date;
+  endDate?: Date;
+}
+
+export interface GetTransactionsOptions {
+  offset?: number;
+  limit?: number;
+  accountIds?: number[];
+  startDate?: Date;
+  endDate?: Date;
+}

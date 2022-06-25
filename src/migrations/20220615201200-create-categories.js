@@ -20,7 +20,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: false,
+      },
+      iconName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      iconColor: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,

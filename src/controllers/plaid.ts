@@ -68,6 +68,7 @@ const fetchTransactionUpdates = async (plaidItemId: string) => {
     console.error(`Error fetching transactions: ${getErrorMessage(err)}`);
     cursor = lastCursor;
   }
+  console.log(added);
   return { added, modified, removed, cursor, accessToken };
 };
 

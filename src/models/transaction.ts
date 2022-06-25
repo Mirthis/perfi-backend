@@ -29,7 +29,9 @@ class Transaction extends Model<
 
   declare amount: number;
 
-  declare transactionDate: Date;
+  declare txDate: Date;
+
+  declare txDatetime: Date;
 
   declare pending: boolean;
 
@@ -77,7 +79,11 @@ Transaction.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    transactionDate: {
+    txDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    txDatetime: {
       type: DataTypes.DATE,
       allowNull: false,
     },

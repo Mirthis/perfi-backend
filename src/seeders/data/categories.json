@@ -1,53 +1,87 @@
 [
   {
-    "name": "Bills"
+    "name": "Bills",
+    "iconName": "bills",
+    "iconColor": "primary"
   },
   {
-    "name": "Cash"
+    "name": "Cash",
+    "iconName": "cash",
+    "iconColor": "primary"
   },
   {
-    "name": "Charity"
+    "name": "Charity",
+    "iconName": "charity",
+    "iconColor": "primary"
   },
   {
-    "name": "Drinks"
+    "name": "Drinks",
+    "iconName": "drinks",
+    "iconColor": "primary"
   },
   {
-    "name": "Eating Out"
+    "name": "Eating Out",
+    "iconName": "eating",
+    "iconColor": "primary"
   },
   {
-    "name": "Education"
+    "name": "Education",
+    "iconName": "education",
+    "iconColor": "primary"
   },
   {
-    "name": "Entertainment"
+    "name": "Entertainment",
+    "iconName": "entertainment",
+    "iconColor": "primary"
   },
   {
-    "name": "Finance"
+    "name": "Finance",
+    "iconName": "finance",
+    "iconColor": "primary"
   },
   {
-    "name": "Groceries"
+    "name": "Groceries",
+    "iconName": "groceries",
+    "iconColor": "primary"
   },
   {
-    "name": "Health and Wellbeing"
+    "name": "Health and Wellbeing",
+    "iconName": "health",
+    "iconColor": "primary"
   },
   {
-    "name": "Housing"
+    "name": "Housing",
+    "iconName": "housing",
+    "iconColor": "primary"
   },
   {
-    "name": "Misc"
+    "name": "Misc",
+    "iconName": "housing",
+    "iconColor": "primary"
   },
   {
-    "name": "Shopping"
+    "name": "Shopping",
+    "iconName": "shopping",
+    "iconColor": "primary"
   },
   {
-    "name": "Transfer"
+    "name": "Transfer",
+    "iconName": "transfer",
+    "iconColor": "primary"
   },
   {
-    "name": "Transport"
+    "name": "Transport",
+    "iconName": "transport",
+    "iconColor": "primary"
   },
   {
-    "name": "Travel"
+    "name": "Travel",
+    "iconName": "travel",
+    "iconColor": "primary"
   },
   {
-    "name": "Utilities"
+    "name": "Utilities",
+    "iconName": "transport",
+    "iconColor": "primary"
   }
 ]

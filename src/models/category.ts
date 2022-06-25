@@ -25,6 +25,10 @@ class Category extends Model<
 
   declare name: string;
 
+  declare iconName: string;
+
+  declare iconColor: string;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -46,6 +50,14 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
+    },
+    iconName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    iconColor: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,

@@ -8,6 +8,7 @@ export const sequelize = new Sequelize(config.DATABASE_URI, {
       require: true,
       rejectUnauthorized: false,
     },
+    supportBigNumbers: true,
   },
   logging: true,
 });
