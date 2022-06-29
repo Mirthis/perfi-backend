@@ -72,6 +72,11 @@ Category.init(
     sequelize,
     tableName: 'categories',
     modelName: 'category',
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'userId'],
+      },
+    },
   },
 );
 

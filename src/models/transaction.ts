@@ -134,7 +134,7 @@ Transaction.init(
     modelName: 'transaction',
     defaultScope: {
       attributes: {
-        exclude: ['id', 'createdAt', 'updatedAt', 'unofficialCurrencyCode'],
+        exclude: ['createdAt', 'updatedAt', 'unofficialCurrencyCode'],
       },
     },
   },

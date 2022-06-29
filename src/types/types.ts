@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { InferAttributes, WhereOptions } from 'sequelize/types';
-import { Account, Transaction } from '../models';
+import { Account, Category, Transaction } from '../models';
 
 export type TransactionsWhereClause =
   | WhereOptions<
@@ -24,10 +24,22 @@ export type AccountWhereClause =
     >
   | undefined;
 
+export type CategoryWhereClause =
+  | WhereOptions<
+      InferAttributes<
+        Category,
+        {
+          omit: never;
+        }
+      >
+    >
+  | undefined;
+
 export interface GetCategoriesSummaryOptions {
   accountIds?: number[];
   startDate?: Date;
   endDate?: Date;
+  categoryIds?: number[];
 }
 
 export interface GetTransactionsOptions {
@@ -36,4 +48,5 @@ export interface GetTransactionsOptions {
   accountIds?: number[];
   startDate?: Date;
   endDate?: Date;
+  categoryIds?: number[];
 }

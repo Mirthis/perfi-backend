@@ -14,6 +14,7 @@ import {
   transactionsRouter,
   plaidRouter,
   accountsRouter,
+  categoriesRouter,
 } from './controllers';
 
 // const LocalStrategy = require('passport-local').Strategy;
@@ -77,6 +78,7 @@ app.use('/api/plaid', plaidRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/accounts', accountsRouter);
+app.use('/api/categories', categoriesRouter);
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);

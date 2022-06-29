@@ -1,18 +1,13 @@
 GET http://localhost:8000/api/transactions
 
 ###
-GET http://localhost:8000/api/transactions/account/1
-Content-Type: application/json
-
-{
-  "accountIds": [5,4]
-}
+GET http://localhost:8000/api/transactions?startDate=2022-06-01
 
 ###
 GET http://localhost:8000/api/transactions/account/1/summary
 
 ###
-GET http://localhost:8000/api/transactions/category_summary?startDate=20220601
+GET http://localhost:8000/api/transactions/category_summary?categoryIds=5
 
 ###
 GET http://localhost:8000/api/transactions/transactions_summary

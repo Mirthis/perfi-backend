@@ -6,3 +6,13 @@ Content-Type: application/json
   "email": "aaa@sss.ddd",
   "password":"A!23456z"
 }
+
+
+### wrong
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "aaa@sss.aaaa",
+  "password":"A!23456zdddd"
+}

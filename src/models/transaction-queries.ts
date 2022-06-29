@@ -4,10 +4,11 @@ import Account, { getAccountByPlaidAccountId } from './account';
 import Item from './item';
 import Transaction from './transaction';
 import { sequelize } from '../utils/db';
-import { getPlaidCategoryByCode } from './plaidCategory';
+import PlaidCategory, { getPlaidCategoryByCode } from './plaidCategory';
 import Category from './category';
 import {
   AccountWhereClause,
+  CategoryWhereClause,
   GetCategoriesSummaryOptions,
   GetTransactionsOptions,
   TransactionsWhereClause,
@@ -19,12 +20,14 @@ export const getTransactions = async (
 ) => {
   const where: TransactionsWhereClause = {};
   const accountWhere: AccountWhereClause = {};
+  const categoryWhere: CategoryWhereClause = {};
 
   const startDate = options?.startDate;
   const endDate = options?.endDate;
   const offset = options?.offset || 0;
   const limit = options?.limit || 30;
   const accountIds = options?.accountIds;
+  const categoryIds = options?.categoryIds;
 
   if (startDate && endDate) {
     where.txDate = { [Op.between]: [startDate, endDate] };
@@ -37,18 +40,38 @@ export const getTransactions = async (
   if (accountIds) {
     accountWhere.id = { [Op.in]: accountIds };
   }
-  console.log(accountIds);
-  console.log(accountWhere);
+  if (categoryIds) {
+    categoryWhere.id = { [Op.in]: categoryIds };
+  }
+
+  console.log('accountWIds', accountIds);
+  console.log('accountWhere', accountWhere);
+  console.log('categoryIds', categoryIds);
+  console.log('categoryWhere', categoryWhere);
 
   const transactions = await Transaction.findAndCountAll({
-    include: {
-      model: Account,
-      where: accountWhere,
-      include: [{ model: Item, where: { userId }, attributes: [] }],
-      attributes: [],
+    attributes: {
+      exclude: ['plaidCategoryId', 'categoryId', 'accountId'],
     },
+    include: [
+      {
+        model: Account,
+        where: accountWhere,
+        include: [{ model: Item, where: { userId }, attributes: [] }],
+        attributes: ['id', 'name'],
+      },
+      {
+        model: Category,
+        where: categoryWhere,
+        attributes: ['id', 'iconName', 'iconColor'],
+      },
+      {
+        model: PlaidCategory,
+        attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
+      },
+    ],
     where,
-    order: [['txD', 'DESC']],
+    order: [['txDate', 'DESC']],
     offset,
     limit,
   });
@@ -221,10 +244,12 @@ export const getTransactionsCategorySummary = async (
   console.log(options);
   const transactionWhere: TransactionsWhereClause = {};
   const accountWhere: AccountWhereClause = {};
+  const categoryWhere: CategoryWhereClause = {};
 
   const startDate = options?.startDate;
   const endDate = options?.endDate;
   const accountIds = options?.accountIds;
+  const categoryIds = options?.categoryIds;
 
   if (startDate && endDate) {
     transactionWhere.txDate = { [Op.between]: [startDate, endDate] };
@@ -238,6 +263,9 @@ export const getTransactionsCategorySummary = async (
 
   if (accountIds) {
     accountWhere.id = { [Op.in]: accountIds };
+  }
+  if (categoryIds) {
+    categoryWhere.id = { [Op.in]: categoryIds };
   }
 
   const categorySummary = await Transaction.findAll({
@@ -254,6 +282,7 @@ export const getTransactionsCategorySummary = async (
         model: Category,
         required: true,
         attributes: [],
+        where: categoryWhere,
       },
       {
         model: Account,
