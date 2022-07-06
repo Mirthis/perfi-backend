@@ -35,6 +35,9 @@ const configuration = new Configuration({
 
 const plaidClient = new PlaidApi(configuration);
 
+console.log(configuration);
+console.log(plaidClient);
+
 const fetchTransactionUpdates = async (plaidItemId: string) => {
   const { accessToken, transactionCursor: lastCursor } =
     (await getItemByPlaidItemId(plaidItemId)) as Item;
@@ -166,6 +169,7 @@ router.post('/set_access_token', isAuthenticated, async (req, res) => {
     // @ts-ignore
   } = await plaidClient.institutionsGetById(configs);
 
+  // TODO: institution update seems not to always take place
   createOrUpdateInstitution(institutionData);
   const item = createOrUpdateItem(
     itemData,

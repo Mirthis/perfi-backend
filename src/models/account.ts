@@ -113,6 +113,11 @@ Account.init(
     sequelize,
     tableName: 'accounts',
     modelName: 'account',
+    defaultScope: {
+      attributes: {
+        exclude: ['unofficialCurrencyCode', 'createdAt', 'updatedAt', 'mask'],
+      },
+    },
   },
 );
 
@@ -166,15 +171,6 @@ export const getAccountsByUserId = async (userId: number) => {
   // // console.log(items[0].Institution);
   // console.log(userId);
   const accounts = await Account.findAll({
-    attributes: {
-      exclude: [
-        'unofficialCurrencyCode',
-        'createdAt',
-        'updatedAt',
-        'mask',
-        'itemId',
-      ],
-    },
     include: {
       model: Item,
       where: { userId },

@@ -2,11 +2,12 @@ import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
 import {
   getTransactions,
-  getTransactionsCategorySummary,
+  getSpendingByCategory,
   getTransactionsSummary,
+  getTopMerchants,
 } from '../models/transaction-queries';
 import {
-  GetCategoriesSummaryOptions,
+  GetSpendingByCategoryOptions,
   GetTransactionsOptions,
 } from '../types/types';
 
@@ -22,9 +23,11 @@ const router = express.Router();
 //   res.json(transactions);///
 // });
 
-router.get('/category_summary', isAuthenticated, async (req, res) => {
+router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorize');
-  const queryOptions: GetCategoriesSummaryOptions = { ...req.query };
+  const queryOptions: GetSpendingByCategoryOptions = { ...req.query };
+
+  // TODO: create proper parsing function for inputs
   if (
     req.query.accountIds &&
     (typeof req.query.accountIds === 'string' ||
@@ -43,10 +46,22 @@ router.get('/category_summary', isAuthenticated, async (req, res) => {
       .split(',')
       .map((i) => Number(i));
   }
-  const transactions = await getTransactionsCategorySummary(
-    req.user.id,
-    queryOptions,
-  );
+  // if (
+  //   req.query.startDate &&
+  //   (typeof req.query.startDate === 'string' ||
+  //     req.query.startDate instanceof String)
+  // ) {
+  //   queryOptions.startDate = new Date(req.query.startDate as string);
+  // }
+  // if (
+  //   req.query.endDate &&
+  //   (typeof req.query.endDate === 'string' ||
+  //     req.query.endDate instanceof String)
+  // ) {
+  //   queryOptions.endDate = new Date(req.query.endDate as string);
+  // }
+
+  const transactions = await getSpendingByCategory(req.user.id, queryOptions);
   res.json(transactions);
 });
 
@@ -80,37 +95,22 @@ router.get('/', isAuthenticated, async (req, res) => {
 router.get('/transactions_summary', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
 
-  // TODO: check why default error middleware is not working
-
-  const transactions = await getTransactionsSummary(req.user.id);
+  const transactions = await getTransactionsSummary(req.user.id, req.query);
   res.json(transactions);
 });
 
-// router.get('/account/:accountId', isAuthenticated, async (req, res) => {
-//   if (!req.user) throw Error('Unauthorize');
-//   // const item = await getItemByUserId(req.user.id);
-//   // if(!item) throw Error('User has no items');
+router.get('/top_merchants', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
 
-//   // const transactions = await getTransactionsByAccount(
-//   //   Number(req.params.accountId),
-//   //   req.user.id,
-//   //   req.body,
-//   // );
-//   const transactions = await getTransactions(req.user.id, req.body);
-//   res.json(transactions);
-// });
+  const topMerchants = await getTopMerchants(req.user.id, req.query);
+  res.json(topMerchants);
+});
 
-// router.get('/account/:accountId/summary', isAuthenticated, async (req, res) => {
-//   if (!req.user) throw Error('Unauthorize');
-//   console.log(req.body);
-//   // const item = await getItemByUserId(req.user.id);
-//   // if(!item) throw Error('User has no items');
+// router.get('/top_expenses', isAuthenticated, async (req, res) => {
+//   if (!req.user) throw Error('Unauthorized');
 
-//   const transactions = await getAccountTransactionsSummary(
-//     Number(req.params.accountId),
-//     req.user.id,
-//   );
-//   res.json(transactions);
+//   const topExpenses = await getTopExpenses(req.user.id, req.query);
+//   res.json(topExpenses);
 // });
 
 export default router;

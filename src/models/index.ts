@@ -6,6 +6,7 @@ import Account from './account';
 import Transaction from './transaction';
 import PlaidCategory from './plaidCategory';
 import Category from './category';
+import Calendar from './calendar';
 
 User.hasMany(Item);
 Item.belongsTo(User);
@@ -31,6 +32,9 @@ PlaidCategory.belongsTo(Category);
 User.hasMany(Category);
 Category.belongsTo(User);
 
+Calendar.hasMany(Transaction);
+Transaction.belongsTo(Calendar);
+
 export {
   User,
   Session,
@@ -40,4 +44,5 @@ export {
   Transaction,
   Category,
   PlaidCategory,
+  Calendar,
 };

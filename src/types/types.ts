@@ -1,11 +1,22 @@
 /* eslint-disable import/no-cycle */
 import { InferAttributes, WhereOptions } from 'sequelize/types';
-import { Account, Category, Transaction } from '../models';
+import { Account, Calendar, Category, Transaction } from '../models';
 
 export type TransactionsWhereClause =
   | WhereOptions<
       InferAttributes<
         Transaction,
+        {
+          omit: never;
+        }
+      >
+    >
+  | undefined;
+
+export type CalendarWhereClause =
+  | WhereOptions<
+      InferAttributes<
+        Calendar,
         {
           omit: never;
         }
@@ -35,11 +46,12 @@ export type CategoryWhereClause =
     >
   | undefined;
 
-export interface GetCategoriesSummaryOptions {
+export interface GetSpendingByCategoryOptions {
   accountIds?: number[];
   startDate?: Date;
   endDate?: Date;
   categoryIds?: number[];
+  removeZeroCounts?: boolean;
 }
 
 export interface GetTransactionsOptions {
@@ -49,4 +61,22 @@ export interface GetTransactionsOptions {
   startDate?: Date;
   endDate?: Date;
   categoryIds?: number[];
+  orderBy?: string;
+}
+
+export interface GetTransactionsSummaryOptions {
+  startDate?: Date;
+  endDate?: Date;
+}
+
+export interface GetTopExpensesOptions {
+  startDate?: Date;
+  endDate?: Date;
+  limit?: number;
+}
+
+export interface GetTopMerchantsOptions {
+  startDate?: Date;
+  endDate?: Date;
+  limit?: number;
 }

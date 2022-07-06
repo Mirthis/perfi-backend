@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import morgan from 'morgan';
 import { Request, Response, NextFunction } from 'express';
+import { ValidationError } from 'sequelize';
 import logger from './logger';
 
 const unknownEndpoint = (_request: Request, response: Response): void => {
@@ -14,16 +15,24 @@ const errorHandler = (
   _next: NextFunction,
 ): void => {
   console.log('Error midleware');
-  const returnMessageName = [
-    'SequelizeValidationError',
-    'SequelizeUniqueConstraintError',
-  ];
+  // const returnMessageName = [
+  //   'SequelizeValidationError',
+  //   'SequelizeUniqueConstraintError',
+  // ];
   logger.error('Error: ', error);
   logger.error('Error message: ', error.message);
   logger.error('Error name: ', error.name);
-  // TODO: improve return values
-  if (returnMessageName.includes(error.name)) {
-    response.status(400).json({ error: error.message });
+  if (error instanceof ValidationError) {
+    console.log('Identified validation error');
+    const errors = error.errors.map((e) => ({
+      type: e.type,
+      message: e.message,
+      path: e.path,
+    }));
+    console.log({ name: error.name, errors });
+    response
+      .status(400)
+      .json({ type: 'ValidationError', name: error.name, errors });
   } else {
     response.status(400).json({ error: error.message });
   }

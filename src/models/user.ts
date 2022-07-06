@@ -31,6 +31,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 
   declare password: string;
 
+  declare isActive: boolean;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -108,10 +110,24 @@ User.init(
       type: DataTypes.STRING(320),
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: { msg: 'Email need to be a valid email' },
+      },
     },
     password: {
       type: DataTypes.STRING(60),
       allowNull: false,
+      validate: {
+        is: {
+          args: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/],
+          msg: 'Password must be at least 8 characters long and contains at least one upper case letter, one lower case letter a number and a symbol',
+        },
+      },
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

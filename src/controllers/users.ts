@@ -9,10 +9,4 @@ router.get('/', async (_req, res) => {
   res.json(users);
 });
 
-router.post('/', async (req, res) => {
-  console.log(req.body);
-  const user = await User.create(req.body);
-  res.json({ id: user.id, email: user.email });
-});
-
 export default router;

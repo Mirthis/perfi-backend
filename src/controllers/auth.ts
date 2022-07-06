@@ -1,5 +1,6 @@
 import express from 'express';
 import passport from 'passport';
+import { User } from '../models';
 
 const router = express.Router();
 
@@ -31,6 +32,12 @@ router.post('/login', (req, res, next) => {
       });
     }
   })(req, res, next);
+});
+
+router.post('/signup', async (req, res) => {
+  console.log(req.body);
+  const user = await User.create(req.body);
+  res.json({ id: user.id, email: user.email });
 });
 
 export default router;

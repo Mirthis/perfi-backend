@@ -1,7 +1,16 @@
-POST http://localhost:8000/api/users
+POST http://localhost:8000/api/auth/signup
 Content-Type: application/json
  
 {
   "email": "aaa@sss.ddd",
   "password":"A!23456z"
 }
+
+###
+POST http://localhost:8000/api/auth/signup
+Content-Type: application/json
+ 
+{
+  "email": "aaa@sss.ddd"
+}
+

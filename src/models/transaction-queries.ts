@@ -1,5 +1,5 @@
 import { Transaction as PlaidTransaction } from 'plaid';
-import { Op } from 'sequelize';
+import { Op, Order } from 'sequelize';
 import Account, { getAccountByPlaidAccountId } from './account';
 import Item from './item';
 import Transaction from './transaction';
@@ -9,10 +9,13 @@ import Category from './category';
 import {
   AccountWhereClause,
   CategoryWhereClause,
-  GetCategoriesSummaryOptions,
+  GetSpendingByCategoryOptions,
+  GetTopMerchantsOptions,
   GetTransactionsOptions,
   TransactionsWhereClause,
 } from '../types/types';
+import Calendar from './calendar';
+import Institution from './institution';
 
 export const getTransactions = async (
   userId: number,
@@ -28,6 +31,9 @@ export const getTransactions = async (
   const limit = options?.limit || 30;
   const accountIds = options?.accountIds;
   const categoryIds = options?.categoryIds;
+  const order: Order = options?.orderBy
+    ? [[options?.orderBy, 'DESC']]
+    : [['calendarId', 'DESC']];
 
   if (startDate && endDate) {
     where.txDate = { [Op.between]: [startDate, endDate] };
@@ -57,13 +63,22 @@ export const getTransactions = async (
       {
         model: Account,
         where: accountWhere,
-        include: [{ model: Item, where: { userId }, attributes: [] }],
+        include: [
+          {
+            model: Item,
+            where: { userId },
+            attributes: ['id'],
+            include: [
+              { model: Institution, attributes: ['name', 'color', 'logo'] },
+            ],
+          },
+        ],
         attributes: ['id', 'name'],
       },
       {
         model: Category,
         where: categoryWhere,
-        attributes: ['id', 'iconName', 'iconColor'],
+        attributes: ['id', 'name', 'iconName', 'iconColor'],
       },
       {
         model: PlaidCategory,
@@ -71,7 +86,7 @@ export const getTransactions = async (
       },
     ],
     where,
-    order: [['txDate', 'DESC']],
+    order,
     offset,
     limit,
   });
@@ -113,6 +128,10 @@ export const createOrUpdateTransactions = async (
       };
       categoryIdMapping.set(categoryCode, categoryIds);
     }
+    const txDate = new Date(transaction.date);
+    const calendarId =
+      txDate.getFullYear() * 10000 + txDate.getMonth() * 100 + txDate.getDate();
+
     // if (!categoryIds) {
     //   categoryIds = { categoryId: -1, plaidCategoryId: -1 };
     // }
@@ -121,7 +140,8 @@ export const createOrUpdateTransactions = async (
       accountId,
       name: transaction.name,
       amount: transaction.amount,
-      txDate: new Date(transaction.date),
+      calendarId,
+      txDate,
       txDatetime: transaction.datetime
         ? new Date(transaction.datetime)
         : new Date(transaction.date),
@@ -142,155 +162,87 @@ export const createOrUpdateTransactions = async (
   await Promise.all(pendingQueries);
 };
 
-// export const getTransactionsByUserId = async (userId: number) => {
-//   const transactions = await Item.findAll({
-//     include: { model: Account, include: [Transaction] },
-//     where: { userId },
-//   });
-//   return transactions;
-// };
-
-// export const getTransactionsByAccount = async (
-//   userId: number,
-//   options?: GetTransactionsOptions,
-// ) => {
-//   const where:
-//     | WhereOptions<
-//         InferAttributes<
-//           Transaction,
-//           {
-//             omit: never;
-//           }
-//         >
-//       >
-//     | undefined = {};
-
-//   const accountWhere:
-//     | WhereOptions<
-//         InferAttributes<
-//           Transaction,
-//           {
-//             omit: never;
-//           }
-//         >
-//       >
-//     | undefined = {};
-
-//   const startDate = options?.startDate;
-//   const endDate = options?.endDate;
-//   const offset = options?.offset || 0;
-//   const limit = options?.limit || 30;
-
-//   if (startDate && endDate) {
-//     where.transactionDate = { [Op.between]: [startDate, endDate] };
-//   } else if (startDate) {
-//     where.transactionDate = { [Op.gte]: startDate };
-//   } else if (endDate) {
-//     where.transactionDate = { [Op.lte]: endDate };
-//   }
-
-//   const transactions = await Transaction.findAndCountAll({
-//     include: {
-//       model: Account,
-//       where: accountWhere,
-//       include: [{ model: Item, where: { userId }, attributes: [] }],
-//       attributes: [],
-//     },
-//     where,
-//     order: [['transactionDate', 'DESC']],
-//     offset,
-//     limit,
-//   });
-//   return transactions;
-// };
-
-// export const getAccountTransactionsSummary = async (
-//   accountId: number,
-//   userId: number,
-// ) => {
-//   const txSummary = await Transaction.findAll({
-//     attributes: [
-//       [sequelize.fn('min', sequelize.col('transactionDate')), 'minDate'],
-//       [sequelize.fn('max', sequelize.col('transactionDate')), 'maxDate'],
-//     ],
-//     include: {
-//       model: Account,
-//       where: { id: accountId },
-//       include: [{ model: Item, where: { userId }, attributes: [] }],
-//       attributes: [],
-//     },
-//     raw: true,
-//   });
-
-//   // console.log(userId);
-//   // const txSummary = Account.findOne({
-//   //   attributes: ['id'],
-//   //   include: {
-//   //     model: Transaction,
-//   //     attributes: { include: ['amount'], exclude: ['transactions.id'] },
-//   //   },
-//   //   where: { id: accountId },
-//   //   group: ['account.id'],
-//   //   raw: true,
-//   // });
-
-//   return txSummary;
-// };
-
-export const getTransactionsCategorySummary = async (
+export const getSpendingByCategory = async (
   userId: number,
-  options?: GetCategoriesSummaryOptions,
+  options?: GetSpendingByCategoryOptions,
 ) => {
   console.log(options);
-  const transactionWhere: TransactionsWhereClause = {};
+  const where: TransactionsWhereClause = {};
   const accountWhere: AccountWhereClause = {};
-  const categoryWhere: CategoryWhereClause = {};
-
   const startDate = options?.startDate;
   const endDate = options?.endDate;
   const accountIds = options?.accountIds;
   const categoryIds = options?.categoryIds;
 
   if (startDate && endDate) {
-    transactionWhere.txDate = { [Op.between]: [startDate, endDate] };
+    where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
   } else if (startDate) {
-    transactionWhere.txDate = { [Op.gte]: startDate };
+    where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
   } else if (endDate) {
-    transactionWhere.txDate = { [Op.lte]: endDate };
+    where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
   }
 
-  console.log(transactionWhere);
+  console.log(where);
 
   if (accountIds) {
     accountWhere.id = { [Op.in]: accountIds };
   }
   if (categoryIds) {
-    categoryWhere.id = { [Op.in]: categoryIds };
+    console.log(categoryIds);
+    where['$category.id$'] = { [Op.in]: categoryIds };
   }
+  const having = options?.removeZeroCounts
+    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
+        [Op.gt]: 0,
+      })
+    : {};
 
   const categorySummary = await Transaction.findAll({
     attributes: [
+      'calendar.year',
+      'calendar.month',
       'category.id',
       'category.name',
       'category.iconName',
       'category.iconColor',
-      [sequelize.fn('sum', sequelize.col('amount')), 'txAmount'],
+      [
+        sequelize.fn(
+          'coalesce',
+          sequelize.fn('sum', sequelize.col('amount')),
+          '0',
+        ),
+        'txAmount',
+      ],
       [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
     ],
+    where,
     include: [
       {
-        model: Category,
-        required: true,
+        model: Calendar,
         attributes: [],
-        where: categoryWhere,
+        required: false,
+        right: true,
+      },
+      {
+        model: Category,
+        attributes: [['id', 'categoryId']],
+        required: false,
+        right: true,
+        on: {
+          [Op.or]: [
+            { id: { [Op.eq]: sequelize.col('categoryId') } },
+            { '$transaction.id$': null },
+          ],
+        },
       },
       {
         model: Account,
         where: accountWhere,
-
+        required: false,
         include: [
           {
             model: Item,
+            required: false,
             where: { userId },
             attributes: [],
           },
@@ -298,34 +250,84 @@ export const getTransactionsCategorySummary = async (
         attributes: [],
       },
     ],
-    where: transactionWhere,
     group: [
+      'calendar.year',
+      'calendar.month',
       'category.id',
       'category.name',
       'category.iconName',
       'category.iconColor',
     ],
+    order: [
+      [sequelize.col('calendar.year'), 'ASC'],
+      [sequelize.col('calendar.month'), 'ASC'],
+    ],
+    having,
     raw: true,
   });
 
   return categorySummary;
 };
 
-export const getTransactionsSummary = async (userId: number) => {
+export const getTransactionsSummary = async (
+  userId: number,
+  options?: GetSpendingByCategoryOptions,
+) => {
+  const where: TransactionsWhereClause = {};
+  const accountWhere: AccountWhereClause = {};
+  const startDate = options?.startDate;
+  const endDate = options?.endDate;
+  const accountIds = options?.accountIds;
+
+  if (startDate && endDate) {
+    where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
+  } else if (startDate) {
+    where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
+  } else if (endDate) {
+    where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
+  }
+
+  console.log(where);
+
+  if (accountIds) {
+    accountWhere.id = { [Op.in]: accountIds };
+  }
+  const having = options?.removeZeroCounts
+    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
+        [Op.gt]: 0,
+      })
+    : {};
+
   const transactionsSummary = await Transaction.findAll({
     attributes: [
-      [sequelize.literal('extract(year from "txDate")'), 'year'],
-      [sequelize.literal('extract(month from "txDate")'), 'month'],
-      [sequelize.fn('sum', sequelize.col('amount')), 'txAmount'],
+      'calendar.year',
+      'calendar.month',
+      [
+        sequelize.fn(
+          'coalesce',
+          sequelize.fn('sum', sequelize.col('amount')),
+          '0',
+        ),
+        'txAmount',
+      ],
       [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
     ],
+    where,
     include: [
       {
+        model: Calendar,
+        attributes: [],
+        required: false,
+        right: true,
+      },
+      {
         model: Account,
-
+        where: accountWhere,
+        required: false,
         include: [
           {
             model: Item,
+            required: false,
             where: { userId },
             attributes: [],
           },
@@ -333,13 +335,112 @@ export const getTransactionsSummary = async (userId: number) => {
         attributes: [],
       },
     ],
-    group: ['year', 'month'],
+    group: ['calendar.year', 'calendar.month'],
     order: [
-      [sequelize.literal('extract(year from "txDate")'), 'DESC'],
-      [sequelize.literal('extract(month from "txDate")'), 'DESC'],
+      [sequelize.col('calendar.year'), 'ASC'],
+      [sequelize.col('calendar.month'), 'ASC'],
     ],
+    having,
     raw: true,
   });
 
   return transactionsSummary;
 };
+
+export const getTopMerchants = async (
+  userId: number,
+  options: GetTopMerchantsOptions,
+) => {
+  const where: TransactionsWhereClause = {};
+
+  const startDate = options?.startDate;
+  const endDate = options?.endDate;
+
+  if (startDate && endDate) {
+    where.txDate = { [Op.between]: [startDate, endDate] };
+  } else if (startDate) {
+    where.txDate = { [Op.gte]: startDate };
+  } else if (endDate) {
+    where.txDate = { [Op.lte]: endDate };
+  }
+
+  // TODO: Move default value to config
+  const limit = options?.limit || 5;
+
+  const topMerchants = await Transaction.findAll({
+    attributes: [
+      [
+        sequelize.fn(
+          'coalesce',
+          sequelize.col('merchantName'),
+          sequelize.col('transaction.name'),
+        ),
+        'calcName',
+      ],
+      [sequelize.fn('sum', sequelize.col('amount')), 'txAmount'],
+      [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
+    ],
+    where,
+    include: [
+      {
+        model: Account,
+        required: false,
+        include: [
+          {
+            model: Item,
+            required: false,
+            where: { userId },
+            attributes: [],
+          },
+        ],
+        attributes: [],
+      },
+    ],
+    group: ['calcName'],
+    order: [[sequelize.literal('"txAmount"'), 'DESC']],
+    limit,
+  });
+
+  return topMerchants;
+};
+
+// export const getTopExpenses = async (
+//   userId: number,
+//   options?: GetTopExpensesOptions,
+// ) => {
+//   const where: TransactionsWhereClause = {};
+
+//   const startDate = options?.startDate;
+//   const endDate = options?.endDate;
+//   // TODO: Move default value to config
+//   const limit = options?.limit || 5;
+
+//   if (startDate && endDate) {
+//     where.txDate = { [Op.between]: [startDate, endDate] };
+//   } else if (startDate) {
+//     where.txDate = { [Op.gte]: startDate };
+//   } else if (endDate) {
+//     where.txDate = { [Op.lte]: endDate };
+//   }
+
+//   const topExpenses = await Transaction.findAll({
+//     include: [
+//       {
+//         model: Account,
+//         include: [
+//           {
+//             model: Item,
+//             where: { userId },
+//             attributes: [],
+//           },
+//         ],
+//         attributes: [],
+//       },
+//     ],
+//     order: [['amount', 'DESC']],
+//     limit,
+//     where,
+//   });
+
+//   return topExpenses;
+// };

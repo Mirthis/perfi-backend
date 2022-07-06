@@ -21,7 +21,7 @@ GET http://localhost:8000/api/plaid/update_transactions
 Content-Type: application/json
  
 {
-  "plaidItemId": "K6EKjdQGKqiLyyyvVbm9tyRKMdw5QKiRMQVBp"
+  "plaidItemId": "APXxM86vMXfe9pdzd8xPsOMD5yax9oH6w0vp1"
 }
 
 

@@ -12,6 +12,7 @@ import {
 } from 'sequelize';
 import { sequelize } from '../utils/db';
 import Account from './account';
+import Calendar from './calendar';
 import Category from './category';
 import PlaidCategory from './plaidCategory';
 
@@ -28,6 +29,8 @@ class Transaction extends Model<
   declare name: string;
 
   declare amount: number;
+
+  declare calendarId: ForeignKey<Calendar['id']>;
 
   declare txDate: Date;
 

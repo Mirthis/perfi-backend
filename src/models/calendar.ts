@@ -1,0 +1,79 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable no-param-reassign */
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from 'sequelize';
+import { sequelize } from '../utils/db';
+
+// TODO: Sync validation with front-end
+class Calendar extends Model<
+  InferAttributes<Calendar>,
+  InferCreationAttributes<Calendar>
+> {
+  declare id: CreationOptional<number>;
+
+  declare calendar_date: Date;
+
+  declare year: number;
+
+  declare month: number;
+
+  declare week: number;
+
+  declare day: number;
+
+  declare week_day: number;
+
+  declare week_day_name: string;
+}
+
+Calendar.init(
+  {
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    calendar_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      unique: true,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    month: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    week: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    day: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    week_day: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    week_day_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'calendar',
+    modelName: 'calendar',
+  },
+);
+
+export default Calendar;
