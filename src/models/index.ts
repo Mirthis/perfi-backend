@@ -35,6 +35,12 @@ Category.belongsTo(User);
 Calendar.hasMany(Transaction);
 Transaction.belongsTo(Calendar);
 
+Calendar.hasMany(Transaction);
+Transaction.belongsTo(Calendar);
+
+// CategoryExclusion.belongsTo(Category);
+// CategoryExclusion.belongsTo(User);
+
 export {
   User,
   Session,

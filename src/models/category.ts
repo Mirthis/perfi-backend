@@ -29,6 +29,8 @@ class Category extends Model<
 
   declare iconColor: string;
 
+  declare exclude: boolean;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -57,6 +59,10 @@ Category.init(
     },
     iconColor: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    exclude: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     createdAt: {

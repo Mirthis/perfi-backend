@@ -5,23 +5,30 @@ import {
   getSpendingByCategory,
   getTransactionsSummary,
   getTopMerchants,
+  setTransactionExcludeFlag,
 } from '../models/transaction-queries';
 import {
+  EcludeTransactionReq,
   GetSpendingByCategoryOptions,
   GetTransactionsOptions,
 } from '../types/types';
+import { parseBoolean, parseNumber } from '../utils/requestParamParser';
 
 const router = express.Router();
 
-// router.get('/', isAuthenticated, async (req, res) => {
-//   if (!req.user) throw Error('Unauthorize');
-
-//   // const item = await getItemByUserId(req.user.id);
-//   // if(!item) throw Error('User has no items');
-
-//   const transactions = await getTransactionsByUserId(req.user.id);
-//   res.json(transactions);///
-// });
+const toExcludeTransactionReq = ({
+  transactionId,
+  exclude,
+}: {
+  transactionId: unknown;
+  exclude: unknown;
+}): EcludeTransactionReq => {
+  const requestParameters = {
+    transactionId: parseNumber(transactionId, 'transactionId'),
+    exclude: parseBoolean(exclude, 'exclude'),
+  };
+  return requestParameters;
+};
 
 router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorize');
@@ -106,11 +113,20 @@ router.get('/top_merchants', isAuthenticated, async (req, res) => {
   res.json(topMerchants);
 });
 
-// router.get('/top_expenses', isAuthenticated, async (req, res) => {
-//   if (!req.user) throw Error('Unauthorized');
+router.post('/exclude/', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  const { transactionId, exclude } = toExcludeTransactionReq(req.body);
 
-//   const topExpenses = await getTopExpenses(req.user.id, req.query);
-//   res.json(topExpenses);
-// });
+  const transaction = await setTransactionExcludeFlag(
+    req.user.id,
+    transactionId,
+    exclude,
+  );
+  if (!transaction) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transaction);
+  }
+});
 
 export default router;

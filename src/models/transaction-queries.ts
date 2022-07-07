@@ -17,6 +17,40 @@ import {
 import Calendar from './calendar';
 import Institution from './institution';
 
+export const getTransaction = async (userId: number, transactionId: number) => {
+  const transaction = await Transaction.findOne({
+    attributes: {
+      exclude: ['plaidCategoryId', 'categoryId', 'accountId'],
+    },
+    include: [
+      {
+        model: Account,
+        include: [
+          {
+            model: Item,
+            where: { userId },
+            attributes: ['id'],
+            include: [
+              { model: Institution, attributes: ['name', 'color', 'logo'] },
+            ],
+          },
+        ],
+        attributes: ['id', 'name'],
+      },
+      {
+        model: Category,
+        attributes: ['id', 'name', 'iconName', 'iconColor'],
+      },
+      {
+        model: PlaidCategory,
+        attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
+      },
+    ],
+    where: { id: transactionId },
+  });
+  return transaction;
+};
+
 export const getTransactions = async (
   userId: number,
   options?: GetTransactionsOptions,
@@ -155,6 +189,7 @@ export const createOrUpdateTransactions = async (
       isoCurrencyCode: transaction.iso_currency_code,
       unofficialCurrencyCode: transaction.unofficial_currency_code,
       merchantName: transaction.merchant_name,
+      exclude: false,
     };
 
     Transaction.upsert(transValues);
@@ -375,7 +410,7 @@ export const getTopMerchants = async (
           sequelize.col('merchantName'),
           sequelize.col('transaction.name'),
         ),
-        'calcName',
+        'name',
       ],
       [sequelize.fn('sum', sequelize.col('amount')), 'txAmount'],
       [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
@@ -396,7 +431,13 @@ export const getTopMerchants = async (
         attributes: [],
       },
     ],
-    group: ['calcName'],
+    group: [
+      sequelize.fn(
+        'coalesce',
+        sequelize.col('merchantName'),
+        sequelize.col('transaction.name'),
+      ),
+    ],
     order: [[sequelize.literal('"txAmount"'), 'DESC']],
     limit,
   });
@@ -404,43 +445,16 @@ export const getTopMerchants = async (
   return topMerchants;
 };
 
-// export const getTopExpenses = async (
-//   userId: number,
-//   options?: GetTopExpensesOptions,
-// ) => {
-//   const where: TransactionsWhereClause = {};
-
-//   const startDate = options?.startDate;
-//   const endDate = options?.endDate;
-//   // TODO: Move default value to config
-//   const limit = options?.limit || 5;
-
-//   if (startDate && endDate) {
-//     where.txDate = { [Op.between]: [startDate, endDate] };
-//   } else if (startDate) {
-//     where.txDate = { [Op.gte]: startDate };
-//   } else if (endDate) {
-//     where.txDate = { [Op.lte]: endDate };
-//   }
-
-//   const topExpenses = await Transaction.findAll({
-//     include: [
-//       {
-//         model: Account,
-//         include: [
-//           {
-//             model: Item,
-//             where: { userId },
-//             attributes: [],
-//           },
-//         ],
-//         attributes: [],
-//       },
-//     ],
-//     order: [['amount', 'DESC']],
-//     limit,
-//     where,
-//   });
-
-//   return topExpenses;
-// };
+export const setTransactionExcludeFlag = async (
+  userId: number,
+  transactionId: number,
+  exclude: boolean,
+) => {
+  const transaction = await getTransaction(userId, transactionId);
+  if (!transaction) {
+    return null;
+  }
+  transaction.exclude = exclude;
+  await transaction.save();
+  return transaction;
+};

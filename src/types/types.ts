@@ -80,3 +80,8 @@ export interface GetTopMerchantsOptions {
   endDate?: Date;
   limit?: number;
 }
+
+export interface EcludeTransactionReq {
+  transactionId: number;
+  exclude: boolean;
+}

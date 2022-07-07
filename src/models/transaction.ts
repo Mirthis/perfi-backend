@@ -56,6 +56,8 @@ class Transaction extends Model<
 
   declare unofficialCurrencyCode: string | null;
 
+  declare exclude: boolean;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -121,6 +123,10 @@ Transaction.init(
     merchantName: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    exclude: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
