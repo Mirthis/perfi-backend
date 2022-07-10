@@ -38,3 +38,13 @@ export const setCategoryExcludeFlag = async (
   await category.save();
   return category;
 };
+
+export const deleteCategory = async (userId: number, categoryId: number) => {
+  const category = await getCategory(categoryId);
+  if (!category || category.userId !== userId) {
+    return false;
+  }
+
+  await category.destroy();
+  return true;
+};

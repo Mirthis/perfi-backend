@@ -16,7 +16,7 @@ const { SESSION_SECRET } = process.env;
 const DATABASE_URI =
   (process.env.NODE_ENV === 'test'
     ? process.env.TEST_DATABASE_URI
-    : process.env.DATABASE_URI) || '';
+    : process.env.DEV_DATABASE_URI) || '';
 
 const DB_OPTIONS = {
   dialectOptions: {
