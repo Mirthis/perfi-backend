@@ -9,6 +9,7 @@ import Category from './category';
 import {
   AccountWhereClause,
   CategoryWhereClause,
+  ExcludedTransactionsFilter,
   GetSpendingByCategoryOptions,
   GetTopMerchantsOptions,
   GetTransactionsOptions,
@@ -68,6 +69,24 @@ export const getTransactions = async (
   const order: Order = options?.orderBy
     ? [[options?.orderBy, 'DESC']]
     : [['calendarId', 'DESC']];
+  const excludedTransactionsFilter = options?.excludedTransactions;
+
+  switch (excludedTransactionsFilter) {
+    case ExcludedTransactionsFilter.ALL:
+      break;
+    case ExcludedTransactionsFilter.ONLY_EXCLUDED:
+      where.exclude = true;
+      categoryWhere.exclude = true;
+      break;
+    case ExcludedTransactionsFilter.ONLY_INCLUDED:
+      where.exclude = false;
+      categoryWhere.exclude = false;
+      break;
+    default:
+      where.exclude = false;
+      categoryWhere.exclude = false;
+      break;
+  }
 
   if (startDate && endDate) {
     where.txDate = { [Op.between]: [startDate, endDate] };

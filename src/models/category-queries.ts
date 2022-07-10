@@ -1,5 +1,11 @@
 import { Op } from 'sequelize';
+import { CreateCategoryReq } from '../types/types';
 import Category from './category';
+
+export const getCategory = async (categoryId: number) => {
+  const category = Category.findOne({ where: { id: categoryId } });
+  return category;
+};
 
 export const getUserCategories = async (userId: number) => {
   const categories = Category.findAll({
@@ -9,6 +15,26 @@ export const getUserCategories = async (userId: number) => {
   return categories;
 };
 
-export const addCategories = async (userId: number) => {
-  console.log(userId);
+export const createCategory = async (
+  userId: number,
+  categoryData: CreateCategoryReq,
+) => {
+  const newCategoryData = { ...categoryData, userId };
+  const newCategory = await Category.create(newCategoryData);
+  return newCategory;
+};
+
+export const setCategoryExcludeFlag = async (
+  userId: number,
+  categoryId: number,
+  exclude: boolean,
+) => {
+  console.log(categoryId);
+  const category = await getCategory(categoryId);
+  if (!category || category.userId !== userId) {
+    return null;
+  }
+  category.exclude = exclude;
+  await category.save();
+  return category;
 };

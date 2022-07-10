@@ -1,1 +1,23 @@
 GET http://localhost:8000/api/categories
+
+
+###
+POST http://localhost:8000/api/categories/exclude/
+Content-Type: application/json
+
+{
+  "categoryId": 4,
+  "exclude": false
+}
+
+
+###
+POST http://localhost:8000/api/categories/create
+Content-Type: application/json
+
+{
+  "name": "test",
+  "iconName": "test",
+  "iconColor": "test",
+  "exclude": false
+}

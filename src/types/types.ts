@@ -24,6 +24,13 @@ export type CalendarWhereClause =
     >
   | undefined;
 
+export type CreateCategoryReq = {
+  name: string;
+  iconName: string;
+  iconColor: string;
+  exclude: boolean;
+};
+
 export type AccountWhereClause =
   | WhereOptions<
       InferAttributes<
@@ -54,6 +61,12 @@ export interface GetSpendingByCategoryOptions {
   removeZeroCounts?: boolean;
 }
 
+export enum ExcludedTransactionsFilter {
+  ONLY_EXCLUDED,
+  ONLY_INCLUDED,
+  ALL,
+}
+
 export interface GetTransactionsOptions {
   offset?: number;
   limit?: number;
@@ -62,6 +75,7 @@ export interface GetTransactionsOptions {
   endDate?: Date;
   categoryIds?: number[];
   orderBy?: string;
+  excludedTransactions?: ExcludedTransactionsFilter;
 }
 
 export interface GetTransactionsSummaryOptions {
@@ -83,5 +97,10 @@ export interface GetTopMerchantsOptions {
 
 export interface EcludeTransactionReq {
   transactionId: number;
+  exclude: boolean;
+}
+
+export interface EcludeCategoryReq {
+  categoryId: number;
   exclude: boolean;
 }
