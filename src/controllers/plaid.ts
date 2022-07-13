@@ -35,9 +35,6 @@ const configuration = new Configuration({
 
 const plaidClient = new PlaidApi(configuration);
 
-console.log(configuration);
-console.log(plaidClient);
-
 const fetchTransactionUpdates = async (plaidItemId: string) => {
   const { accessToken, transactionCursor: lastCursor } =
     (await getItemByPlaidItemId(plaidItemId)) as Item;
@@ -71,7 +68,6 @@ const fetchTransactionUpdates = async (plaidItemId: string) => {
     console.error(`Error fetching transactions: ${getErrorMessage(err)}`);
     cursor = lastCursor;
   }
-  console.log(added);
   return { added, modified, removed, cursor, accessToken };
 };
 
@@ -88,10 +84,10 @@ const updateTransactions = async (plaidItemId: string) => {
 
   // Update the DB.
   await createOrUpdateAccounts(accountsData, plaidItemId);
-
   await createOrUpdateTransactions(added.concat(modified));
-  // await deleteTransactions(removed);
+  // TODO: await deleteTransactions(removed);
   await updateItemTransactionsCursor(plaidItemId, cursor);
+
   return {
     addedCount: added.length,
     modifiedCount: modified.length,
@@ -148,42 +144,53 @@ router.post('/create_link_token', isAuthenticated, async (req, res) => {
 
 router.post('/set_access_token', isAuthenticated, async (req, res) => {
   if (!req.user) return;
-  const PUBLIC_TOKEN = req.body.public_token;
+  console.log('body');
+  console.log(req.body);
+  const PUBLIC_TOKEN = req.body.publicToken;
   const { data: exchangeData } = await plaidClient.itemPublicTokenExchange({
     public_token: PUBLIC_TOKEN,
   });
 
+  const { access_token: accessToken } = exchangeData;
+
+  // get item accessible via the token
   const {
     data: { item: itemData },
   } = await plaidClient.itemGet({
-    access_token: exchangeData.access_token,
+    access_token: accessToken,
   });
 
+  // INSTITUTION CREATION  //
   const configs = {
     institution_id: itemData.institution_id,
     country_codes: config.PLAID_COUNTRY_CODES,
     options: { include_optional_metadata: true },
   };
+
+  // get institutions for the item
   const {
     data: { institution: institutionData },
     // @ts-ignore
   } = await plaidClient.institutionsGetById(configs);
 
-  // TODO: institution update seems not to always take place
-  createOrUpdateInstitution(institutionData);
-  const item = createOrUpdateItem(
-    itemData,
-    exchangeData.access_token,
-    req.user.id,
-  );
+  // create or update institutions data
+  await createOrUpdateInstitution(institutionData);
 
+  // ITEM CREATION  //
+  const item = await createOrUpdateItem(itemData, accessToken, req.user.id);
+
+  // ACCOUNT CREATION  //
+  // get accounts accessible by the token
   const {
     data: { accounts: accountsData },
   } = await plaidClient.accountsGet({
     access_token: exchangeData.access_token,
   });
 
+  // create or update account
   createOrUpdateAccounts(accountsData, itemData.item_id);
+
+  // TRANSACTIONS CREATION  //
   const { addedCount, modifiedCount, removedCount } = await updateTransactions(
     itemData.item_id,
   );

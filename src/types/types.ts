@@ -31,6 +31,10 @@ export type CreateCategoryReq = {
   exclude: boolean;
 };
 
+export type DeleteCategoryReq = {
+  categoryId: number;
+};
+
 export type AccountWhereClause =
   | WhereOptions<
       InferAttributes<
@@ -100,7 +104,15 @@ export interface EcludeTransactionReq {
   exclude: boolean;
 }
 
-export interface EcludeCategoryReq {
+export interface SetTransactionCategoryReq {
+  transactionId: number;
   categoryId: number;
+}
+
+export interface GetSimilarTransactionsReq {
+  transactionId: number;
+}
+
+export interface EcludeCategoryReq {
   exclude: boolean;
 }

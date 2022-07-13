@@ -2,11 +2,10 @@ GET http://localhost:8000/api/categories
 
 
 ###
-POST http://localhost:8000/api/categories/exclude/
+PUT http://localhost:8000/api/categories/20/exclude/
 Content-Type: application/json
 
 {
-  "categoryId": 4,
   "exclude": false
 }
 
@@ -16,7 +15,21 @@ POST http://localhost:8000/api/categories/create
 Content-Type: application/json
 
 {
-  "name": "test",
+  "name": "test different user",
+  "iconName": "test",
+  "iconColor": "test",
+  "exclude": false
+}
+
+###
+DELETE http://localhost:8000/api/categories/1/delete
+
+###
+PUT http://localhost:8000/api/categories/1/update
+Content-Type: application/json
+
+{
+  "name": "testupd",
   "iconName": "test",
   "iconColor": "test",
   "exclude": false

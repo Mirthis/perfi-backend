@@ -42,6 +42,8 @@ class Transaction extends Model<
 
   declare categoryId: ForeignKey<Category['id']>;
 
+  declare ogCategoryId: ForeignKey<Category['id']>;
+
   declare paymentChannel: TransactionPaymentChannelEnum;
 
   declare address: string | null;

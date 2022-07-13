@@ -2,31 +2,37 @@ import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
 import {
   createCategory,
+  deleteCategory,
   getUserCategories,
   setCategoryExcludeFlag,
+  updateCategory,
 } from '../models/category-queries';
 import { CreateCategoryReq, EcludeCategoryReq } from '../types/types';
-import {
-  parseBoolean,
-  parseNumber,
-  parseString,
-} from '../utils/requestParamParser';
+import { parseBoolean, parseString } from '../utils/requestParamParser';
 
 const router = express.Router();
 
 const toExcludeCategoryReq = ({
-  categoryId,
   exclude,
 }: {
-  categoryId: unknown;
   exclude: unknown;
 }): EcludeCategoryReq => {
   const requestParameters = {
-    categoryId: parseNumber(categoryId, 'categoryId'),
     exclude: parseBoolean(exclude, 'exclude'),
   };
   return requestParameters;
 };
+
+// const toDeleteCategoryReq = ({
+//   categoryId,
+// }: {
+//   categoryId: unknown;
+// }): DeleteCategoryReq => {
+//   const requestParameters = {
+//     categoryId: parseNumber(categoryId, 'categoryId'),
+//   };
+//   return requestParameters;
+// };
 
 const toCreateCategoryReq = ({
   name,
@@ -55,13 +61,13 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.json(categories);
 });
 
-router.post('/exclude/', isAuthenticated, async (req, res) => {
+router.put('/:categoryId/exclude/', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
-  const { categoryId, exclude } = toExcludeCategoryReq(req.body);
+  const { exclude } = toExcludeCategoryReq(req.body);
 
   const category = await setCategoryExcludeFlag(
     req.user.id,
-    categoryId,
+    Number(req.params.categoryId),
     exclude,
   );
   if (!category) {
@@ -76,6 +82,34 @@ router.post('/create', isAuthenticated, async (req, res) => {
   const createCategoryParams = toCreateCategoryReq(req.body);
   const newCategory = await createCategory(req.user.id, createCategoryParams);
   res.json(newCategory);
+});
+
+router.put('/:categoryId/update', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  const createCategoryParams = toCreateCategoryReq(req.body);
+  const newCategory = await updateCategory(
+    req.user.id,
+    Number(req.params.categoryId),
+    createCategoryParams,
+  );
+  if (!newCategory) {
+    res.status(400).json('category not found');
+  } else {
+    res.json(newCategory);
+  }
+});
+
+router.delete('/:categoryId/delete', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  const result = await deleteCategory(
+    req.user.id,
+    Number(req.params.categoryId),
+  );
+  if (!result) {
+    res.status(400).json('category not found');
+  } else {
+    res.json();
+  }
 });
 
 export default router;

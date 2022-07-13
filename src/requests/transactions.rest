@@ -1,7 +1,8 @@
 GET http://localhost:8000/api/transactions
 
 ###
-GET http://localhost:8000/api/transactions?startDate=2022-07-01&endDate=2022-07-31&limit=11
+GET http://localhost:8000/api/transactions?startDate=2022-07-01&endDate=2022-07-05&limit=11
+
 
 ###
 GET http://localhost:8000/api/transactions/account/1/summary
@@ -22,4 +23,27 @@ Content-Type: application/json
 {
   "transactionId": 343,
   "exclude": true
+}
+
+###
+POST http://localhost:8000/api/transactions/category/
+Content-Type: application/json
+
+{
+  "transactionId": 417,
+  "categoryId":20
+}
+
+
+###
+GET http://localhost:8000/api/transactions/find_similar?transactionId=417
+
+
+###
+PUT http://localhost:8000/api/transactions/category/similar/
+Content-Type: application/json
+
+{
+  "transactionId": 417,
+  "categoryId":8
 }

@@ -80,7 +80,7 @@ Category.init(
     modelName: 'category',
     defaultScope: {
       attributes: {
-        exclude: ['createdAt', 'updatedAt', 'userId'],
+        exclude: ['createdAt', 'updatedAt'],
       },
     },
   },

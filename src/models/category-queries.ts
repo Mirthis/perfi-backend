@@ -1,6 +1,7 @@
-import { Op } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 import { CreateCategoryReq } from '../types/types';
 import Category from './category';
+import Transaction from './transaction';
 
 export const getCategory = async (categoryId: number) => {
   const category = Category.findOne({ where: { id: categoryId } });
@@ -29,7 +30,6 @@ export const setCategoryExcludeFlag = async (
   categoryId: number,
   exclude: boolean,
 ) => {
-  console.log(categoryId);
   const category = await getCategory(categoryId);
   if (!category || category.userId !== userId) {
     return null;
@@ -45,6 +45,28 @@ export const deleteCategory = async (userId: number, categoryId: number) => {
     return false;
   }
 
+  await Transaction.update(
+    { categoryId: Sequelize.literal('"ogCategoryId"') },
+    { where: { categoryId } },
+  );
+
   await category.destroy();
   return true;
+};
+
+export const updateCategory = async (
+  userId: number,
+  categoryId: number,
+  categoryData: CreateCategoryReq,
+) => {
+  const category = await getCategory(categoryId);
+  if (!category || category.userId !== userId) {
+    return false;
+  }
+  category.name = categoryData.name;
+  category.iconColor = categoryData.iconColor;
+  category.iconName = categoryData.iconName;
+  category.exclude = categoryData.exclude;
+  await category.save();
+  return category;
 };

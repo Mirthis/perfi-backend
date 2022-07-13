@@ -10,7 +10,7 @@ export const sequelize = new Sequelize(config.DATABASE_URI, {
     },
     supportBigNumbers: true,
   },
-  logging: true,
+  logging: false,
 });
 
 const migrationConf = {

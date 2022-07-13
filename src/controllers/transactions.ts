@@ -6,11 +6,15 @@ import {
   getTransactionsSummary,
   getTopMerchants,
   setTransactionExcludeFlag,
+  setTransactionCategory,
+  getSimilarTransactions,
+  setSimilarTransactionsCategory,
 } from '../models/transaction-queries';
 import {
   EcludeTransactionReq,
   GetSpendingByCategoryOptions,
   GetTransactionsOptions,
+  SetTransactionCategoryReq,
 } from '../types/types';
 import { parseBoolean, parseNumber } from '../utils/requestParamParser';
 
@@ -26,6 +30,20 @@ const toExcludeTransactionReq = ({
   const requestParameters = {
     transactionId: parseNumber(transactionId, 'transactionId'),
     exclude: parseBoolean(exclude, 'exclude'),
+  };
+  return requestParameters;
+};
+
+const toSetTransactionCategoryReq = ({
+  transactionId,
+  categoryId,
+}: {
+  transactionId: unknown;
+  categoryId: unknown;
+}): SetTransactionCategoryReq => {
+  const requestParameters = {
+    transactionId: parseNumber(transactionId, 'transactionId'),
+    categoryId: parseNumber(categoryId, 'categoryId'),
   };
   return requestParameters;
 };
@@ -126,6 +144,54 @@ router.post('/exclude/', isAuthenticated, async (req, res) => {
     res.status(400).json('transaction not found');
   } else {
     res.json(transaction);
+  }
+});
+
+router.post('/category/', isAuthenticated, async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  const { transactionId, categoryId } = toSetTransactionCategoryReq(req.body);
+
+  const transaction = await setTransactionCategory(
+    req.user.id,
+    transactionId,
+    categoryId,
+  );
+  if (!transaction) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transaction);
+  }
+});
+
+router.get('/find_similar', async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  if (!req.query.transactionId) {
+    throw Error('Invalid parameter transactionId');
+  }
+  const transactions = await getSimilarTransactions(
+    req.user.id,
+    Number(req.query.transactionId),
+  );
+  if (!transactions) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transactions);
+  }
+});
+
+router.put('/category/similar', async (req, res) => {
+  if (!req.user) throw Error('Unauthorized');
+  const { transactionId, categoryId } = toSetTransactionCategoryReq(req.body);
+
+  const transactions = await setSimilarTransactionsCategory(
+    req.user.id,
+    transactionId,
+    categoryId,
+  );
+  if (!transactions) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transactions);
   }
 });
 

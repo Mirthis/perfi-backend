@@ -11,9 +11,6 @@ router.post('/logout', (req, res) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', { session: true }, (err, user, info) => {
-    console.log(err);
-    console.log(user);
-    console.log(info);
     if (err) {
       throw Error(err);
     }
@@ -35,7 +32,6 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', async (req, res) => {
-  console.log(req.body);
   const user = await User.create(req.body);
   res.json({ id: user.id, email: user.email });
 });
