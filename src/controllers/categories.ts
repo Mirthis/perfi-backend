@@ -3,7 +3,7 @@ import { isAuthenticated } from '../utils/middleware';
 import {
   createCategory,
   deleteCategory,
-  getUserCategories,
+  getCategories,
   setCategoryExcludeFlag,
   updateCategory,
 } from '../models/category-queries';
@@ -57,7 +57,7 @@ const toCreateCategoryReq = ({
 router.get('/', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
 
-  const categories = await getUserCategories(req.user.id);
+  const categories = await getCategories(req.user.id);
   res.json(categories);
 });
 

@@ -1,1 +1,6 @@
 GET http://localhost:8000/api/accounts
+
+###
+GET http://localhost:8000/api/accounts/with_stats?monthKey=2022-01-05
+
+  

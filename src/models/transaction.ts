@@ -9,6 +9,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
   ForeignKey,
+  NonAttribute,
 } from 'sequelize';
 import { sequelize } from '../utils/db';
 import Account from './account';
@@ -59,6 +60,10 @@ class Transaction extends Model<
   declare unofficialCurrencyCode: string | null;
 
   declare exclude: boolean;
+
+  declare category: NonAttribute<Category>;
+
+  declare plaidCategory: NonAttribute<PlaidCategory>;
 
   declare createdAt: CreationOptional<Date>;
 

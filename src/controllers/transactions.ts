@@ -9,6 +9,7 @@ import {
   setTransactionCategory,
   getSimilarTransactions,
   setSimilarTransactionsCategory,
+  getTransaction,
 } from '../models/transaction-queries';
 import {
   EcludeTransactionReq,
@@ -71,20 +72,6 @@ router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
       .split(',')
       .map((i) => Number(i));
   }
-  // if (
-  //   req.query.startDate &&
-  //   (typeof req.query.startDate === 'string' ||
-  //     req.query.startDate instanceof String)
-  // ) {
-  //   queryOptions.startDate = new Date(req.query.startDate as string);
-  // }
-  // if (
-  //   req.query.endDate &&
-  //   (typeof req.query.endDate === 'string' ||
-  //     req.query.endDate instanceof String)
-  // ) {
-  //   queryOptions.endDate = new Date(req.query.endDate as string);
-  // }
 
   const transactions = await getSpendingByCategory(req.user.id, queryOptions);
   res.json(transactions);
@@ -92,6 +79,7 @@ router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
 
 // TODO: add proper parsing of input parameters for this and other requests
 router.get('/', isAuthenticated, async (req, res) => {
+  // TODO: remove check anduse Typescript |
   if (!req.user) throw Error('Unauthorized');
   const queryOptions: GetTransactionsOptions = { ...req.query };
   if (
@@ -117,6 +105,20 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.json(transactions);
 });
 
+router.get('/:transactionId', isAuthenticated, async (req, res) => {
+  console.log(req.params);
+  const transaction = await getTransaction(
+    req.user!.id,
+    Number(req.params.transactionId),
+  );
+
+  if (!transaction) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transaction);
+  }
+});
+
 router.get('/transactions_summary', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
 
@@ -132,11 +134,11 @@ router.get('/top_merchants', isAuthenticated, async (req, res) => {
 });
 
 router.post('/exclude/', isAuthenticated, async (req, res) => {
-  if (!req.user) throw Error('Unauthorized');
+  console.log(req.body);
   const { transactionId, exclude } = toExcludeTransactionReq(req.body);
 
   const transaction = await setTransactionExcludeFlag(
-    req.user.id,
+    req.user!.id,
     transactionId,
     exclude,
   );
@@ -179,19 +181,36 @@ router.get('/find_similar', async (req, res) => {
   }
 });
 
-router.put('/category/similar', async (req, res) => {
+router.put('/update_category', async (req, res) => {
+  const { transactionId, categoryId } = toSetTransactionCategoryReq(req.body);
+
+  const transaction = await setTransactionCategory(
+    req.user!.id,
+    transactionId,
+    categoryId,
+  );
+
+  if (!transaction) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transaction);
+  }
+});
+
+router.put('/update_category_similar', async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
   const { transactionId, categoryId } = toSetTransactionCategoryReq(req.body);
 
-  const transactions = await setSimilarTransactionsCategory(
+  const affected = await setSimilarTransactionsCategory(
     req.user.id,
     transactionId,
     categoryId,
   );
-  if (!transactions) {
+
+  if (!affected) {
     res.status(400).json('transaction not found');
   } else {
-    res.json(transactions);
+    res.json(affected);
   }
 });
 

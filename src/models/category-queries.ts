@@ -8,7 +8,7 @@ export const getCategory = async (categoryId: number) => {
   return category;
 };
 
-export const getUserCategories = async (userId: number) => {
+export const getCategories = async (userId: number) => {
   const categories = Category.findAll({
     where: { userId: { [Op.in]: [userId, -1] } },
     order: ['name'],
@@ -31,6 +31,7 @@ export const setCategoryExcludeFlag = async (
   exclude: boolean,
 ) => {
   const category = await getCategory(categoryId);
+
   if (!category || category.userId !== userId) {
     return null;
   }

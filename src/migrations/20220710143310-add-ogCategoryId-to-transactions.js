@@ -8,8 +8,16 @@ module.exports = {
         },
         key: 'id',
       },
-      allowNull: false,
+      allowNull: true,
     });
+
+    await queryInterface.sequelize.query(
+      `UPDATE transactions SET "ogCategoryId" = "categoryId"`,
+    );
+
+    await queryInterface.sequelize.query(
+      'ALTER TABLE transactions ALTER COLUMN "ogCategoryId" SET NOT NULL;',
+    );
   },
 
   async down(queryInterface) {

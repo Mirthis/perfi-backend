@@ -2,7 +2,7 @@ GET http://localhost:8000/api/categories
 
 
 ###
-PUT http://localhost:8000/api/categories/20/exclude/
+PUT http://localhost:8000/api/categories/14/exclude/
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/api/categories/1/delete
+DELETE http://localhost:8000/api/categories/18/delete
 
 ###
 PUT http://localhost:8000/api/categories/1/update

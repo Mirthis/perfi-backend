@@ -1,6 +1,9 @@
 GET http://localhost:8000/api/transactions
 
 ###
+GET http://localhost:8000/api/transactions/2256
+
+###
 GET http://localhost:8000/api/transactions?startDate=2022-07-01&endDate=2022-07-05&limit=11
 
 
@@ -30,20 +33,30 @@ POST http://localhost:8000/api/transactions/category/
 Content-Type: application/json
 
 {
-  "transactionId": 417,
-  "categoryId":20
+  "transactionId": 1016,
+  "categoryId":18
 }
 
 
 ###
-GET http://localhost:8000/api/transactions/find_similar?transactionId=417
+GET http://localhost:8000/api/transactions/find_similar?transactionId=634
 
 
 ###
-PUT http://localhost:8000/api/transactions/category/similar/
+PUT http://localhost:8000/api/transactions/update_category_similar
 Content-Type: application/json
 
 {
-  "transactionId": 417,
-  "categoryId":8
+  "transactionId": 2246,
+  "categoryId":15
+}
+
+
+###
+PUT http://localhost:8000/api/transactions/update_category
+Content-Type: application/json
+
+{
+  "transactionId": 2246,
+  "categoryId":15
 }

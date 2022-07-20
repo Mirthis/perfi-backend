@@ -10,7 +10,9 @@ import {
   CreationOptional,
   ForeignKey,
   NonAttribute,
+  QueryTypes,
 } from 'sequelize';
+import { AccountsWithStats } from '../types/types';
 import { sequelize } from '../utils/db';
 import Institution from './institution';
 import Item from './item';
@@ -124,6 +126,7 @@ Account.init(
 export const getAccountByPlaidAccountId = async (plaidAccountId: string) => {
   const account = await Account.findOne({
     where: { plaidAccountId },
+    include: [{ model: Item }],
   });
   if (!account) throw Error('Account id not found');
   return account;
@@ -163,13 +166,7 @@ export const createOrUpdateAccounts = async (
   return accounts;
 };
 
-export const getAccountsByUserId = async (userId: number) => {
-  // const items = await Item.findAll({
-  //   include: [Account, Institution],
-  //   where: { userId },
-  // });
-  // // console.log(items[0].Institution);
-  // console.log(userId);
+export const getAccounts = async (userId: number) => {
   const accounts = await Account.findAll({
     include: {
       model: Item,
@@ -184,6 +181,82 @@ export const getAccountsByUserId = async (userId: number) => {
     },
   });
   return accounts;
+};
+
+export const getAccountsWithStats = async (
+  userId: number,
+  monthKey: string,
+) => {
+  const accounts = await sequelize.query<AccountsWithStats>(
+    `
+  SELECT
+acc.id id,
+acc.name "name",
+acc."officialName" "officialName",
+acc.type "type",
+acc."subType" "subType",
+acc."currentBalance" "currentBalance",
+acc."isoCurrencyCode"  "isoCurrencyCode",
+inst.id "institutionId",
+inst.name  "institutionName",
+inst.color  "institutionColor",
+inst.logo  "institutionLogo",
+SUM(CASE WHEN cal.calendar_date >= cal_filter.curr_month_start_date
+		  AND cal.calendar_date <= cal_filter.curr_month_end_date THEN tx.amount
+   ELSE 0 END) "currMonthAmount",
+SUM(CASE WHEN cal.calendar_date >= cal_filter.prev_month_start_date
+		  AND cal.calendar_date <= cal_filter.prev_month_end_date THEN tx.amount
+   ELSE 0 END) "prevMonthAmount",
+SUM(CASE WHEN cal.calendar_date >= cal_filter.curr_year_start_date
+		  AND cal.calendar_date <= cal_filter.curr_year_end_date THEN tx.amount
+   ELSE 0 END) "currYearAmount"
+FROM accounts acc INNER JOIN transactions tx
+ON acc."id" = tx."accountId"
+INNER JOIN items it
+ON acc."itemId" = it.id
+INNER JOIN institutions inst
+ON it."institutionId" = inst.id
+INNER JOIN (
+SELECT *,
+	  (CASE WHEN prev_month_start_date < curr_year_start_date 
+	   THEN prev_month_start_date
+	   ELSE curr_year_start_date
+	   END) as start_date,
+	   curr_month_end_date as end_date
+from calendar
+WHERE calendar_date='${monthKey}'
+) cal_filter
+ON 1 = 1
+INNER JOIN calendar cal
+ON tx."calendarId" = cal.id
+INNER JOIN categories cat
+ON tx."categoryId" = cat.id
+WHERE cal.calendar_date BETWEEN cal_filter.start_date AND cal_filter.end_date
+AND it."userId"=${userId}
+AND tx.exclude = false
+AND cat.exclude = false
+GROUP BY 
+acc.id,
+acc.name,
+acc.type,
+acc."subType",
+acc."currentBalance",
+acc."isoCurrencyCode",
+inst.id,
+inst.name,
+inst.color,
+inst.logo
+;
+  `,
+    { type: QueryTypes.SELECT },
+  );
+
+  const updAccounts = accounts.map((acc) => ({
+    ...acc,
+    institutionLogo: acc.institutionLogo.toString('base64'),
+  }));
+
+  return updAccounts;
 };
 
 export default Account;

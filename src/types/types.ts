@@ -116,3 +116,20 @@ export interface GetSimilarTransactionsReq {
 export interface EcludeCategoryReq {
   exclude: boolean;
 }
+
+export type AccountsWithStats = {
+  id: number;
+  name: string;
+  officialName: string;
+  type: string;
+  subType: string;
+  currentBalance: string;
+  isoCurrencyCode: string;
+  institutionId: number;
+  institutionName: string;
+  institutionColor: string;
+  institutionLogo: Buffer;
+  currMonthAmount: string;
+  prevMonthAmount: string;
+  currYearAmount: string;
+};

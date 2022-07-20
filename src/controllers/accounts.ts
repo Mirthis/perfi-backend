@@ -1,16 +1,19 @@
 import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
-import { getAccountsByUserId } from '../models/account';
+import { getAccounts, getAccountsWithStats } from '../models/account';
+import { parseString } from '../utils/requestParamParser';
 
 const router = express.Router();
 
 router.get('/', isAuthenticated, async (req, res) => {
-  if (!req.user) throw Error('Unauthorize');
+  const accounts = await getAccounts(req.user!.id);
+  res.json(accounts);
+});
 
-  // const item = await getItemByUserId(req.user.id);
-  // if(!item) throw Error('User has no items');
+router.get('/with_stats', isAuthenticated, async (req, res) => {
+  const monthKey = parseString(req.query.monthKey, 'momthKey');
 
-  const accounts = await getAccountsByUserId(req.user.id);
+  const accounts = await getAccountsWithStats(req.user!.id, monthKey);
   res.json(accounts);
 });
 

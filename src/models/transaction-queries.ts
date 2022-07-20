@@ -41,7 +41,7 @@ export const getTransaction = async (userId: number, transactionId: number) => {
       },
       {
         model: Category,
-        attributes: ['id', 'name', 'iconName', 'iconColor'],
+        attributes: ['id', 'name', 'iconName', 'iconColor', 'exclude'],
       },
       {
         model: PlaidCategory,
@@ -72,20 +72,39 @@ export const getTransactions = async (
     : [['calendarId', 'DESC']];
   const excludedTransactionsFilter = options?.excludedTransactions;
 
-  switch (excludedTransactionsFilter) {
+  console.log('excludedTransactionsFilter');
+  console.log(excludedTransactionsFilter);
+
+  switch (Number(excludedTransactionsFilter)) {
     case ExcludedTransactionsFilter.ALL:
+      console.log('all');
       break;
     case ExcludedTransactionsFilter.ONLY_EXCLUDED:
-      where.exclude = true;
-      categoryWhere.exclude = true;
+      console.log('excluded');
+
+      Object.assign(where, {
+        [Op.or]: { exclude: true, '$category.exclude$': true },
+      });
+      // @ts-ignore
+      // where[Op.or] = { exclude: true, '$category.exclude$': true };
+      // where.exclude = true;
+      // categoryWhere.exclude = true;
       break;
     case ExcludedTransactionsFilter.ONLY_INCLUDED:
-      where.exclude = false;
-      categoryWhere.exclude = false;
+      console.log('included');
+      Object.assign(where, {
+        [Op.and]: { exclude: false, '$category.exclude$': false },
+      });
+      // @ts-ignore
+      // where.exclude = false;
+      // categoryWhere.exclude = false;
       break;
     default:
-      where.exclude = false;
-      categoryWhere.exclude = false;
+      console.log('default');
+      Object.assign(where, {
+        [Op.and]: { exclude: false, '$category.exclude$': false },
+      });
+      // categoryWhere.exclude = false;
       break;
   }
 
@@ -127,7 +146,7 @@ export const getTransactions = async (
       {
         model: Category,
         where: categoryWhere,
-        attributes: ['id', 'name', 'iconName', 'iconColor'],
+        attributes: ['id', 'name', 'iconName', 'iconColor', 'exclude'],
       },
       {
         model: PlaidCategory,
@@ -142,11 +161,74 @@ export const getTransactions = async (
   return transactions;
 };
 
+export const getSimilarTransactionsByName = async (
+  userId: number,
+  name: string,
+  merchantName: string | null | undefined,
+  limit?: number,
+) => {
+  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
+  const transactions = await Transaction.findAll({
+    attributes: {
+      exclude: ['plaidCategoryId', 'categoryId', 'accountId'],
+    },
+    include: [
+      {
+        model: Account,
+        include: [
+          {
+            model: Item,
+            where: { userId },
+            attributes: ['id'],
+            include: [
+              { model: Institution, attributes: ['name', 'color', 'logo'] },
+            ],
+          },
+        ],
+        attributes: ['id', 'name'],
+      },
+      {
+        model: Category,
+        attributes: ['id', 'name', 'iconName', 'iconColor'],
+      },
+      {
+        model: PlaidCategory,
+        attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
+      },
+    ],
+    where,
+    order: [['calendarId', 'DESC']],
+    limit,
+  });
+  return transactions;
+};
+
+export const getSimilarTransactions = async (
+  userId: number,
+  transactionId: number,
+  limit?: number,
+) => {
+  const transaction = await getTransaction(userId, transactionId);
+
+  if (!transaction) {
+    return null;
+  }
+
+  const similarTransactions = await getSimilarTransactionsByName(
+    userId,
+    transaction.name,
+    transaction.merchantName,
+    limit,
+  );
+
+  return similarTransactions;
+};
+
 export const createOrUpdateTransactions = async (
   transactions: PlaidTransaction[],
 ) => {
   // store accountsId retrieved from the database to avoid querying for the same accounts
-  const accountIdMapping = new Map<string, number>();
+  const accountIdMapping = new Map<string, Account>();
   // store category ids retrieved from the database to avoid querying for the same accounts
   const categoryIdMapping = new Map<
     string,
@@ -155,27 +237,46 @@ export const createOrUpdateTransactions = async (
 
   const pendingQueries = transactions.map(async (transaction) => {
     const plaidAccountId = transaction.account_id;
-    let accountId = accountIdMapping.get(plaidAccountId);
-    if (!accountId) {
-      const { id } = await getAccountByPlaidAccountId(plaidAccountId);
-      accountId = id;
-      accountIdMapping.set(plaidAccountId, id);
+    let account = accountIdMapping.get(plaidAccountId);
+
+    if (!account) {
+      const dbAccount = await getAccountByPlaidAccountId(plaidAccountId);
+      account = dbAccount;
+      accountIdMapping.set(plaidAccountId, account);
     }
+    const accountId = account.id;
 
     let categoryIds:
       | { categoryId: number; plaidCategoryId: number }
       | undefined;
 
-    // TODO: This logic doesn't work as mapping update is within async functions and status is not shared across
-    const categoryCode = transaction.category_id || '0';
-    categoryIds = categoryIdMapping.get(categoryCode);
-    if (!categoryIds) {
-      const plaidCategory = await getPlaidCategoryByCode(categoryCode);
+    const latestSimilarTx = await getSimilarTransactionsByName(
+      account.item.id,
+      transaction.name,
+      transaction.merchant_name,
+      1,
+    );
+
+    if (latestSimilarTx.length > 0) {
       categoryIds = {
-        categoryId: plaidCategory.categoryId,
-        plaidCategoryId: plaidCategory.id,
+        categoryId: latestSimilarTx[0].category.id,
+        plaidCategoryId: latestSimilarTx[0].plaidCategory.id,
       };
-      categoryIdMapping.set(categoryCode, categoryIds);
+      console.log(latestSimilarTx);
+      console.log(categoryIds);
+      console.log(transaction);
+    } else {
+      // TODO: This logic doesn't work as mapping update is within async functions and status is not shared across
+      const categoryCode = transaction.category_id || '0';
+      categoryIds = categoryIdMapping.get(categoryCode);
+      if (!categoryIds) {
+        const plaidCategory = await getPlaidCategoryByCode(categoryCode);
+        categoryIds = {
+          categoryId: plaidCategory.categoryId,
+          plaidCategoryId: plaidCategory.id,
+        };
+        categoryIdMapping.set(categoryCode, categoryIds);
+      }
     }
     const txDate = new Date(transaction.date);
     const calendarId =
@@ -210,6 +311,7 @@ export const createOrUpdateTransactions = async (
       merchantName: transaction.merchant_name,
       exclude: false,
     };
+
     Transaction.create(transValues);
   });
   await Promise.all(pendingQueries);
@@ -508,7 +610,7 @@ export const getSimilarTransactionsIds = async (
     return null;
   }
   const { name, merchantName } = transaction;
-  const where: TransactionsWhereClause = { merchantName, name };
+  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
   const transactions = await Transaction.findAndCountAll({
     attributes: ['id'],
     include: [
@@ -545,51 +647,7 @@ export const setSimilarTransactionsCategory = async (
     return null;
   }
   const { name, merchantName } = transaction;
-  const where: TransactionsWhereClause = { merchantName, name };
+  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
   const updTransactions = await Transaction.update({ categoryId }, { where });
   return updTransactions;
-};
-
-export const getSimilarTransactions = async (
-  userId: number,
-  transactionId: number,
-) => {
-  const transaction = await getTransaction(userId, transactionId);
-
-  if (!transaction) {
-    return null;
-  }
-  const { name, merchantName } = transaction;
-  const where: TransactionsWhereClause = { merchantName, name };
-  const transactions = await Transaction.findAndCountAll({
-    attributes: {
-      exclude: ['plaidCategoryId', 'categoryId', 'accountId'],
-    },
-    include: [
-      {
-        model: Account,
-        include: [
-          {
-            model: Item,
-            where: { userId },
-            attributes: ['id'],
-            include: [
-              { model: Institution, attributes: ['name', 'color', 'logo'] },
-            ],
-          },
-        ],
-        attributes: ['id', 'name'],
-      },
-      {
-        model: Category,
-        attributes: ['id', 'name', 'iconName', 'iconColor'],
-      },
-      {
-        model: PlaidCategory,
-        attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
-      },
-    ],
-    where,
-  });
-  return transactions;
 };
