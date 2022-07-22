@@ -33,8 +33,8 @@ POST http://localhost:8000/api/transactions/category/
 Content-Type: application/json
 
 {
-  "transactionId": 1016,
-  "categoryId":18
+  "transactionId": 2250,
+  "categoryId":19
 }
 
 
@@ -60,3 +60,6 @@ Content-Type: application/json
   "transactionId": 2246,
   "categoryId":15
 }
+
+###
+GET http://localhost:8000/api/transactions/similar_count?transactionId=2246

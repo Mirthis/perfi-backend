@@ -10,6 +10,7 @@ import {
   getSimilarTransactions,
   setSimilarTransactionsCategory,
   getTransaction,
+  getSimilarTransactionsCount,
 } from '../models/transaction-queries';
 import {
   EcludeTransactionReq,
@@ -105,20 +106,6 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.json(transactions);
 });
 
-router.get('/:transactionId', isAuthenticated, async (req, res) => {
-  console.log(req.params);
-  const transaction = await getTransaction(
-    req.user!.id,
-    Number(req.params.transactionId),
-  );
-
-  if (!transaction) {
-    res.status(400).json('transaction not found');
-  } else {
-    res.json(transaction);
-  }
-});
-
 router.get('/transactions_summary', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
 
@@ -162,6 +149,23 @@ router.post('/category/', isAuthenticated, async (req, res) => {
     res.status(400).json('transaction not found');
   } else {
     res.json(transaction);
+  }
+});
+
+router.get('/similar_count', async (req, res) => {
+  if (!req.query.transactionId) {
+    throw Error('Invalid parameter transactionId');
+  }
+  console.log('req.query');
+  console.log(req.query);
+  const txCount = await getSimilarTransactionsCount(
+    req.user!.id,
+    Number(req.query.transactionId),
+  );
+  if (!txCount) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(txCount[0]);
   }
 });
 
@@ -211,6 +215,20 @@ router.put('/update_category_similar', async (req, res) => {
     res.status(400).json('transaction not found');
   } else {
     res.json(affected);
+  }
+});
+
+router.get('/id/:transactionId', isAuthenticated, async (req, res) => {
+  console.log(req.params);
+  const transaction = await getTransaction(
+    req.user!.id,
+    Number(req.params.transactionId),
+  );
+
+  if (!transaction) {
+    res.status(400).json('transaction not found');
+  } else {
+    res.json(transaction);
   }
 });
 

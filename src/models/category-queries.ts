@@ -1,5 +1,6 @@
 import { Op, Sequelize } from 'sequelize';
 import { CreateCategoryReq } from '../types/types';
+import { sequelize } from '../utils/db';
 import Category from './category';
 import Transaction from './transaction';
 
@@ -13,6 +14,35 @@ export const getCategories = async (userId: number) => {
     where: { userId: { [Op.in]: [userId, -1] } },
     order: ['name'],
   });
+  return categories;
+};
+
+export const getUserCategories = async (userId: number) => {
+  const categories = await Category.findAll({
+    attributes: [
+      'category.id',
+      'category.name',
+      'iconName',
+      'iconColor',
+      'category.exclude',
+      [sequelize.fn('count', sequelize.col('transactions.id')), 'txCount'],
+    ],
+    where: { userId },
+    include: {
+      model: Transaction,
+      attributes: [],
+      required: false,
+    },
+    group: [
+      'category.id',
+      'category.name',
+      'iconName',
+      'iconColor',
+      'category.exclude',
+    ],
+    raw: true,
+  });
+  console.log(categories);
   return categories;
 };
 

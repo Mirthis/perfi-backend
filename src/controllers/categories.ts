@@ -4,6 +4,7 @@ import {
   createCategory,
   deleteCategory,
   getCategories,
+  getUserCategories,
   setCategoryExcludeFlag,
   updateCategory,
 } from '../models/category-queries';
@@ -110,6 +111,11 @@ router.delete('/:categoryId/delete', isAuthenticated, async (req, res) => {
   } else {
     res.json();
   }
+});
+
+router.get('/userdefined', isAuthenticated, async (req, res) => {
+  const categories = await getUserCategories(req.user!.id);
+  res.json(categories);
 });
 
 export default router;

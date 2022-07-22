@@ -167,7 +167,17 @@ export const getSimilarTransactionsByName = async (
   merchantName: string | null | undefined,
   limit?: number,
 ) => {
-  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
+  const where: TransactionsWhereClause = {};
+  if (merchantName && name) {
+    Object.assign(where, {
+      [Op.or]: { merchantName, name },
+    });
+  } else if (merchantName) {
+    where.merchantName = merchantName;
+  } else if (name) {
+    where.name = name;
+  }
+
   const transactions = await Transaction.findAll({
     attributes: {
       exclude: ['plaidCategoryId', 'categoryId', 'accountId'],
@@ -600,7 +610,7 @@ export const setTransactionCategory = async (
   return transaction;
 };
 
-export const getSimilarTransactionsIds = async (
+export const getSimilarTransactionsCount = async (
   userId: number,
   transactionId: number,
 ) => {
@@ -610,9 +620,21 @@ export const getSimilarTransactionsIds = async (
     return null;
   }
   const { name, merchantName } = transaction;
-  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
-  const transactions = await Transaction.findAndCountAll({
-    attributes: ['id'],
+  const where: TransactionsWhereClause = {};
+  if (merchantName && name) {
+    Object.assign(where, {
+      [Op.or]: { merchantName, name },
+    });
+  } else if (merchantName) {
+    where.merchantName = merchantName;
+  } else if (name) {
+    where.name = name;
+  }
+
+  const txCount = await Transaction.findAll({
+    attributes: [
+      [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
+    ],
     include: [
       {
         model: Account,
@@ -627,8 +649,9 @@ export const getSimilarTransactionsIds = async (
       },
     ],
     where,
+    raw: true,
   });
-  return transactions;
+  return txCount;
 };
 
 export const setSimilarTransactionsCategory = async (
@@ -647,7 +670,16 @@ export const setSimilarTransactionsCategory = async (
     return null;
   }
   const { name, merchantName } = transaction;
-  const where: TransactionsWhereClause = { [Op.or]: { merchantName, name } };
+  const where: TransactionsWhereClause = {};
+  if (merchantName && name) {
+    Object.assign(where, {
+      [Op.or]: { merchantName, name },
+    });
+  } else if (merchantName) {
+    where.merchantName = merchantName;
+  } else if (name) {
+    where.name = name;
+  }
   const updTransactions = await Transaction.update({ categoryId }, { where });
   return updTransactions;
 };

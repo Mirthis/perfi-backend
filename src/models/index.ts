@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import User from './user';
 import Session from './session';
 import Item from './item';
@@ -26,7 +27,7 @@ Transaction.belongsTo(PlaidCategory);
 Category.hasMany(Transaction);
 Transaction.belongsTo(Category);
 
-Category.hasMany(Transaction, { foreignKey: 'ogCategoryId' });
+// Category.hasMany(Transaction, { foreignKey: 'ogCategoryId' });
 
 Category.hasMany(PlaidCategory);
 PlaidCategory.belongsTo(Category);
