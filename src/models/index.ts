@@ -8,6 +8,7 @@ import Transaction from './transaction';
 import PlaidCategory from './plaidCategory';
 import Category from './category';
 import Calendar from './calendar';
+import AuthToken from './authToken';
 
 User.hasMany(Item);
 Item.belongsTo(User);
@@ -40,6 +41,9 @@ Transaction.belongsTo(Calendar);
 
 Calendar.hasMany(Transaction);
 Transaction.belongsTo(Calendar);
+
+User.hasMany(AuthToken);
+AuthToken.belongsTo(User);
 
 // CategoryExclusion.belongsTo(Category);
 // CategoryExclusion.belongsTo(User);

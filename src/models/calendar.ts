@@ -30,6 +30,26 @@ class Calendar extends Model<
   declare week_day: number;
 
   declare week_day_name: string;
+
+  declare curr_month_start_date: Date;
+
+  declare curr_month_end_date: Date;
+
+  declare prev_month_start_date: Date;
+
+  declare prev_month_end_date: Date;
+
+  declare curr_year_start_date: Date;
+
+  declare curr_year_end_date: Date;
+
+  declare prev_year_start_date: Date;
+
+  declare prev_year_end_date: Date;
+
+  declare prev_12_month_start_date: Date;
+
+  declare prev_12_month_end_date: Date;
 }
 
 Calendar.init(
@@ -68,8 +88,49 @@ Calendar.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    curr_month_start_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    curr_month_end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_month_start_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_month_end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    curr_year_start_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    curr_year_end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_year_start_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_year_end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_12_month_start_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    prev_12_month_end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
   },
   {
+    timestamps: false,
     sequelize,
     tableName: 'calendar',
     modelName: 'calendar',

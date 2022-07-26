@@ -25,6 +25,7 @@ Content-Type: application/json
 }
 
 ###
+<utils />firebase';
 DELETE http://localhost:8000/api/categories/22/delete
 
 ###

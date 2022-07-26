@@ -3,6 +3,9 @@ import morgan from 'morgan';
 import { Request, Response, NextFunction } from 'express';
 import { ValidationError } from 'sequelize';
 import logger from './logger';
+import { User } from '../models';
+import { AuthError } from '../types/errors';
+import { AuthErrorName, ErrorType } from '../types/types';
 
 const unknownEndpoint = (_request: Request, response: Response): void => {
   response.status(404).send({ error: 'unknown endpoint' });
@@ -10,8 +13,8 @@ const unknownEndpoint = (_request: Request, response: Response): void => {
 
 const errorHandler = (
   error: Error,
-  _request: Request,
-  response: Response,
+  _req: Request,
+  res: Response,
   _next: NextFunction,
 ): void => {
   console.log('Error midleware');
@@ -22,19 +25,27 @@ const errorHandler = (
   logger.error('Error: ', error);
   logger.error('Error message: ', error.message);
   logger.error('Error name: ', error.name);
-  if (error instanceof ValidationError) {
-    console.log('Identified validation error');
+  if (error instanceof AuthError) {
+    logger.error('Auth error identified');
+    res.status(error.statusCode).json({
+      message: error.message,
+      name: error.name,
+      type: ErrorType.AUTH_ERROR,
+    });
+  } else if (error instanceof ValidationError) {
+    console.log('Identified validation error identifi');
+    console.log(error);
     const errors = error.errors.map((e) => ({
       type: e.type,
       message: e.message,
       path: e.path,
     }));
     console.log({ name: error.name, errors });
-    response
+    res
       .status(400)
-      .json({ type: 'ValidationError', name: error.name, errors });
+      .json({ type: ErrorType.VALIDATION_ERROR, name: error.name, errors });
   } else {
-    response.status(400).json({ error: error.message });
+    res.status(400).json(error);
   }
 
   // _next(error);
@@ -47,10 +58,26 @@ morgan.token('body', (request) => {
 
 export const isAuthenticated = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ) => {
-  console.log('is auth middleware');
+  if (req.isAuthenticated()) {
+    const user: User = req.user as unknown as User;
+    if (!user.isActive) {
+      throw new AuthError('User is not active', AuthErrorName.USER_INACTIVE);
+    }
+    if (!user.isVerified) {
+      throw new AuthError(
+        'User is not verified',
+        AuthErrorName.USER_NOT_VERIFIED,
+      );
+    }
+    return next();
+  }
+  throw new AuthError('Unauthorized', AuthErrorName.USER_UNAUTHORIZED);
+};
+
+export const isUser = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
     return next();
   }

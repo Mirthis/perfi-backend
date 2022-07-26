@@ -8,7 +8,9 @@ declare namespace Express {
   interface User {
     id: number;
     email: string;
-    plaid_access_token: string;
+    password: string;
+    isActive: boolean;
+    isVerified: boolean;
   }
 }
 

@@ -1,6 +1,7 @@
 import { Transaction as PlaidTransaction } from 'plaid';
-import { Op, Order } from 'sequelize';
-import Account, { getAccountByPlaidAccountId } from './account';
+import { Op, Order, QueryTypes } from 'sequelize';
+import Account from './account';
+import { getAccountByPlaidAccountId } from './account-queries';
 import Item from './item';
 import Transaction from './transaction';
 import { sequelize } from '../utils/db';
@@ -10,7 +11,8 @@ import {
   AccountWhereClause,
   CategoryWhereClause,
   ExcludedTransactionsFilter,
-  GetSpendingByCategoryOptions,
+  GetCumulativeSpendingOptions,
+  GetSpendingByOptions,
   GetTopMerchantsOptions,
   GetTransactionsOptions,
   TransactionsWhereClause,
@@ -327,113 +329,9 @@ export const createOrUpdateTransactions = async (
   await Promise.all(pendingQueries);
 };
 
-export const getSpendingByCategory = async (
-  userId: number,
-  options?: GetSpendingByCategoryOptions,
-) => {
-  const where: TransactionsWhereClause = {};
-  const accountWhere: AccountWhereClause = {};
-  const startDate = options?.startDate;
-  const endDate = options?.endDate;
-  const accountIds = options?.accountIds;
-  const categoryIds = options?.categoryIds;
-
-  if (startDate && endDate) {
-    where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
-  } else if (startDate) {
-    where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
-  } else if (endDate) {
-    where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
-  }
-
-  if (accountIds) {
-    accountWhere.id = { [Op.in]: accountIds };
-  }
-  if (categoryIds) {
-    console.log(categoryIds);
-    where['$category.id$'] = { [Op.in]: categoryIds };
-  }
-  const having = options?.removeZeroCounts
-    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
-        [Op.gt]: 0,
-      })
-    : {};
-
-  const categorySummary = await Transaction.findAll({
-    attributes: [
-      'calendar.year',
-      'calendar.month',
-      'category.id',
-      'category.name',
-      'category.iconName',
-      'category.iconColor',
-      [
-        sequelize.fn(
-          'coalesce',
-          sequelize.fn('sum', sequelize.col('amount')),
-          '0',
-        ),
-        'txAmount',
-      ],
-      [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
-    ],
-    where,
-    include: [
-      {
-        model: Calendar,
-        attributes: [],
-        required: false,
-        right: true,
-      },
-      {
-        model: Category,
-        attributes: [['id', 'categoryId']],
-        required: false,
-        right: true,
-        on: {
-          [Op.or]: [
-            { id: { [Op.eq]: sequelize.col('categoryId') } },
-            { '$transaction.id$': null },
-          ],
-        },
-      },
-      {
-        model: Account,
-        where: accountWhere,
-        required: false,
-        include: [
-          {
-            model: Item,
-            required: false,
-            where: { userId },
-            attributes: [],
-          },
-        ],
-        attributes: [],
-      },
-    ],
-    group: [
-      'calendar.year',
-      'calendar.month',
-      'category.id',
-      'category.name',
-      'category.iconName',
-      'category.iconColor',
-    ],
-    order: [
-      [sequelize.col('calendar.year'), 'ASC'],
-      [sequelize.col('calendar.month'), 'ASC'],
-    ],
-    having,
-    raw: true,
-  });
-
-  return categorySummary;
-};
-
 export const getTransactionsSummary = async (
   userId: number,
-  options?: GetSpendingByCategoryOptions,
+  options?: GetSpendingByOptions,
 ) => {
   const where: TransactionsWhereClause = {};
   const accountWhere: AccountWhereClause = {};
@@ -682,4 +580,199 @@ export const setSimilarTransactionsCategory = async (
   }
   const updTransactions = await Transaction.update({ categoryId }, { where });
   return updTransactions;
+};
+
+export const getCumulativeSpending = async (
+  userId: number,
+  options: GetCumulativeSpendingOptions,
+) => {
+  console.log('options');
+  console.log(options);
+  // const queryDateFormatter = new Intl.DateTimeFormat('sv-SE', {
+  //   year: 'numeric',
+  //   month: '2-digit',
+  //   day: '2-digit',
+  // });
+
+  // const startDate = queryDateFormatter.format(options.startDate);
+  // const endDate = queryDateFormatter.format(options.endDate);
+
+  const { startDate, endDate } = options;
+
+  const spending = sequelize.query(
+    `SELECT i.day, SUM(i.amount) OVER(ORDER BY i.day) "txAmount"
+  FROM (
+  SELECT cal.day,
+    sum(CASE WHEN tx.exclude = true OR cat.exclude=true THEN 0 ELSE tx.amount END) amount
+  FROM transactions tx
+  INNER JOIN categories cat
+  ON tx."categoryId" = cat.id
+  INNER JOIN accounts acc
+  ON tx."accountId" = acc.id
+  INNER JOIN items it
+  ON acc."itemId" = it.id AND it."userId" = ${userId}
+  RIGHT OUTER JOIN calendar cal
+  ON tx."calendarId" = cal.id
+  WHERE cal.calendar_date BETWEEN '${startDate}' AND '${endDate}'
+  GROUP BY cal.day
+  ) i;
+  `,
+    { type: QueryTypes.SELECT },
+  );
+
+  return spending;
+};
+
+export const getSpendingBy = async (
+  userId: number,
+  options?: GetSpendingByOptions,
+) => {
+  const where: TransactionsWhereClause = {};
+  const accountWhere: AccountWhereClause = {};
+  const startDate = options?.startDate;
+  const endDate = options?.endDate;
+  const accountIds = options?.accountIds;
+  const categoryIds = options?.categoryIds;
+  const aggregateBy = options?.aggregateBy || [];
+
+  if (startDate && endDate) {
+    where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
+  } else if (startDate) {
+    where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
+  } else if (endDate) {
+    where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
+  }
+
+  if (accountIds) {
+    accountWhere.id = { [Op.in]: accountIds };
+  }
+  if (categoryIds) {
+    console.log(categoryIds);
+    where['$category.id$'] = { [Op.in]: categoryIds };
+  }
+  const having = options?.removeZeroCounts
+    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
+        [Op.gt]: 0,
+      })
+    : {};
+
+  const spendingSummary = await Transaction.findAll({
+    attributes: [
+      ...aggregateBy,
+      [
+        sequelize.literal(
+          'SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END)',
+        ),
+        'txAmount',
+      ],
+      [
+        sequelize.literal(
+          'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE 1 END)',
+        ),
+        'txCount',
+      ],
+    ],
+    where,
+    include: [
+      {
+        model: Calendar,
+        attributes: [],
+        required: false,
+        right: true,
+      },
+      {
+        model: Category,
+        attributes: [],
+        required: false,
+        right: true,
+        on: {
+          [Op.or]: [
+            { id: { [Op.eq]: sequelize.col('categoryId') } },
+            { '$transaction.id$': null },
+          ],
+        },
+      },
+      {
+        model: Account,
+        where: accountWhere,
+        required: false,
+        include: [
+          {
+            model: Item,
+            required: false,
+            where: { userId },
+            attributes: [],
+          },
+        ],
+        attributes: [],
+      },
+    ],
+    group: aggregateBy,
+    having,
+    raw: true,
+  });
+
+  return spendingSummary;
+};
+
+export const getSpendingByDayNumber = async (
+  userId: number,
+  options?: GetSpendingByOptions,
+) => {
+  const newOptions = {
+    ...options,
+    aggregateBy: ['calendar.day'],
+  };
+  const spendingSummary = await getSpendingBy(userId, newOptions);
+  return spendingSummary;
+};
+
+export const getSpendingByCategory = async (
+  userId: number,
+  options?: GetSpendingByOptions,
+) => {
+  const newOptions = {
+    ...options,
+    aggregateBy: [
+      'calendar.year',
+      'calendar.month',
+      'category.id',
+      'category.name',
+      'category.iconName',
+      'category.iconColor',
+    ],
+  };
+
+  const spendingSummary = await getSpendingBy(userId, newOptions);
+  return spendingSummary;
+};
+
+export const getSpendingTrend = async (userId: number, refDate: Date) => {
+  console.log('refDate');
+  console.log(refDate);
+
+  const dates = await Calendar.findOne({ where: { calendar_date: refDate } });
+  console.log('dates');
+  console.log(dates);
+  if (!dates) {
+    throw Error('something went wrong');
+  }
+
+  const cmValues = await getCumulativeSpending(userId, {
+    startDate: dates.curr_month_start_date,
+    endDate: dates.calendar_date,
+  });
+  console.log('cmValues');
+  console.log(cmValues);
+
+  const pmValues = await getCumulativeSpending(userId, {
+    startDate: dates.prev_month_start_date,
+    endDate: dates.prev_month_end_date,
+  });
+  const p12Values = await getCumulativeSpending(userId, {
+    startDate: dates.prev_12_month_start_date,
+    endDate: dates.prev_12_month_end_date,
+  });
+
+  return { cmValues, pmValues, p12Values };
 };

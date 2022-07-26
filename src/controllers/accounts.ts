@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
-import { getAccounts, getAccountsWithStats } from '../models/account';
+import { getAccounts, getAccountsWithStats } from '../models/account-queries';
 import { parseString } from '../utils/requestParamParser';
 
 const router = express.Router();

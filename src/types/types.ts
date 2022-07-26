@@ -57,18 +57,29 @@ export type CategoryWhereClause =
     >
   | undefined;
 
-export interface GetSpendingByCategoryOptions {
+export interface GetSpendingByOptions {
   accountIds?: number[];
   startDate?: Date;
   endDate?: Date;
   categoryIds?: number[];
   removeZeroCounts?: boolean;
+  aggregateBy?: string[];
+}
+
+export interface GetCumulativeSpendingOptions {
+  startDate: Date;
+  endDate: Date;
 }
 
 export enum ExcludedTransactionsFilter {
   ONLY_EXCLUDED,
   ONLY_INCLUDED,
   ALL,
+}
+
+export enum AuthTokenType {
+  VERIFY_EMAIL = 'verify_email',
+  RESET_PASSWORD = 'reset_password',
 }
 
 export interface GetTransactionsOptions {
@@ -133,3 +144,55 @@ export type AccountsWithStats = {
   prevMonthAmount: string;
   currYearAmount: string;
 };
+
+export enum ErrorType {
+  AUTH_ERROR = 'AuthError',
+  VALIDATION_ERROR = 'ValidationError',
+}
+
+export enum AuthErrorName {
+  USER_ALREADY_VERIFIED = 'UserAlreadyVerified',
+  USER_INACTIVE = 'UserInactive',
+  USER_CREDENTIALS_NOT_FOUND = 'UserCredentialsNotFound',
+  USER_EMAIL_NOT_FOUND = 'UserEmailNotFound',
+  USER_NOT_VERIFIED = 'UserNotVerified',
+  USER_UNAUTHORIZED = 'UserUnauthorized',
+  VERIFY_EMAIL_TOKEN_NOT_FOUND = 'VerifyEmailTokenNotFound',
+  VERIFY_EMAIL_TOKEN_EXPIRED = 'VerifyEmailTokenExpired',
+  VERIFY_PASSWORD_TOKEN_NOT_FOUND = 'VerifyPasswordTokenNotFound',
+  VERIFY_PASSWORD_TOKEN_EXPIRED = 'VerifyPasswordTokenExpired',
+}
+
+// enum ApiErrorType {
+//   AUTH = 'auth',
+//   VALIDATION = 'validation',
+//   GENERIC = 'generic',
+// }
+
+// enum AuthErrorCodes {
+//   USER_NOT_VERIFIED,
+//   USER_NOT_ACTIVE,
+//   USER_NOT_FOUND,
+// }
+
+// enum GenericErrorCodes {
+//   USER_NOT_VERIFIED,
+//   USER_NOT_ACTIVE,
+//   USER_NOT_FOUND,
+// }
+
+// export interface ApiError {
+//   type: ApiErrorType;
+//   code: number;
+//   message: string;
+// }
+
+// export interface AuthError extends ApiError {
+//   type: ApiErrorType.AUTH;
+//   code: AuthErrorCodes;
+// }
+
+// export interface GenericError extends ApiError {
+//   type: ApiErrorType.GENERIC;
+//   code: GenericErrorCodes;
+// }

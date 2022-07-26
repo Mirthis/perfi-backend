@@ -6,7 +6,7 @@ import {
   RemovedTransaction,
   Transaction,
 } from 'plaid';
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import { Item } from '../models';
 import { isAuthenticated } from '../utils/auth';
 import config from '../utils/config';
@@ -17,7 +17,7 @@ import {
   updateItemTransactionsCursor,
 } from '../models/item';
 import { createOrUpdateTransactions } from '../models/transaction-queries';
-import { createOrUpdateAccounts } from '../models/account';
+import { createOrUpdateAccounts } from '../models/account-queries';
 import { getErrorMessage } from '../utils/logger';
 
 const router = express.Router();
@@ -93,22 +93,6 @@ const updateTransactions = async (plaidItemId: string) => {
     modifiedCount: modified.length,
     removedCount: removed.length,
   };
-};
-
-const retrieveAccessToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  const data = await Item.findOne({
-    where: { userId: req.user?.id },
-  });
-  if (data && req.user) {
-    req.user.plaid_access_token = data.accessToken;
-    next();
-  } else {
-    res.status(400).json({ error: 'access token not found' });
-  }
 };
 
 const retrieveAccessTokens = async (userId: number) => {
@@ -239,12 +223,17 @@ router.get('/accounts', isAuthenticated, async (req, res) => {
   }
 });
 
-router.get('/item', isAuthenticated, retrieveAccessToken, async (req, res) => {
+router.get('/item', isAuthenticated, async (req, res) => {
   // Pull the Item - this includes information about available products,
   // billed products, webhook information, and more.
-  if (!req.user) return;
+  const data = await Item.findOne({
+    where: { userId: req.user?.id },
+  });
+  if (!data) {
+    return res.status(404).json('Item not found');
+  }
   const itemResponse = await plaidClient.itemGet({
-    access_token: req.user.plaid_access_token,
+    access_token: data.accessToken,
   });
 
   // Also pull information about the institution
@@ -254,7 +243,7 @@ router.get('/item', isAuthenticated, retrieveAccessToken, async (req, res) => {
   };
   // @ts-ignore
   const instResponse = await plaidClient.institutionsGetById(configs);
-  res.json({
+  return res.json({
     item: itemResponse.data.item,
     institution: instResponse.data.institution,
   });

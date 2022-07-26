@@ -33,6 +33,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 
   declare isActive: boolean;
 
+  declare isVerified: boolean;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -128,6 +130,11 @@ User.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

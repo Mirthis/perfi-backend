@@ -11,14 +11,21 @@ import {
   setSimilarTransactionsCategory,
   getTransaction,
   getSimilarTransactionsCount,
+  getSpendingTrend,
+  getSpendingByDayNumber,
 } from '../models/transaction-queries';
 import {
   EcludeTransactionReq,
-  GetSpendingByCategoryOptions,
+  GetSpendingByOptions,
   GetTransactionsOptions,
   SetTransactionCategoryReq,
 } from '../types/types';
-import { parseBoolean, parseNumber } from '../utils/requestParamParser';
+import {
+  parseBoolean,
+  parseDate,
+  parseNumber,
+  parseNumbersArray,
+} from '../utils/requestParamParser';
 
 const router = express.Router();
 
@@ -50,9 +57,49 @@ const toSetTransactionCategoryReq = ({
   return requestParameters;
 };
 
+const toSpendingByOptions = ({
+  accountIds,
+  startDate,
+  endDate,
+  categoryIds,
+  removeZeroCounts,
+}: {
+  accountIds?: unknown;
+  startDate?: unknown;
+  endDate?: unknown;
+  categoryIds?: unknown;
+  removeZeroCounts?: unknown;
+}) => {
+  const requestParams: GetSpendingByOptions = {};
+
+  if (accountIds !== undefined) {
+    requestParams.categoryIds = parseNumbersArray(accountIds, 'accountIds');
+  }
+
+  if (startDate !== undefined) {
+    requestParams.startDate = new Date(parseDate(startDate, 'startDate'));
+  }
+
+  if (endDate !== undefined) {
+    requestParams.endDate = new Date(parseDate(endDate, 'endDate'));
+  }
+
+  if (categoryIds !== undefined) {
+    requestParams.categoryIds = parseNumbersArray(categoryIds, 'categoryIds');
+  }
+
+  if (removeZeroCounts !== undefined) {
+    requestParams.removeZeroCounts = parseBoolean(
+      removeZeroCounts,
+      'removeZeroCounts',
+    );
+  }
+  return requestParams;
+};
+
 router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorize');
-  const queryOptions: GetSpendingByCategoryOptions = { ...req.query };
+  const queryOptions: GetSpendingByOptions = { ...req.query };
 
   // TODO: create proper parsing function for inputs
   if (
@@ -230,6 +277,18 @@ router.get('/id/:transactionId', isAuthenticated, async (req, res) => {
   } else {
     res.json(transaction);
   }
+});
+
+router.get('/spending/bydaynumber/', isAuthenticated, async (req, res) => {
+  const queryParams = toSpendingByOptions(req.query);
+  const spending = await getSpendingByDayNumber(req.user!.id, queryParams);
+  res.json(spending);
+});
+
+router.get('/spending/trend/', isAuthenticated, async (req, res) => {
+  const refDate = new Date(parseDate(req.query.refDate, 'refDate'));
+  const spending = await getSpendingTrend(req.user!.id, refDate);
+  res.json(spending);
 });
 
 export default router;

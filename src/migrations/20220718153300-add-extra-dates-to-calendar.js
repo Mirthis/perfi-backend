@@ -80,29 +80,29 @@ module.exports = {
       'ALTER TABLE calendar ALTER COLUMN curr_month_end_date SET NOT NULL;',
     );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN prev_month_start_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN prev_month_start_date SET NOT NULL;',
+    );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN prev_month_end_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN prev_month_end_date SET NOT NULL;',
+    );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN curr_year_start_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN curr_year_start_date SET NOT NULL;',
+    );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN curr_year_end_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN curr_year_end_date SET NOT NULL;',
+    );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN prev_year_start_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN prev_year_start_date SET NOT NULL;',
+    );
 
-    // await queryInterface.sequelize.query(
-    //   'ALTER TABLE calendar ALTER COLUMN prev_year_end_date SET NOT NULL;',
-    // );
+    await queryInterface.sequelize.query(
+      'ALTER TABLE calendar ALTER COLUMN prev_year_end_date SET NOT NULL;',
+    );
   },
 
   async down(queryInterface) {

@@ -1,0 +1,71 @@
+
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "aaa@sss.ddd",
+  "password":"A!23456z"
+}
+
+###
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "pip@po.com",
+  "password":"A!23456z"
+}
+
+###
+GET http://localhost:8000/api/auth/login
+ 
+
+###
+POST http://localhost:8000/api/auth/signup
+Content-Type: application/json
+ 
+{
+  "email": "xxx@yyy.zzz",
+  "password":"z!23456A"
+}
+
+###
+POST http://localhost:8000/api/auth/signup
+Content-Type: application/json
+ 
+{
+  "email": "aaa@sss.ddd"
+}
+
+
+
+###
+POST http://localhost:8000/api/auth/logout
+
+###
+PUT http://localhost:8000/api/auth/verify_email/
+Content-Type: application/json
+
+{
+  "token": "73d5bed4cd29aa17a125cf7e70f5cccf0a139c994755ba91dadfb783b5a24e2e"
+}
+
+###
+POST http://localhost:8000/api/auth/verify_email
+Content-Type: application/json
+
+{
+  "email": "xxx@yyy.zzz"
+}
+
+###
+GET http://localhost:8000/api/auth/reset_password?email=xxx@yyy.zzz
+
+###
+PUT http://localhost:8000/api/auth/reset_password/
+Content-Type: application/json
+
+{
+  "token": "4ac6773b122f0cc68d16558b6d79b9fcc04242483bcb380e3ab758dc509fb1c5",
+  "password":"A!23456z"
+}
