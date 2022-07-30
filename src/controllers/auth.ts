@@ -113,24 +113,18 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/login', isAuthenticated, (req, res) => {
-  console.log('Checking login');
   res.status(200).json(req.user!);
 });
 
 router.post('/signup', async (req, res) => {
-  console.log(req.body);
   const user = await User.create(req.body);
   await sendVerifyEmail(user, req.headers.host!.split(':')[0]);
 
   res.json({ id: user.id, email: user.email });
 });
 
-router.post('/verify_email', async (req, res) => {
-  console.log('Verify email body');
-  console.log(req.body);
+router.post('/verify-email', async (req, res) => {
   const email = parseString(req.body.email, 'email');
-  console.log('email');
-  console.log(email);
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
@@ -147,13 +141,11 @@ router.post('/verify_email', async (req, res) => {
   res.json(200);
 });
 
-router.put('/verify_email', async (req, res) => {
+router.put('/verify-email', async (req, res) => {
   const tokenParam = parseString(req.body.token, 'token');
   const token = await AuthToken.findOne({
     where: { token: tokenParam, type: AuthTokenType.VERIFY_EMAIL },
   });
-  console.log('token');
-  console.log(token);
   if (!token) {
     throw new AuthError(
       'Verify email token not found',
@@ -167,8 +159,6 @@ router.put('/verify_email', async (req, res) => {
     );
   }
   const user = await User.findByPk(token.userId);
-  console.log('user');
-  console.log(user);
   if (!user) {
     throw new AuthError('User not found', AuthErrorName.USER_EMAIL_NOT_FOUND);
   }
@@ -178,7 +168,7 @@ router.put('/verify_email', async (req, res) => {
   return res.json(user);
 });
 
-router.post('/reset_password', async (req, res) => {
+router.post('/reset-password', async (req, res) => {
   const email = parseString(req.body.email, 'Email');
   const user = await User.findOne({ where: { email } });
 
@@ -192,14 +182,12 @@ router.post('/reset_password', async (req, res) => {
   }
 });
 
-router.put('/reset_password', async (req, res) => {
+router.put('/reset-password', async (req, res) => {
   const tokenParam = parseString(req.body.token, 'token');
   const password = parseString(req.body.password, 'password');
   const token = await AuthToken.findOne({
     where: { token: tokenParam, type: AuthTokenType.RESET_PASSWORD },
   });
-  console.log('token');
-  console.log(token);
   if (!token) {
     throw new AuthError(
       'User not found',
@@ -213,8 +201,6 @@ router.put('/reset_password', async (req, res) => {
     );
   }
   const user = await User.findByPk(token.userId);
-  console.log('user');
-  console.log(user);
   if (!user) {
     throw new AuthError('User not found', AuthErrorName.USER_EMAIL_NOT_FOUND);
   }

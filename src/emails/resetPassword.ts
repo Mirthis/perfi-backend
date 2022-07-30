@@ -1,5 +1,5 @@
 // TODO: parametrised variables
-const VERIFY_EMAIL_ENDPOINT = 'reset_password';
+const VERIFY_EMAIL_ENDPOINT = 'reset-password';
 
 const getResetPasswordSubject = (userEmail: string) =>
   `Perfi - password reset for ${userEmail}`;

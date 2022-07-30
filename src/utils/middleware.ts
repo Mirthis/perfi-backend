@@ -45,7 +45,7 @@ const errorHandler = (
       .status(400)
       .json({ type: ErrorType.VALIDATION_ERROR, name: error.name, errors });
   } else {
-    res.status(400).json(error);
+    res.status(400).json({ type: ErrorType.GENERIC_ERROR });
   }
 
   // _next(error);

@@ -2,86 +2,103 @@
   {
     "name": "Bills",
     "iconName": "bills",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Cash",
     "iconName": "cash",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Charity",
     "iconName": "charity",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Drinks",
     "iconName": "drinks",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Eating Out",
     "iconName": "eating",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Education",
     "iconName": "education",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Entertainment",
     "iconName": "entertainment",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Finance",
     "iconName": "finance",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Groceries",
     "iconName": "groceries",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Health and Wellbeing",
     "iconName": "health",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Housing",
     "iconName": "housing",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Misc",
     "iconName": "housing",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Shopping",
     "iconName": "shopping",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Transfer",
     "iconName": "transfer",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": true
   },
   {
     "name": "Transport",
     "iconName": "transport",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Travel",
     "iconName": "travel",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   },
   {
     "name": "Utilities",
     "iconName": "transport",
-    "iconColor": "primary"
+    "iconColor": "primary",
+    "exclude": false
   }
 ]

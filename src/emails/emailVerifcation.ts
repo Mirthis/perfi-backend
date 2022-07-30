@@ -1,5 +1,5 @@
 // TODO: parametrised variables
-const VERIFY_EMAIL_ENDPOINT = 'verify_email';
+const VERIFY_EMAIL_ENDPOINT = 'verify-email';
 
 const getEmailVerificationSubject = (userEmail: string) =>
   `Perfi - email verification for ${userEmail}`;

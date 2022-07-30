@@ -42,7 +42,6 @@ export const getUserCategories = async (userId: number) => {
     ],
     raw: true,
   });
-  console.log(categories);
   return categories;
 };
 

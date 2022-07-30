@@ -61,6 +61,7 @@ export interface GetSpendingByOptions {
   accountIds?: number[];
   startDate?: Date;
   endDate?: Date;
+  refDate?: Date;
   categoryIds?: number[];
   removeZeroCounts?: boolean;
   aggregateBy?: string[];
@@ -91,11 +92,7 @@ export interface GetTransactionsOptions {
   categoryIds?: number[];
   orderBy?: string;
   excludedTransactions?: ExcludedTransactionsFilter;
-}
-
-export interface GetTransactionsSummaryOptions {
-  startDate?: Date;
-  endDate?: Date;
+  onlyPositiveAmounts?: boolean;
 }
 
 export interface GetTopExpensesOptions {
@@ -148,6 +145,7 @@ export type AccountsWithStats = {
 export enum ErrorType {
   AUTH_ERROR = 'AuthError',
   VALIDATION_ERROR = 'ValidationError',
+  GENERIC_ERROR = 'GenericError',
 }
 
 export enum AuthErrorName {
@@ -161,6 +159,12 @@ export enum AuthErrorName {
   VERIFY_EMAIL_TOKEN_EXPIRED = 'VerifyEmailTokenExpired',
   VERIFY_PASSWORD_TOKEN_NOT_FOUND = 'VerifyPasswordTokenNotFound',
   VERIFY_PASSWORD_TOKEN_EXPIRED = 'VerifyPasswordTokenExpired',
+}
+
+export enum AggregateSpendBy {
+  DAY = 'day',
+  MONTH = 'month',
+  CATEGORY = 'category',
 }
 
 // enum ApiErrorType {

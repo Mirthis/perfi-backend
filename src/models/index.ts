@@ -28,7 +28,7 @@ Transaction.belongsTo(PlaidCategory);
 Category.hasMany(Transaction);
 Transaction.belongsTo(Category);
 
-// Category.hasMany(Transaction, { foreignKey: 'ogCategoryId' });
+Category.hasMany(Transaction, { foreignKey: 'ogCategoryId' });
 
 Category.hasMany(PlaidCategory);
 PlaidCategory.belongsTo(Category);

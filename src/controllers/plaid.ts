@@ -50,12 +50,22 @@ const fetchTransactionUpdates = async (plaidItemId: string) => {
   try {
     /* eslint-disable no-await-in-loop */
     while (hasMore) {
-      const request = {
+      const requestParams = {
         access_token: accessToken,
         cursor: cursor || undefined,
         count: batchSize,
+        options: {
+          include_original_description: true,
+          include_personal_finance_category: true,
+        },
       };
-      const { data } = await plaidClient.transactionsSync(request);
+
+      // const requestOptions = {
+      //   include_original_description: true,
+      //   include_personal_finance_category: true,
+      // };
+
+      const { data } = await plaidClient.transactionsSync(requestParams);
       // Add this page of results
       added = added.concat(data.added);
       modified = modified.concat(data.modified);
@@ -128,8 +138,6 @@ router.post('/create_link_token', isAuthenticated, async (req, res) => {
 
 router.post('/set_access_token', isAuthenticated, async (req, res) => {
   if (!req.user) return;
-  console.log('body');
-  console.log(req.body);
   const PUBLIC_TOKEN = req.body.publicToken;
   const { data: exchangeData } = await plaidClient.itemPublicTokenExchange({
     public_token: PUBLIC_TOKEN,

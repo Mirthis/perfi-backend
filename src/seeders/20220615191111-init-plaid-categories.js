@@ -14,9 +14,6 @@ module.exports = {
     const plaidCategories = data.map((d) => {
       const categoryId = categoriesMapping[d.perficategory];
 
-      if (!categoryId) {
-        console.log(d);
-      }
       return {
         code: d.plaidcategoryid,
         categoryId,

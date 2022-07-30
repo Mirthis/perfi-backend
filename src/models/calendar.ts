@@ -137,4 +137,9 @@ Calendar.init(
   },
 );
 
+export const getDates = async (refDate: Date) => {
+  const dates = await Calendar.findOne({ where: { calendar_date: refDate } });
+  return dates;
+};
+
 export default Calendar;

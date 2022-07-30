@@ -70,44 +70,43 @@ export const getTransactions = async (
   const accountIds = options?.accountIds;
   const categoryIds = options?.categoryIds;
   const order: Order = options?.orderBy
-    ? [[options?.orderBy, 'DESC']]
-    : [['calendarId', 'DESC']];
+    ? [
+        [options?.orderBy, 'DESC'],
+        ['id', 'DESC'],
+      ]
+    : [
+        ['calendarId', 'DESC'],
+        ['id', 'DESC'],
+      ];
   const excludedTransactionsFilter = options?.excludedTransactions;
-
-  console.log('excludedTransactionsFilter');
-  console.log(excludedTransactionsFilter);
+  const onlyPositiveAmounts =
+    options?.onlyPositiveAmounts !== undefined
+      ? options.onlyPositiveAmounts
+      : false;
 
   switch (Number(excludedTransactionsFilter)) {
     case ExcludedTransactionsFilter.ALL:
-      console.log('all');
       break;
     case ExcludedTransactionsFilter.ONLY_EXCLUDED:
-      console.log('excluded');
-
       Object.assign(where, {
         [Op.or]: { exclude: true, '$category.exclude$': true },
       });
-      // @ts-ignore
-      // where[Op.or] = { exclude: true, '$category.exclude$': true };
-      // where.exclude = true;
-      // categoryWhere.exclude = true;
       break;
     case ExcludedTransactionsFilter.ONLY_INCLUDED:
-      console.log('included');
       Object.assign(where, {
         [Op.and]: { exclude: false, '$category.exclude$': false },
       });
-      // @ts-ignore
-      // where.exclude = false;
-      // categoryWhere.exclude = false;
       break;
     default:
-      console.log('default');
       Object.assign(where, {
         [Op.and]: { exclude: false, '$category.exclude$': false },
       });
       // categoryWhere.exclude = false;
       break;
+  }
+
+  if (onlyPositiveAmounts) {
+    where.amount = { [Op.gt]: 0 };
   }
 
   if (startDate && endDate) {
@@ -239,6 +238,18 @@ export const getSimilarTransactions = async (
 export const createOrUpdateTransactions = async (
   transactions: PlaidTransaction[],
 ) => {
+  console.log(transactions.slice(0, 15));
+  // transactions.forEach((t) => {
+  //   if (t.original_description) {
+  //     console.log('original_description');
+  //     console.log(t.original_description);
+  //   }
+  //   if (t.personal_finance_category) {
+  //     console.log('personal_finance_category');
+  //     console.log(t.personal_finance_category);
+  //   }
+  // });
+
   // store accountsId retrieved from the database to avoid querying for the same accounts
   const accountIdMapping = new Map<string, Account>();
   // store category ids retrieved from the database to avoid querying for the same accounts
@@ -274,9 +285,6 @@ export const createOrUpdateTransactions = async (
         categoryId: latestSimilarTx[0].category.id,
         plaidCategoryId: latestSimilarTx[0].plaidCategory.id,
       };
-      console.log(latestSimilarTx);
-      console.log(categoryIds);
-      console.log(transaction);
     } else {
       // TODO: This logic doesn't work as mapping update is within async functions and status is not shared across
       const categoryCode = transaction.category_id || '0';
@@ -322,6 +330,9 @@ export const createOrUpdateTransactions = async (
       unofficialCurrencyCode: transaction.unofficial_currency_code,
       merchantName: transaction.merchant_name,
       exclude: false,
+      personal_finance_primary: transaction.personal_finance_category?.primary,
+      personal_finance_detailed:
+        transaction.personal_finance_category?.detailed,
     };
 
     Transaction.create(transValues);
@@ -346,8 +357,6 @@ export const getTransactionsSummary = async (
   } else if (endDate) {
     where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
   }
-
-  console.log(where);
 
   if (accountIds) {
     accountWhere.id = { [Op.in]: accountIds };
@@ -586,8 +595,6 @@ export const getCumulativeSpending = async (
   userId: number,
   options: GetCumulativeSpendingOptions,
 ) => {
-  console.log('options');
-  console.log(options);
   // const queryDateFormatter = new Intl.DateTimeFormat('sv-SE', {
   //   year: 'numeric',
   //   month: '2-digit',
@@ -623,7 +630,7 @@ export const getCumulativeSpending = async (
   return spending;
 };
 
-export const getSpendingBy = async (
+export const getSpending = async (
   userId: number,
   options?: GetSpendingByOptions,
 ) => {
@@ -631,10 +638,19 @@ export const getSpendingBy = async (
   const accountWhere: AccountWhereClause = {};
   const startDate = options?.startDate;
   const endDate = options?.endDate;
+  const refDate = options?.refDate;
   const accountIds = options?.accountIds;
   const categoryIds = options?.categoryIds;
   const aggregateBy = options?.aggregateBy || [];
 
+  if (refDate) {
+    const dates = await Calendar.findOne({
+      where: { calendar_date: refDate },
+    });
+    where['$calendar.calendar_date$'] = {
+      [Op.between]: [dates?.curr_month_start_date, dates?.curr_month_end_date],
+    };
+  }
   if (startDate && endDate) {
     where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
   } else if (startDate) {
@@ -647,7 +663,6 @@ export const getSpendingBy = async (
     accountWhere.id = { [Op.in]: accountIds };
   }
   if (categoryIds) {
-    console.log(categoryIds);
     where['$category.id$'] = { [Op.in]: categoryIds };
   }
   const having = options?.removeZeroCounts
@@ -683,19 +698,21 @@ export const getSpendingBy = async (
       {
         model: Category,
         attributes: [],
-        required: false,
-        right: true,
-        on: {
-          [Op.or]: [
-            { id: { [Op.eq]: sequelize.col('categoryId') } },
-            { '$transaction.id$': null },
-          ],
-        },
+        required: true,
+        // required: false,
+        // right: true,
+        // on: {
+        //   [Op.or]: [
+        //     { id: { [Op.eq]: sequelize.col('categoryId') } },
+        //     { '$transaction.id$': null },
+        //   ],
+        // },
       },
       {
         model: Account,
         where: accountWhere,
         required: false,
+        attributes: [],
         include: [
           {
             model: Item,
@@ -704,7 +721,6 @@ export const getSpendingBy = async (
             attributes: [],
           },
         ],
-        attributes: [],
       },
     ],
     group: aggregateBy,
@@ -715,64 +731,32 @@ export const getSpendingBy = async (
   return spendingSummary;
 };
 
-export const getSpendingByDayNumber = async (
-  userId: number,
-  options?: GetSpendingByOptions,
-) => {
-  const newOptions = {
-    ...options,
-    aggregateBy: ['calendar.day'],
-  };
-  const spendingSummary = await getSpendingBy(userId, newOptions);
-  return spendingSummary;
-};
+// export const getSpendingTrend = async (userId: number, refDate: Date) => {
+//   console.log('refDate');
+//   console.log(refDate);
 
-export const getSpendingByCategory = async (
-  userId: number,
-  options?: GetSpendingByOptions,
-) => {
-  const newOptions = {
-    ...options,
-    aggregateBy: [
-      'calendar.year',
-      'calendar.month',
-      'category.id',
-      'category.name',
-      'category.iconName',
-      'category.iconColor',
-    ],
-  };
+//   const dates = await Calendar.findOne({ where: { calendar_date: refDate } });
+//   console.log('dates');
+//   console.log(dates);
+//   if (!dates) {
+//     throw Error('something went wrong');
+//   }
 
-  const spendingSummary = await getSpendingBy(userId, newOptions);
-  return spendingSummary;
-};
+//   const cmValues = await getCumulativeSpending(userId, {
+//     startDate: dates.curr_month_start_date,
+//     endDate: dates.calendar_date,
+//   });
+//   console.log('cmValues');
+//   console.log(cmValues);
 
-export const getSpendingTrend = async (userId: number, refDate: Date) => {
-  console.log('refDate');
-  console.log(refDate);
+//   const pmValues = await getCumulativeSpending(userId, {
+//     startDate: dates.prev_month_start_date,
+//     endDate: dates.prev_month_end_date,
+//   });
+//   const p12Values = await getCumulativeSpending(userId, {
+//     startDate: dates.prev_12_month_start_date,
+//     endDate: dates.prev_12_month_end_date,
+//   });
 
-  const dates = await Calendar.findOne({ where: { calendar_date: refDate } });
-  console.log('dates');
-  console.log(dates);
-  if (!dates) {
-    throw Error('something went wrong');
-  }
-
-  const cmValues = await getCumulativeSpending(userId, {
-    startDate: dates.curr_month_start_date,
-    endDate: dates.calendar_date,
-  });
-  console.log('cmValues');
-  console.log(cmValues);
-
-  const pmValues = await getCumulativeSpending(userId, {
-    startDate: dates.prev_month_start_date,
-    endDate: dates.prev_month_end_date,
-  });
-  const p12Values = await getCumulativeSpending(userId, {
-    startDate: dates.prev_12_month_start_date,
-    endDate: dates.prev_12_month_end_date,
-  });
-
-  return { cmValues, pmValues, p12Values };
-};
+//   return { cmValues, pmValues, p12Values };
+// };

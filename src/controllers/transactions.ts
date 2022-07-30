@@ -2,8 +2,6 @@ import express from 'express';
 import { isAuthenticated } from '../utils/middleware';
 import {
   getTransactions,
-  getSpendingByCategory,
-  getTransactionsSummary,
   getTopMerchants,
   setTransactionExcludeFlag,
   setTransactionCategory,
@@ -11,11 +9,12 @@ import {
   setSimilarTransactionsCategory,
   getTransaction,
   getSimilarTransactionsCount,
-  getSpendingTrend,
-  getSpendingByDayNumber,
+  getSpending,
+  getCumulativeSpending,
 } from '../models/transaction-queries';
 import {
   EcludeTransactionReq,
+  GetCumulativeSpendingOptions,
   GetSpendingByOptions,
   GetTransactionsOptions,
   SetTransactionCategoryReq,
@@ -26,6 +25,7 @@ import {
   parseNumber,
   parseNumbersArray,
 } from '../utils/requestParamParser';
+import { getDates } from '../models/calendar';
 
 const router = express.Router();
 
@@ -60,6 +60,7 @@ const toSetTransactionCategoryReq = ({
 const toSpendingByOptions = ({
   accountIds,
   startDate,
+  refDate,
   endDate,
   categoryIds,
   removeZeroCounts,
@@ -67,6 +68,7 @@ const toSpendingByOptions = ({
   accountIds?: unknown;
   startDate?: unknown;
   endDate?: unknown;
+  refDate?: unknown;
   categoryIds?: unknown;
   removeZeroCounts?: unknown;
 }) => {
@@ -84,46 +86,19 @@ const toSpendingByOptions = ({
     requestParams.endDate = new Date(parseDate(endDate, 'endDate'));
   }
 
+  if (refDate !== undefined) {
+    requestParams.refDate = new Date(parseDate(refDate, 'refMonth'));
+  }
+
   if (categoryIds !== undefined) {
     requestParams.categoryIds = parseNumbersArray(categoryIds, 'categoryIds');
   }
 
   if (removeZeroCounts !== undefined) {
-    requestParams.removeZeroCounts = parseBoolean(
-      removeZeroCounts,
-      'removeZeroCounts',
-    );
+    requestParams.removeZeroCounts = Boolean(removeZeroCounts);
   }
   return requestParams;
 };
-
-router.get('/spending_summary_category', isAuthenticated, async (req, res) => {
-  if (!req.user) throw Error('Unauthorize');
-  const queryOptions: GetSpendingByOptions = { ...req.query };
-
-  // TODO: create proper parsing function for inputs
-  if (
-    req.query.accountIds &&
-    (typeof req.query.accountIds === 'string' ||
-      req.query.accountIds instanceof String)
-  ) {
-    queryOptions.accountIds = req.query.accountIds
-      .split(',')
-      .map((i) => Number(i));
-  }
-  if (
-    req.query.categoryIds &&
-    (typeof req.query.categoryIds === 'string' ||
-      req.query.categoryIds instanceof String)
-  ) {
-    queryOptions.categoryIds = req.query.categoryIds
-      .split(',')
-      .map((i) => Number(i));
-  }
-
-  const transactions = await getSpendingByCategory(req.user.id, queryOptions);
-  res.json(transactions);
-});
 
 // TODO: add proper parsing of input parameters for this and other requests
 router.get('/', isAuthenticated, async (req, res) => {
@@ -153,13 +128,6 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.json(transactions);
 });
 
-router.get('/transactions_summary', isAuthenticated, async (req, res) => {
-  if (!req.user) throw Error('Unauthorized');
-
-  const transactions = await getTransactionsSummary(req.user.id, req.query);
-  res.json(transactions);
-});
-
 router.get('/top_merchants', isAuthenticated, async (req, res) => {
   if (!req.user) throw Error('Unauthorized');
 
@@ -168,7 +136,6 @@ router.get('/top_merchants', isAuthenticated, async (req, res) => {
 });
 
 router.post('/exclude/', isAuthenticated, async (req, res) => {
-  console.log(req.body);
   const { transactionId, exclude } = toExcludeTransactionReq(req.body);
 
   const transaction = await setTransactionExcludeFlag(
@@ -203,8 +170,6 @@ router.get('/similar_count', async (req, res) => {
   if (!req.query.transactionId) {
     throw Error('Invalid parameter transactionId');
   }
-  console.log('req.query');
-  console.log(req.query);
   const txCount = await getSimilarTransactionsCount(
     req.user!.id,
     Number(req.query.transactionId),
@@ -266,7 +231,6 @@ router.put('/update_category_similar', async (req, res) => {
 });
 
 router.get('/id/:transactionId', isAuthenticated, async (req, res) => {
-  console.log(req.params);
   const transaction = await getTransaction(
     req.user!.id,
     Number(req.params.transactionId),
@@ -279,16 +243,95 @@ router.get('/id/:transactionId', isAuthenticated, async (req, res) => {
   }
 });
 
-router.get('/spending/bydaynumber/', isAuthenticated, async (req, res) => {
+router.get('/spending', isAuthenticated, async (req, res) => {
   const queryParams = toSpendingByOptions(req.query);
-  const spending = await getSpendingByDayNumber(req.user!.id, queryParams);
+  queryParams.aggregateBy = ['calendar.year', 'calendar.month'];
+  const transactions = await getSpending(req.user!.id, queryParams);
+  res.json(transactions);
+});
+
+router.get('/spending/bycategory/', isAuthenticated, async (req, res) => {
+  const queryParams = toSpendingByOptions(req.query);
+  queryParams.aggregateBy = [
+    'calendar.year',
+    'calendar.month',
+    'category.id',
+    'category.name',
+    'category.iconName',
+    'category.iconColor',
+    'category.exclude',
+  ];
+  const spending = await getSpending(req.user!.id, queryParams);
   res.json(spending);
 });
 
-router.get('/spending/trend/', isAuthenticated, async (req, res) => {
-  const refDate = new Date(parseDate(req.query.refDate, 'refDate'));
-  const spending = await getSpendingTrend(req.user!.id, refDate);
-  res.json(spending);
-});
+router.get(
+  '/spending/compare/bycategory',
+  isAuthenticated,
+  async (req, res) => {
+    const refDate = parseDate(req.query.refDate, 'refDate');
+    const dates = await getDates(new Date(refDate));
+
+    if (!dates) {
+      throw Error('Something went wrong');
+    }
+
+    const options: GetSpendingByOptions = {
+      aggregateBy: [
+        'calendar.year',
+        'calendar.month',
+        'category.id',
+        'category.name',
+        'category.iconName',
+        'category.iconColor',
+        'category.exclude',
+      ],
+    };
+
+    options.startDate = dates.curr_month_start_date;
+    options.endDate = dates.curr_month_end_date;
+
+    const cmValues = await getSpending(req.user!.id, options);
+
+    options.startDate = dates.prev_month_start_date;
+    options.endDate = dates.prev_month_end_date;
+
+    const pmValues = await getSpending(req.user!.id, options);
+
+    res.json({ cmValues, pmValues });
+  },
+);
+
+router.get(
+  '/spending/compare/cumulative',
+  isAuthenticated,
+  async (req, res) => {
+    const refDate = parseDate(req.query.refDate, 'refDate');
+    const dates = await getDates(new Date(refDate));
+
+    if (!dates) {
+      throw Error('Something went wrong');
+    }
+
+    const options: GetCumulativeSpendingOptions = {
+      startDate: dates.curr_month_start_date,
+      endDate: dates.curr_month_end_date,
+    };
+
+    const cmValues = await getCumulativeSpending(req.user!.id, options);
+
+    options.startDate = dates.prev_month_start_date;
+    options.endDate = dates.prev_month_end_date;
+
+    const pmValues = await getCumulativeSpending(req.user!.id, options);
+
+    options.startDate = dates.prev_12_month_start_date;
+    options.endDate = dates.prev_12_month_end_date;
+
+    const p12Values = await getCumulativeSpending(req.user!.id, options);
+
+    res.json({ cmValues, pmValues, p12Values });
+  },
+);
 
 export default router;

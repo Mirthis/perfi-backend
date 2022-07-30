@@ -65,6 +65,10 @@ class Transaction extends Model<
 
   declare plaidCategory: NonAttribute<PlaidCategory>;
 
+  declare personal_finance_primary: string | null;
+
+  declare personal_finance_detailed: string | null;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -134,6 +138,14 @@ Transaction.init(
     exclude: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+    },
+    personal_finance_primary: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    personal_finance_detailed: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,

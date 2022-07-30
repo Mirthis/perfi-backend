@@ -10,13 +10,37 @@ if (!process.env.SESSION_SECRET) {
   process.exit(1);
 }
 
+const PLAID_ENV = process.env.PLAID_ENV || 'sandbox';
+
 const { SESSION_SECRET } = process.env;
 
 // Database confiruation
-const DATABASE_URI =
-  (process.env.NODE_ENV === 'test'
-    ? process.env.TEST_DATABASE_URI
-    : process.env.DEV_DATABASE_URI) || '';
+let DATABASE_URI;
+
+switch (NODE_ENV) {
+  case 'development':
+    if (PLAID_ENV === 'sandbox') {
+      DATABASE_URI = process.env.SANDBOX_DATABASE_URI;
+    } else {
+      DATABASE_URI = process.env.DEV_DATABASE_URI;
+    }
+    break;
+  case 'prod':
+    DATABASE_URI = process.env.DEV_DATABASE_URI;
+    break;
+  case 'test':
+    DATABASE_URI = process.env.TEST_DATABASE_URI;
+    break;
+  default:
+    DATABASE_URI = '';
+    break;
+}
+
+console.log(DATABASE_URI);
+
+if (!DATABASE_URI) {
+  throw Error(`${DATABASE_URI} need to be defined`);
+}
 
 const DB_OPTIONS = {
   dialectOptions: {
@@ -29,7 +53,6 @@ const DB_OPTIONS = {
 
 // Plaid configuration
 const { PLAID_CLIENT_ID } = process.env;
-const PLAID_ENV = process.env.PLAID_ENV || 'sandbox';
 const PLAID_SECRET =
   PLAID_ENV === 'development'
     ? process.env.DEV_PLAID_SECRET

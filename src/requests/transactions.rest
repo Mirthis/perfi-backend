@@ -4,7 +4,12 @@ GET http://localhost:8000/api/transactions
 GET http://localhost:8000/api/transactions/2256
 
 ###
-GET http://localhost:8000/api/transactions?startDate=2022-07-01&endDate=2022-07-05&limit=5
+GET http://localhost:8000/api/transactions?startDate=2022-05-01&endDate=2022-05-31&limit=20&offset=0&excludedTransactions=1
+
+
+### Latest expenses
+GET http://localhost:8000/api/transactions?endDate=2022-07-31&limit=3&orderBy=txDate&offset=1
+
 
 
 ###
@@ -15,6 +20,11 @@ GET http://localhost:8000/api/transactions/spending_summary_category?startDate=2
 
 ###
 GET http://localhost:8000/api/transactions/transactions_summary?startDate=2022-05-01&endDate=2022-10-31
+
+
+###
+GET http://localhost:8000/api/transactions/spending/?startDate=2022-05-01&endDate=2022-10-31
+
 
 ###
 GET http://localhost:8000/api/transactions/top_merchants?startDate=2022-07-01&endDate=2022-07-31
@@ -66,7 +76,15 @@ GET http://localhost:8000/api/transactions/similar_count?transactionId=2246
 
 
 ###
-GET http://localhost:8000/api/transactions/spending/byday?startDate=2022-05-01&endDate=2022-05-31
+GET http://localhost:8000/api/transactions/spending/trend?refDate=2022-05-15
+
 
 ###
-GET http://localhost:8000/api/transactions/spending/trend?refDate=2022-05-15
+GET http://localhost:8000/api/transactions/spending/compare/bycategory?refDate=2022-05-15
+
+
+### Get Last transactions
+GET http://localhost:8000/api/transactions?endDate=2022-07-31&limit=10&orderBy=txDate&onlyPositiveAmounts=true
+
+### Get monthly spend
+GET http://localhost:8000/api/transactions/spending?startDate=2021-06-01&endDate=2022-05-31
