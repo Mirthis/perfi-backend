@@ -63,6 +63,7 @@ export const getTransactions = async (
   const accountWhere: AccountWhereClause = {};
   const categoryWhere: CategoryWhereClause = {};
 
+  const refDate = options?.refDate;
   const startDate = options?.startDate;
   const endDate = options?.endDate;
   const offset = options?.offset || 0;
@@ -109,7 +110,14 @@ export const getTransactions = async (
     where.amount = { [Op.gt]: 0 };
   }
 
-  if (startDate && endDate) {
+  if (refDate) {
+    const dates = await Calendar.findOne({
+      where: { calendar_date: refDate },
+    });
+    where['$calendar.calendar_date$'] = {
+      [Op.between]: [dates?.curr_month_start_date, dates?.curr_month_end_date],
+    };
+  } else if (startDate && endDate) {
     where.txDate = { [Op.between]: [startDate, endDate] };
   } else if (startDate) {
     where.txDate = { [Op.gte]: startDate };

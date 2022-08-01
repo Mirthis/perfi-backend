@@ -4,7 +4,7 @@ GET http://localhost:8000/api/transactions
 GET http://localhost:8000/api/transactions/2256
 
 ###
-GET http://localhost:8000/api/transactions?startDate=2022-05-01&endDate=2022-05-31&limit=20&offset=0&excludedTransactions=1
+GET http://localhost:8000/api/transactions?startDate=2022-08-01&endDate=2022-08-31
 
 
 ### Latest expenses

@@ -1,4 +1,1 @@
-- Check with Plaid why personal finance is not populated
-- Add pagination to transaction view
 - (Bug) status of transaction view reset every time
-- Add way to edit transaction category or exclude in the transaction list

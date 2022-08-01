@@ -57,6 +57,19 @@ export type CategoryWhereClause =
     >
   | undefined;
 
+export interface GetTransactionsOptions {
+  offset?: number;
+  limit?: number;
+  accountIds?: number[];
+  startDate?: Date;
+  endDate?: Date;
+  refDate?: Date;
+  categoryIds?: number[];
+  orderBy?: string;
+  excludedTransactions?: ExcludedTransactionsFilter;
+  onlyPositiveAmounts?: boolean;
+}
+
 export interface GetSpendingByOptions {
   accountIds?: number[];
   startDate?: Date;
@@ -81,18 +94,6 @@ export enum ExcludedTransactionsFilter {
 export enum AuthTokenType {
   VERIFY_EMAIL = 'verify_email',
   RESET_PASSWORD = 'reset_password',
-}
-
-export interface GetTransactionsOptions {
-  offset?: number;
-  limit?: number;
-  accountIds?: number[];
-  startDate?: Date;
-  endDate?: Date;
-  categoryIds?: number[];
-  orderBy?: string;
-  excludedTransactions?: ExcludedTransactionsFilter;
-  onlyPositiveAmounts?: boolean;
 }
 
 export interface GetTopExpensesOptions {
