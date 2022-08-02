@@ -674,9 +674,14 @@ export const getSpending = async (
     where['$category.id$'] = { [Op.in]: categoryIds };
   }
   const having = options?.removeZeroCounts
-    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
-        [Op.gt]: 0,
-      })
+    ? sequelize.where(
+        sequelize.literal(
+          'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
+        ),
+        {
+          [Op.gt]: 0,
+        },
+      )
     : {};
 
   const spendingSummary = await Transaction.findAll({
@@ -684,13 +689,13 @@ export const getSpending = async (
       ...aggregateBy,
       [
         sequelize.literal(
-          'SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END)',
+          'COALESCE(SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END),0)',
         ),
         'txAmount',
       ],
       [
         sequelize.literal(
-          'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE 1 END)',
+          'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
         ),
         'txCount',
       ],
@@ -706,7 +711,7 @@ export const getSpending = async (
       {
         model: Category,
         attributes: [],
-        required: true,
+        required: false,
         // required: false,
         // right: true,
         // on: {

@@ -39,7 +39,7 @@ switch (NODE_ENV) {
 console.log(DATABASE_URI);
 
 if (!DATABASE_URI) {
-  throw Error(`${DATABASE_URI} need to be defined`);
+  throw Error(`DATABASE_URI need to be defined`);
 }
 
 const DB_OPTIONS = {

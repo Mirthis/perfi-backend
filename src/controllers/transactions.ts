@@ -286,6 +286,7 @@ router.get(
         'category.iconColor',
         'category.exclude',
       ],
+      removeZeroCounts: true,
     };
 
     options.startDate = dates.curr_month_start_date;
