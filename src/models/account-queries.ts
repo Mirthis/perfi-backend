@@ -49,7 +49,7 @@ export const createOrUpdateAccounts = async (
   return accounts;
 };
 
-export const getAccounts = async (userId: number) => {
+export const getAccounts = async (userId: number, institutionId?: number) => {
   const accounts = await Account.findAll({
     include: {
       model: Item,
@@ -57,13 +57,21 @@ export const getAccounts = async (userId: number) => {
       include: [
         {
           model: Institution,
+          where: institutionId ? { id: institutionId } : {},
           attributes: { exclude: ['createdAt', 'updatedAt', 'mask'] },
         },
       ],
-      attributes: ['id', 'status'],
+      attributes: ['id', 'status', 'consentExpirationTime', 'lastSynced'],
     },
   });
   return accounts;
+};
+
+export const deleteAccount = async (accountId: number) => {
+  const deleted = Account.destroy({
+    where: { id: accountId },
+  });
+  return deleted;
 };
 
 export const getAccountsWithStats = async (

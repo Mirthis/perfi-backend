@@ -17,11 +17,11 @@ GET http://localhost:8000/api/plaid/balance
 GET http://localhost:8000/api/plaid/categories
 
 ###
-GET http://localhost:8000/api/plaid/update_transactions
+POST http://localhost:8000/api/plaid/sync_transactions
 Content-Type: application/json
  
 {
-  "plaidItemId": "j9d8q4zrLDi7qaxXZRYNfJBR7qmvxMIRjbNmn"
+  "plaidItemId": "vjK6o1oe6JFn6q1pPKp7uM6gDo5w4dCWXyRn6"
 }
 
 

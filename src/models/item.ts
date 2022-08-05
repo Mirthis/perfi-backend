@@ -46,6 +46,8 @@ class Item extends Model<InferAttributes<Item>, InferCreationAttributes<Item>> {
 
   declare transactionCursor: string | null;
 
+  declare lastSynced: Date | null;
+
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
@@ -104,6 +106,10 @@ Item.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    lastSynced: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
     consentExpirationTime: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -125,9 +131,9 @@ export const getItemByPlaidItemId = async (plaidItemId: string) => {
   return item;
 };
 
-export const getItemByUserId = async (userId: number) => {
+export const getItem = async (userId: number, itemId: number) => {
   const item = await Item.findOne({
-    where: { userId },
+    where: { userId, id: itemId },
   });
   return item;
 };
@@ -176,6 +182,7 @@ export const updateItemTransactionsCursor = async (
 ) => {
   const item = await getItemByPlaidItemId(plaidItemId);
   item?.set('transactionCursor', transactionsCursor);
+  item?.set('lastSynced', new Date());
   item?.save();
 };
 

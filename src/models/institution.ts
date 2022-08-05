@@ -30,7 +30,7 @@ class Institution extends Model<
 
   declare url: string | null;
 
-  declare item: NonAttribute<Item>;
+  declare items: NonAttribute<Item[]>;
 
   declare createdAt: CreationOptional<Date>;
 

@@ -44,8 +44,8 @@ export const parseBoolean = (value: unknown, name: string): boolean => {
 };
 
 export const parseNumbersArray = (value: unknown, name: string): number[] => {
-  if (value && Array.isArray(value)) {
-    return value.map((i) => parseNumber(i, name));
+  if (value && isString(value) && Array.isArray(value.split(','))) {
+    return value.split(',').map((i) => parseNumber(i, name));
   }
 
   throw new Error(`Invalid parameter ${name}`);

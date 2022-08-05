@@ -649,7 +649,9 @@ export const getSpending = async (
   const refDate = options?.refDate;
   const accountIds = options?.accountIds;
   const categoryIds = options?.categoryIds;
-  const aggregateBy = options?.aggregateBy || [];
+  const selectColumns = options?.aggregateBy || [];
+  const aggregateBy =
+    options?.aggregateBy?.map((e) => (Array.isArray(e) ? e[1] : e)) || [];
 
   if (refDate) {
     const dates = await Calendar.findOne({
@@ -686,7 +688,7 @@ export const getSpending = async (
 
   const spendingSummary = await Transaction.findAll({
     attributes: [
-      ...aggregateBy,
+      ...selectColumns,
       [
         sequelize.literal(
           'COALESCE(SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END),0)',
@@ -732,6 +734,13 @@ export const getSpending = async (
             required: false,
             where: { userId },
             attributes: [],
+            include: [
+              {
+                model: Institution,
+                required: false,
+                attributes: [],
+              },
+            ],
           },
         ],
       },
@@ -743,6 +752,149 @@ export const getSpending = async (
 
   return spendingSummary;
 };
+
+// export const getSpendingByAccount = async (
+//   userId: number,
+//   options?: GetSpendingByOptions,
+// ) => {
+//   const where: TransactionsWhereClause = {};
+//   const accountWhere: AccountWhereClause = {};
+//   const startDate = options?.startDate;
+//   const endDate = options?.endDate;
+//   const refDate = options?.refDate;
+//   const accountIds = options?.accountIds;
+//   const categoryIds = options?.categoryIds;
+//   // const selectColumns = options?.aggregateBy || [];
+//   // const aggregateBy =
+//   //   options?.aggregateBy?.map((e) => (Array.isArray(e) ? e[1] : e)) || [];
+
+//   if (refDate) {
+//     const dates = await Calendar.findOne({
+//       where: { calendar_date: refDate },
+//     });
+//     where['$calendar.calendar_date$'] = {
+//       [Op.between]: [dates?.curr_month_start_date, dates?.curr_month_end_date],
+//     };
+//   }
+//   if (startDate && endDate) {
+//     where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
+//   } else if (startDate) {
+//     where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
+//   } else if (endDate) {
+//     where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
+//   }
+
+//   if (accountIds) {
+//     accountWhere.id = { [Op.in]: accountIds };
+//   }
+//   if (categoryIds) {
+//     where['$category.id$'] = { [Op.in]: categoryIds };
+//   }
+//   const having = options?.removeZeroCounts
+//     ? sequelize.where(
+//         sequelize.literal(
+//           'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
+//         ),
+//         {
+//           [Op.gt]: 0,
+//         },
+//       )
+//     : {};
+
+//   // @ts-ignore
+//   const spendingSummary = (await Transaction.findAll({
+//     attributes: [
+//       'calendar.year',
+//       'calendar.month',
+//       'account.id',
+//       'account.name',
+//       'account.officialName',
+//       'account.type',
+//       'account.subType',
+//       'account.currentBalance',
+//       'account.availableBalance',
+//       'account.isoCurrencyCode',
+//       'account.item.institution.logo',
+//       [
+//         sequelize.literal(
+//           'COALESCE(SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END),0)',
+//         ),
+//         'txAmount',
+//       ],
+//       [
+//         sequelize.literal(
+//           'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
+//         ),
+//         'txCount',
+//       ],
+//     ],
+//     where,
+//     include: [
+//       {
+//         model: Calendar,
+//         attributes: [],
+//         required: false,
+//         right: true,
+//       },
+//       {
+//         model: Category,
+//         attributes: [],
+//         required: false,
+//         // required: false,
+//         // right: true,
+//         // on: {
+//         //   [Op.or]: [
+//         //     { id: { [Op.eq]: sequelize.col('categoryId') } },
+//         //     { '$transaction.id$': null },
+//         //   ],
+//         // },
+//       },
+//       {
+//         model: Account,
+//         where: accountWhere,
+//         required: false,
+//         attributes: [],
+//         include: [
+//           {
+//             model: Item,
+//             required: false,
+//             where: { userId },
+//             attributes: [],
+//             include: [
+//               {
+//                 model: Institution,
+//                 required: false,
+//                 attributes: [],
+//               },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//     group: [
+//       'calendar.year',
+//       'calendar.month',
+//       'account.id',
+//       'account.name',
+//       'account.officialName',
+//       'account.type',
+//       'account.subType',
+//       'account.currentBalance',
+//       'account.availableBalance',
+//       'account.isoCurrencyCode',
+//       'account.item.institution.logo',
+//     ],
+//     having,
+//     raw: true,
+//   })) as AccountSummary[];
+
+//   const res = spendingSummary.map((i) => ({
+//     ...i,
+//     logo: i.logo!.toString('base64'),
+//   }));
+
+//   return res;
+// };
 
 // export const getSpendingTrend = async (userId: number, refDate: Date) => {
 //   console.log('refDate');

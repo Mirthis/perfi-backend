@@ -1,12 +1,18 @@
 require('dotenv').config();
 
-const { DEV_DATABASE_URI, TEST_DATABASE_URI, PROD_DATABASE_URI } = process.env;
+const {
+  DEV_DATABASE_URI,
+  SANDBOX_DATABASE_URI,
+  TEST_DATABASE_URI,
+  PROD_DATABASE_URI,
+  PLAID_ENV,
+} = process.env;
 const dialect = 'postgres';
 const migrationStorageTableName = 'migrations';
 
 module.exports = {
   development: {
-    url: DEV_DATABASE_URI,
+    url: PLAID_ENV === 'sandbox' ? SANDBOX_DATABASE_URI : DEV_DATABASE_URI,
     dialect,
     migrationStorageTableName,
   },

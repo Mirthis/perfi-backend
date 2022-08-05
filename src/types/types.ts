@@ -1,5 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { InferAttributes, WhereOptions } from 'sequelize/types';
+import {
+  InferAttributes,
+  ProjectionAlias,
+  WhereOptions,
+} from 'sequelize/types';
 import { Account, Calendar, Category, Transaction } from '../models';
 
 export type TransactionsWhereClause =
@@ -77,12 +81,31 @@ export interface GetSpendingByOptions {
   refDate?: Date;
   categoryIds?: number[];
   removeZeroCounts?: boolean;
-  aggregateBy?: string[];
+  aggregateBy?: Array<string | ProjectionAlias>;
 }
 
 export interface GetCumulativeSpendingOptions {
   startDate: Date;
   endDate: Date;
+}
+
+export interface AccountSummary {
+  year: number;
+  month: number;
+  id: number;
+  name: string;
+  officialName: string;
+  type: string;
+  subType: string;
+  currentBalance: string | null;
+  availableBalance: string | null;
+  isoCurrencyCode: string | null;
+  institutionId: number;
+  institutionName: string;
+  institutionColor: string;
+  institutionLogo: Buffer;
+  txAmount: string;
+  txCount: string;
 }
 
 export enum ExcludedTransactionsFilter {
@@ -146,7 +169,12 @@ export type AccountsWithStats = {
 export enum ErrorType {
   AUTH_ERROR = 'AuthError',
   VALIDATION_ERROR = 'ValidationError',
+  PLAID_ERROR = 'PlaidError',
   GENERIC_ERROR = 'GenericError',
+}
+
+export enum PlaidErrorName {
+  DUPLICATE_INSTITUTION = 'DuplicateInstitution',
 }
 
 export enum AuthErrorName {

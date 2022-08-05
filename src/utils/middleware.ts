@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ValidationError } from 'sequelize';
 import logger from './logger';
 import { User } from '../models';
-import { AuthError } from '../types/errors';
+import { AuthError, PlaidError } from '../types/errors';
 import { AuthErrorName, ErrorType } from '../types/types';
 
 const unknownEndpoint = (_request: Request, response: Response): void => {
@@ -30,7 +30,7 @@ const errorHandler = (
     res.status(error.statusCode).json({
       message: error.message,
       name: error.name,
-      type: ErrorType.AUTH_ERROR,
+      type: error.type,
     });
   } else if (error instanceof ValidationError) {
     console.log('Identified validation error identifi');
@@ -44,6 +44,13 @@ const errorHandler = (
     res
       .status(400)
       .json({ type: ErrorType.VALIDATION_ERROR, name: error.name, errors });
+  } else if (error instanceof PlaidError) {
+    logger.error('Plaid error identified');
+    res.status(error.statusCode).json({
+      message: error.message,
+      name: error.name,
+      type: error.type,
+    });
   } else {
     res.status(400).json({ type: ErrorType.GENERIC_ERROR });
   }

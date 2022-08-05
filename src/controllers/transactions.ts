@@ -1,4 +1,5 @@
 import express from 'express';
+import sequelize from 'sequelize';
 import { isAuthenticated } from '../utils/middleware';
 import {
   getTransactions,
@@ -13,6 +14,7 @@ import {
   getCumulativeSpending,
 } from '../models/transaction-queries';
 import {
+  AccountSummary,
   EcludeTransactionReq,
   GetCumulativeSpendingOptions,
   GetSpendingByOptions,
@@ -263,6 +265,38 @@ router.get('/spending/bycategory/', isAuthenticated, async (req, res) => {
   ];
   const spending = await getSpending(req.user!.id, queryParams);
   res.json(spending);
+});
+
+router.get('/spending/byaccount/', isAuthenticated, async (req, res) => {
+  const queryParams = toSpendingByOptions(req.query);
+  queryParams.aggregateBy = [
+    'calendar.year',
+    'calendar.month',
+    'account.id',
+    'account.name',
+    'account.officialName',
+    'account.type',
+    'account.subType',
+    'account.currentBalance',
+    'account.availableBalance',
+    'account.isoCurrencyCode',
+    [sequelize.col('account->item->institution.name'), 'institutionName'],
+    [sequelize.col('account->item->institution.color'), 'institutionColor'],
+    [sequelize.col('account->item->institution.logo'), 'institutionLogo'],
+  ];
+
+  // @ts-ignore
+  const accounts = (await getSpending(
+    req.user!.id,
+    queryParams,
+  )) as AccountSummary[];
+
+  const cleansedAccount = accounts.map((i) => ({
+    ...i,
+    institutionLogo: i.institutionLogo.toString('base64'),
+  }));
+
+  res.json(cleansedAccount);
 });
 
 router.get(

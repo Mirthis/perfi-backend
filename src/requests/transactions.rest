@@ -88,3 +88,13 @@ GET http://localhost:8000/api/transactions?endDate=2022-07-31&limit=10&orderBy=t
 
 ### Get monthly spend
 GET http://localhost:8000/api/transactions/spending?startDate=2021-06-01&endDate=2022-05-31
+
+
+### spending by category
+GET http://localhost:8000/api/transactions/spending/bycategory?startDate=2022-07-01&endDate=2022-07-31&removeZeroCounts=true
+
+### spending by account
+GET http://localhost:8000/api/transactions/spending/byaccount?startDate=2022-07-01&endDate=2022-07-31&removeZeroCounts=true
+
+###
+ http://localhost:8000/api/transactions/spending?startDate=2021-08-01&endDate=2022-07-31&categoryIds=56

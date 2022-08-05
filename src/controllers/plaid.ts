@@ -1,6 +1,7 @@
 import {
   AccountBase,
   Configuration,
+  LinkTokenCreateRequest,
   PlaidApi,
   PlaidEnvironments,
   RemovedTransaction,
@@ -13,12 +14,23 @@ import config from '../utils/config';
 import { createOrUpdateInstitution } from '../models/institution';
 import {
   createOrUpdateItem,
+  getItem,
   getItemByPlaidItemId,
   updateItemTransactionsCursor,
 } from '../models/item';
 import { createOrUpdateTransactions } from '../models/transaction-queries';
-import { createOrUpdateAccounts } from '../models/account-queries';
+import {
+  createOrUpdateAccounts,
+  deleteAccount,
+  getAccounts,
+} from '../models/account-queries';
 import { getErrorMessage } from '../utils/logger';
+import { PlaidError } from '../types/errors';
+import { PlaidErrorName } from '../types/types';
+import {
+  getInstitutionByPlaidId,
+  isExistingInstitution,
+} from '../models/institutions-queries';
 
 const router = express.Router();
 
@@ -86,6 +98,7 @@ const updateTransactions = async (plaidItemId: string) => {
   const { added, modified, removed, cursor, accessToken } =
     await fetchTransactionUpdates(plaidItemId);
 
+  // TODO: need to consider account get balance
   const {
     data: { accounts: accountsData },
   } = await plaidClient.accountsGet({
@@ -118,17 +131,28 @@ const retrieveAccessTokens = async (userId: number) => {
 
 router.post('/create_link_token', isAuthenticated, async (req, res) => {
   // if (!req.user) return res.status(401);
-  try {
-    const configs = {
-      user: {
-        client_user_id: `${req.user?.id}`,
-      },
-      client_name: 'Perfi',
-      products: config.PLAID_PRODUCTS,
-      country_codes: config.PLAID_COUNTRY_CODES,
-      language: 'en',
-    };
 
+  const configs: LinkTokenCreateRequest = {
+    user: {
+      client_user_id: `${req.user?.id}`,
+    },
+    client_name: 'Perfi',
+    country_codes: config.PLAID_COUNTRY_CODES,
+    language: 'en',
+  };
+
+  if (req.body.itemId) {
+    const item = await getItem(req.user!.id, req.body.itemId);
+    if (item) {
+      configs.access_token = item.accessToken;
+      configs.update = { account_selection_enabled: true };
+      // configs.link_customization_name = 'account_selection_v2_customization';
+    }
+  } else {
+    configs.products = config.PLAID_PRODUCTS;
+  }
+
+  try {
     const createTokenres = await plaidClient.linkTokenCreate(configs);
     res.json(createTokenres.data);
   } catch (err) {
@@ -137,7 +161,19 @@ router.post('/create_link_token', isAuthenticated, async (req, res) => {
 });
 
 router.post('/set_access_token', isAuthenticated, async (req, res) => {
-  if (!req.user) return;
+  if (req.body.public_token) return;
+  if (
+    await isExistingInstitution(
+      req.user!.id,
+      req.body.metadata.institution.institution_id,
+    )
+  ) {
+    throw new PlaidError(
+      `Institution ${req.body.metadata.institution.name} already exist for the user`,
+      PlaidErrorName.DUPLICATE_INSTITUTION,
+    );
+  }
+
   const PUBLIC_TOKEN = req.body.publicToken;
   const { data: exchangeData } = await plaidClient.itemPublicTokenExchange({
     public_token: PUBLIC_TOKEN,
@@ -169,7 +205,7 @@ router.post('/set_access_token', isAuthenticated, async (req, res) => {
   await createOrUpdateInstitution(institutionData);
 
   // ITEM CREATION  //
-  const item = await createOrUpdateItem(itemData, accessToken, req.user.id);
+  const item = await createOrUpdateItem(itemData, accessToken, req.user!.id);
 
   // ACCOUNT CREATION  //
   // get accounts accessible by the token
@@ -191,6 +227,91 @@ router.post('/set_access_token', isAuthenticated, async (req, res) => {
   );
 
   res.json(item);
+});
+
+router.post('/update_item_access', isAuthenticated, async (req, res) => {
+  console.log('update item access');
+  console.log(req.body);
+  const institution = await getInstitutionByPlaidId(
+    req.user!.id,
+    req.body.metadata.institution.institution_id,
+  );
+
+  console.log('found institution');
+  console.log(institution);
+
+  if (!institution) throw Error('Item for existing institution not found');
+  const { accessToken, plaidItemId } = institution.items[0];
+  if (!accessToken || !plaidItemId)
+    throw Error('Item for existing institution not found');
+
+  // get item accessible via the token
+  const {
+    data: { item: itemData },
+  } = await plaidClient.itemGet({
+    access_token: accessToken,
+  });
+
+  // console.log('itemData');
+  // console.log(itemData);
+
+  // // INSTITUTION CREATION  //
+  // const configs = {
+  //   institution_id: itemData.institution_id,
+  //   country_codes: config.PLAID_COUNTRY_CODES,
+  //   options: { include_optional_metadata: true },
+  // };
+
+  // // get institutions for the item
+  // const {
+  //   data: { institution: institutionData },
+  //   // @ts-ignore
+  // } = await plaidClient.institutionsGetById(configs);
+
+  // // create or update institutions data
+  // await createOrUpdateInstitution(institutionData);
+
+  // ITEM CREATION  //
+  await createOrUpdateItem(itemData, accessToken, req.user!.id);
+
+  // ACCOUNT CREATION  //
+  // get accounts accessible by the token
+
+  const {
+    data: { accounts: accountsData },
+  } = await plaidClient.accountsGet({
+    access_token: accessToken,
+  });
+
+  const existingAccounts = await getAccounts(req.user!.id, institution.id);
+  const accountsIds = accountsData.map((acc) => acc.account_id);
+  const accountsToDelete = existingAccounts.filter(
+    (acc) => !accountsIds.includes(acc.plaidAccountId),
+  );
+
+  console.log('accountsData');
+  console.log(accountsData);
+
+  console.log('accountsToDelete');
+  console.log(accountsToDelete);
+
+  // delete account no longer required
+  accountsToDelete.forEach(async (acc) => {
+    await deleteAccount(acc.id);
+  });
+
+  // create or update account
+  createOrUpdateAccounts(accountsData, plaidItemId);
+
+  // TRANSACTIONS CREATION  //
+  const { addedCount, modifiedCount, removedCount } = await updateTransactions(
+    plaidItemId,
+  );
+  console.log(
+    `Added: ${addedCount}, modified: ${modifiedCount}, removed: ${removedCount}`,
+  );
+
+  res.json(1);
 });
 
 router.get('/accounts', isAuthenticated, async (req, res) => {
@@ -263,9 +384,13 @@ router.get('/categories', async (_req, res) => {
   res.json(categories);
 });
 
-router.get('/update_transactions', async (req, res) => {
-  const { plaidItemId } = req.body;
-  const stats = await updateTransactions(plaidItemId);
+router.post('/sync_transactions', async (req, res) => {
+  const { itemId } = req.body;
+  const item = await getItem(req.user!.id, itemId);
+  if (!item) {
+    throw new Error('Item not found');
+  }
+  const stats = await updateTransactions(item.plaidItemId);
   res.json(stats);
 });
 
