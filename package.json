@@ -8,7 +8,8 @@
     "dev": "NODE_ENV=development ts-node-dev --files src/index.ts",
     "lint": "eslint --ext .ts .",
     "start": "NODE_ENV=production node build/index.js",
-    "migration:down": "node src/utils/rollbackMigration.js"
+    "migration:down": "node src/utils/rollbackMigration.js",
+    "build:ui": "rm -rf build-fe/ && cd ../perfi-frontend/ && npm run build && cp -r build ../perfi-backend/build-fe"
   },
   "author": "",
   "license": "ISC",
