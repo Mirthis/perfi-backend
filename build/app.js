@@ -61,6 +61,7 @@ passport_1.default.deserializeUser(async (userId, done) => {
 if (process.env.NODE_ENV !== 'test') {
     app.use(middleware_1.default.morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 }
+app.use(express_1.default.static('build-fe'));
 app.use('/api/users', controllers_1.usersRouter);
 app.use('/api/plaid', controllers_1.plaidRouter);
 app.use('/api/auth', controllers_1.authRouter);
