@@ -31,9 +31,9 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 
   declare password: string;
 
-  declare isActive: boolean;
+  declare isActive: CreationOptional<boolean>;
 
-  declare isVerified: boolean;
+  declare isVerified: CreationOptional<boolean>;
 
   declare createdAt: CreationOptional<Date>;
 

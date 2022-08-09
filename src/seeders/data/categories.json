@@ -66,6 +66,12 @@
     "exclude": false
   },
   {
+    "name": "Income",
+    "iconName": "income",
+    "iconColor": "#1b5e20",
+    "exclude": true
+  },
+  {
     "name": "Internal",
     "iconName": "internal",
     "iconColor": "#6e5a0f",
@@ -84,8 +90,8 @@
     "exclude": false
   },
   {
-    "name": "Transfer",
-    "iconName": "transfer",
+    "name": "Transfers",
+    "iconName": "transfers",
     "iconColor": "#dee0e6",
     "exclude": false
   },
@@ -103,7 +109,7 @@
   },
   {
     "name": "Utilities",
-    "iconName": "transport",
+    "iconName": "utilities",
     "iconColor": "#fdfa66",
     "exclude": false
   }

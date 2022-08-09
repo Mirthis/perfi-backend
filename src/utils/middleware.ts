@@ -25,7 +25,7 @@ const errorHandler = (
   logger.error('Error: ', error);
   logger.error('Error message: ', error.message);
   logger.error('Error name: ', error.name);
-  if (error instanceof AuthError) {
+  if (error instanceof AuthError || error instanceof PlaidError) {
     logger.error('Auth error identified');
     res.status(error.statusCode).json({
       message: error.message,
@@ -33,24 +33,14 @@ const errorHandler = (
       type: error.type,
     });
   } else if (error instanceof ValidationError) {
-    console.log('Identified validation error identifi');
-    console.log(error);
     const errors = error.errors.map((e) => ({
       type: e.type,
       message: e.message,
       path: e.path,
     }));
-    console.log({ name: error.name, errors });
     res
       .status(400)
       .json({ type: ErrorType.VALIDATION_ERROR, name: error.name, errors });
-  } else if (error instanceof PlaidError) {
-    logger.error('Plaid error identified');
-    res.status(error.statusCode).json({
-      message: error.message,
-      name: error.name,
-      type: error.type,
-    });
   } else {
     res.status(400).json({ type: ErrorType.GENERIC_ERROR });
   }

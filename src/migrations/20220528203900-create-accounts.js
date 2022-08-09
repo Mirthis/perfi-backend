@@ -16,6 +16,7 @@ module.exports = {
           key: 'id',
         },
         allowNull: false,
+        onDelete: 'cascade',
       },
       plaidAccountId: {
         type: Sequelize.STRING,

@@ -230,15 +230,10 @@ router.post('/set_access_token', isAuthenticated, async (req, res) => {
 });
 
 router.post('/update_item_access', isAuthenticated, async (req, res) => {
-  console.log('update item access');
-  console.log(req.body);
   const institution = await getInstitutionByPlaidId(
     req.user!.id,
     req.body.metadata.institution.institution_id,
   );
-
-  console.log('found institution');
-  console.log(institution);
 
   if (!institution) throw Error('Item for existing institution not found');
   const { accessToken, plaidItemId } = institution.items[0];
@@ -288,12 +283,6 @@ router.post('/update_item_access', isAuthenticated, async (req, res) => {
   const accountsToDelete = existingAccounts.filter(
     (acc) => !accountsIds.includes(acc.plaidAccountId),
   );
-
-  console.log('accountsData');
-  console.log(accountsData);
-
-  console.log('accountsToDelete');
-  console.log(accountsToDelete);
 
   // delete account no longer required
   accountsToDelete.forEach(async (acc) => {
@@ -384,7 +373,7 @@ router.get('/categories', async (_req, res) => {
   res.json(categories);
 });
 
-router.post('/sync_transactions', async (req, res) => {
+router.post('/sync_transactions', isAuthenticated, async (req, res) => {
   const { itemId } = req.body;
   const item = await getItem(req.user!.id, itemId);
   if (!item) {

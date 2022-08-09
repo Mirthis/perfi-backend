@@ -15,6 +15,7 @@ import {
   plaidRouter,
   accountsRouter,
   categoriesRouter,
+  demoRouter,
 } from './controllers';
 
 // const LocalStrategy = require('passport-local').Strategy;
@@ -59,7 +60,11 @@ passport.deserializeUser(async (userId: number, done) => {
     const user = await User.findByPk(userId);
     // @ts-ignore
     // TODO: Fix TS compile issue
-    done(null, user.toJSON());
+    if (user) {
+      done(null, user.toJSON());
+    } else {
+      done(null, null);
+    }
   } catch (err) {
     done(err, null);
   }
@@ -79,6 +84,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/accounts', accountsRouter);
 app.use('/api/categories', categoriesRouter);
+app.use('/api/demo', demoRouter);
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);

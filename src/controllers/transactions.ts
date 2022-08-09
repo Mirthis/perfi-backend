@@ -291,6 +291,7 @@ router.get('/spending/byaccount/', isAuthenticated, async (req, res) => {
     queryParams,
   )) as AccountSummary[];
 
+
   const cleansedAccount = accounts.map((i) => ({
     ...i,
     institutionLogo: i.institutionLogo.toString('base64'),

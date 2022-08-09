@@ -246,18 +246,6 @@ export const getSimilarTransactions = async (
 export const createOrUpdateTransactions = async (
   transactions: PlaidTransaction[],
 ) => {
-  console.log(transactions.slice(0, 15));
-  // transactions.forEach((t) => {
-  //   if (t.original_description) {
-  //     console.log('original_description');
-  //     console.log(t.original_description);
-  //   }
-  //   if (t.personal_finance_category) {
-  //     console.log('personal_finance_category');
-  //     console.log(t.personal_finance_category);
-  //   }
-  // });
-
   // store accountsId retrieved from the database to avoid querying for the same accounts
   const accountIdMapping = new Map<string, Account>();
   // store category ids retrieved from the database to avoid querying for the same accounts
@@ -366,6 +354,8 @@ export const getTransactionsSummary = async (
     where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
   }
 
+  where['$account->item.userId$'] = userId;
+
   if (accountIds) {
     accountWhere.id = { [Op.in]: accountIds };
   }
@@ -405,7 +395,6 @@ export const getTransactionsSummary = async (
           {
             model: Item,
             required: false,
-            where: { userId },
             attributes: [],
           },
         ],
@@ -675,6 +664,9 @@ export const getSpending = async (
   if (categoryIds) {
     where['$category.id$'] = { [Op.in]: categoryIds };
   }
+
+  where['$account->item.userId$'] = userId;
+
   const having = options?.removeZeroCounts
     ? sequelize.where(
         sequelize.literal(
@@ -732,7 +724,6 @@ export const getSpending = async (
           {
             model: Item,
             required: false,
-            where: { userId },
             attributes: [],
             include: [
               {
@@ -752,176 +743,3 @@ export const getSpending = async (
 
   return spendingSummary;
 };
-
-// export const getSpendingByAccount = async (
-//   userId: number,
-//   options?: GetSpendingByOptions,
-// ) => {
-//   const where: TransactionsWhereClause = {};
-//   const accountWhere: AccountWhereClause = {};
-//   const startDate = options?.startDate;
-//   const endDate = options?.endDate;
-//   const refDate = options?.refDate;
-//   const accountIds = options?.accountIds;
-//   const categoryIds = options?.categoryIds;
-//   // const selectColumns = options?.aggregateBy || [];
-//   // const aggregateBy =
-//   //   options?.aggregateBy?.map((e) => (Array.isArray(e) ? e[1] : e)) || [];
-
-//   if (refDate) {
-//     const dates = await Calendar.findOne({
-//       where: { calendar_date: refDate },
-//     });
-//     where['$calendar.calendar_date$'] = {
-//       [Op.between]: [dates?.curr_month_start_date, dates?.curr_month_end_date],
-//     };
-//   }
-//   if (startDate && endDate) {
-//     where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
-//   } else if (startDate) {
-//     where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
-//   } else if (endDate) {
-//     where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
-//   }
-
-//   if (accountIds) {
-//     accountWhere.id = { [Op.in]: accountIds };
-//   }
-//   if (categoryIds) {
-//     where['$category.id$'] = { [Op.in]: categoryIds };
-//   }
-//   const having = options?.removeZeroCounts
-//     ? sequelize.where(
-//         sequelize.literal(
-//           'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
-//         ),
-//         {
-//           [Op.gt]: 0,
-//         },
-//       )
-//     : {};
-
-//   // @ts-ignore
-//   const spendingSummary = (await Transaction.findAll({
-//     attributes: [
-//       'calendar.year',
-//       'calendar.month',
-//       'account.id',
-//       'account.name',
-//       'account.officialName',
-//       'account.type',
-//       'account.subType',
-//       'account.currentBalance',
-//       'account.availableBalance',
-//       'account.isoCurrencyCode',
-//       'account.item.institution.logo',
-//       [
-//         sequelize.literal(
-//           'COALESCE(SUM(CASE WHEN transaction.exclude = true OR category.exclude=true THEN 0 ELSE amount END),0)',
-//         ),
-//         'txAmount',
-//       ],
-//       [
-//         sequelize.literal(
-//           'COUNT(CASE WHEN transaction.exclude = true OR category.exclude=true THEN null ELSE transaction.id END)',
-//         ),
-//         'txCount',
-//       ],
-//     ],
-//     where,
-//     include: [
-//       {
-//         model: Calendar,
-//         attributes: [],
-//         required: false,
-//         right: true,
-//       },
-//       {
-//         model: Category,
-//         attributes: [],
-//         required: false,
-//         // required: false,
-//         // right: true,
-//         // on: {
-//         //   [Op.or]: [
-//         //     { id: { [Op.eq]: sequelize.col('categoryId') } },
-//         //     { '$transaction.id$': null },
-//         //   ],
-//         // },
-//       },
-//       {
-//         model: Account,
-//         where: accountWhere,
-//         required: false,
-//         attributes: [],
-//         include: [
-//           {
-//             model: Item,
-//             required: false,
-//             where: { userId },
-//             attributes: [],
-//             include: [
-//               {
-//                 model: Institution,
-//                 required: false,
-//                 attributes: [],
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//     group: [
-//       'calendar.year',
-//       'calendar.month',
-//       'account.id',
-//       'account.name',
-//       'account.officialName',
-//       'account.type',
-//       'account.subType',
-//       'account.currentBalance',
-//       'account.availableBalance',
-//       'account.isoCurrencyCode',
-//       'account.item.institution.logo',
-//     ],
-//     having,
-//     raw: true,
-//   })) as AccountSummary[];
-
-//   const res = spendingSummary.map((i) => ({
-//     ...i,
-//     logo: i.logo!.toString('base64'),
-//   }));
-
-//   return res;
-// };
-
-// export const getSpendingTrend = async (userId: number, refDate: Date) => {
-//   console.log('refDate');
-//   console.log(refDate);
-
-//   const dates = await Calendar.findOne({ where: { calendar_date: refDate } });
-//   console.log('dates');
-//   console.log(dates);
-//   if (!dates) {
-//     throw Error('something went wrong');
-//   }
-
-//   const cmValues = await getCumulativeSpending(userId, {
-//     startDate: dates.curr_month_start_date,
-//     endDate: dates.calendar_date,
-//   });
-//   console.log('cmValues');
-//   console.log(cmValues);
-
-//   const pmValues = await getCumulativeSpending(userId, {
-//     startDate: dates.prev_month_start_date,
-//     endDate: dates.prev_month_end_date,
-//   });
-//   const p12Values = await getCumulativeSpending(userId, {
-//     startDate: dates.prev_12_month_start_date,
-//     endDate: dates.prev_12_month_end_date,
-//   });
-
-//   return { cmValues, pmValues, p12Values };
-// };

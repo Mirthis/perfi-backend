@@ -10,9 +10,6 @@ const categories = data.map((d) => ({
 module.exports = {
   async up(queryInterface) {
     categories.map(async (c) => {
-      console.log(
-        `UPDATE categories SET "iconColor"='${c.iconColor}' WHERE name='${c.name}'`,
-      );
       await queryInterface.sequelize.query(
         `UPDATE categories SET "iconColor"='${c.iconColor}' WHERE name='${c.name}'`,
       );

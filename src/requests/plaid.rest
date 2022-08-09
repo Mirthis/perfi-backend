@@ -21,7 +21,7 @@ POST http://localhost:8000/api/plaid/sync_transactions
 Content-Type: application/json
  
 {
-  "plaidItemId": "vjK6o1oe6JFn6q1pPKp7uM6gDo5w4dCWXyRn6"
+  "itemId": 5
 }
 
 

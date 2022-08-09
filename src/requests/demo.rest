@@ -1,0 +1,11 @@
+POST http://localhost:8000/api/demo/create
+# Content-Type: application/json
+
+# {
+#   "email": "aaa@sss.ddd",
+#   "password":"A!23456z"
+# }
+
+###
+GET http://localhost:8000/api/demo/ping
+# Content-Type: application/json

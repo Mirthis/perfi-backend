@@ -13,6 +13,7 @@ import {
 } from 'sequelize';
 import { sequelize } from '../utils/db';
 import Item from './item';
+import Transaction from './transaction';
 
 // TODO: Sync validation with front-end
 class Account extends Model<
@@ -48,6 +49,8 @@ class Account extends Model<
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
+
+  declare transactions: NonAttribute<Transaction[]>;
 }
 
 Account.init(

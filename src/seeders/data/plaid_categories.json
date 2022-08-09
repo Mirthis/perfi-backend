@@ -4211,7 +4211,7 @@
     "plaidgroup": "special",
     "plaidcategory": "Transfer",
     "plaidsubcategory": "Payroll",
-    "perficategory": "Transfer"
+    "perficategory": "Income"
   },
   {
     "plaidcategoryid": 21009001,
@@ -4219,7 +4219,7 @@
     "plaidcategory": "Transfer",
     "plaidsubcategory": "Payroll",
     "plaidsubcategory2": "Benefits",
-    "perficategory": "Transfer"
+    "perficategory": "Income"
   },
   {
     "plaidcategoryid": 21010000,

@@ -6,7 +6,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 if (!process.env.SESSION_SECRET) {
-  console.log('SESSION_SECRET environment variable is required');
+  console.error('SESSION_SECRET environment variable is required');
   process.exit(1);
 }
 
@@ -35,8 +35,6 @@ switch (NODE_ENV) {
     DATABASE_URI = '';
     break;
 }
-
-console.log(DATABASE_URI);
 
 if (!DATABASE_URI) {
   throw Error(`DATABASE_URI need to be defined`);

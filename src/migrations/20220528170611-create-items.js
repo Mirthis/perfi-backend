@@ -21,6 +21,7 @@ module.exports = {
           key: 'id',
         },
         allowNull: false,
+        onDelete: 'cascade',
       },
       accessToken: {
         type: Sequelize.STRING,
