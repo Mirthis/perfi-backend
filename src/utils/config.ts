@@ -17,6 +17,8 @@ const { SESSION_SECRET } = process.env;
 // Database confiruation
 let DATABASE_URI;
 
+console.log(NODE_ENV);
+
 switch (NODE_ENV) {
   case 'development':
     if (PLAID_ENV === 'sandbox') {
@@ -25,8 +27,8 @@ switch (NODE_ENV) {
       DATABASE_URI = process.env.DEV_DATABASE_URI;
     }
     break;
-  case 'prod':
-    DATABASE_URI = process.env.DEV_DATABASE_URI;
+  case 'production':
+    DATABASE_URI = process.env.PROD_DATABASE_URI;
     break;
   case 'test':
     DATABASE_URI = process.env.TEST_DATABASE_URI;
