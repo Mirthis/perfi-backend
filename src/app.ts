@@ -78,7 +78,8 @@ if (process.env.NODE_ENV !== 'test') {
   );
 }
 
-app.use(express.static('build-fe'));
+const buildPath = 'build-fe';
+app.use(express.static(buildPath));
 
 app.use('/api/users', usersRouter);
 app.use('/api/plaid', plaidRouter);
@@ -87,6 +88,10 @@ app.use('/api/transactions', transactionsRouter);
 app.use('/api/accounts', accountsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/demo', demoRouter);
+
+app.get('(/*)?', async (_req, res) => {
+  res.sendFile(`${buildPath}/index.html`);
+});
 
 app.use(middleware.errorHandler);
 app.use(middleware.unknownEndpoint);
