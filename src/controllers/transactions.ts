@@ -77,7 +77,7 @@ const toSpendingByOptions = ({
   const requestParams: GetSpendingByOptions = {};
 
   if (accountIds !== undefined) {
-    requestParams.categoryIds = parseNumbersArray(accountIds, 'accountIds');
+c    requestParams.accountIds = parseNumbersArray(accountIds, 'accountIds');
   }
 
   if (startDate !== undefined) {
@@ -290,7 +290,6 @@ router.get('/spending/byaccount/', isAuthenticated, async (req, res) => {
     req.user!.id,
     queryParams,
   )) as AccountSummary[];
-
 
   const cleansedAccount = accounts.map((i) => ({
     ...i,
