@@ -62,7 +62,7 @@ passport_1.default.deserializeUser(async (userId, done) => {
 if (process.env.NODE_ENV !== 'test') {
     app.use(middleware_1.default.morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 }
-const buildPath = path_1.default.join(__dirname, 'build-fe');
+const buildPath = path_1.default.join(__dirname, '..', 'build-fe');
 console.log('buildPath');
 console.log(buildPath);
 app.use(express_1.default.static(buildPath));
