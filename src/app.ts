@@ -39,11 +39,11 @@ const sess = {
   store: sessStore,
 };
 
-// if (config.NODE_ENV === 'production') {
-//   app.set('trust proxy', 1); // trust first proxy
-//   // TODO: check how to enable HTTPS
-//   sess.cookie.secure = true; // serve secure cookies
-// }
+if (config.NODE_ENV === 'production') {
+  app.set('trust proxy', 1); // trust first proxy
+  // TODO: check how to enable HTTPS
+  sess.cookie.secure = true; // serve secure cookies
+}
 
 app.use(session(sess));
 
