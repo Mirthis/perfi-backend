@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import passport from 'passport';
 import session from 'express-session';
+import path from 'path';
 import middleware from './utils/middleware';
 import { sequelize } from './utils/db';
 import { User } from './models';
@@ -78,7 +79,9 @@ if (process.env.NODE_ENV !== 'test') {
   );
 }
 
-const buildPath = 'build-fe';
+const buildPath = path.join(__dirname, 'build-fe');
+console.log('buildPath');
+console.log(buildPath);
 app.use(express.static(buildPath));
 
 app.use('/api/users', usersRouter);
