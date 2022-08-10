@@ -78,7 +78,7 @@ if (process.env.NODE_ENV !== 'test') {
   );
 }
 
-const buildPath = 'build-fe';
+const buildPath = path.join(__dirname, 'build-fe');
 app.use(express.static(buildPath));
 
 app.use('/api/users', usersRouter);
