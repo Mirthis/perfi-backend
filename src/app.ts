@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import passport from 'passport';
 import session from 'express-session';
+import path from 'path';
 import middleware from './utils/middleware';
 import { sequelize } from './utils/db';
 import { User } from './models';
@@ -79,6 +80,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const buildPath = path.join(__dirname, 'build-fe');
+console.log('buildPath');
+console.log(buildPath);
 app.use(express.static(buildPath));
 
 app.use('/api/users', usersRouter);
@@ -90,7 +93,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/demo', demoRouter);
 
 app.get('(/*)?', async (_req, res) => {
-  res.sendFile(`${buildPath}/index.html`);
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.use(middleware.errorHandler);
