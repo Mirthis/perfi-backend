@@ -79,7 +79,7 @@ if (process.env.NODE_ENV !== 'test') {
   );
 }
 
-const buildPath = path.join(__dirname, 'build-fe');
+const buildPath = path.join(__dirname, '..', 'build-fe');
 console.log('buildPath');
 console.log(buildPath);
 app.use(express.static(buildPath));
