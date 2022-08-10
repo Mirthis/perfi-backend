@@ -31,11 +31,11 @@ const sess = {
     name: 'perfi.sid',
     store: sessStore,
 };
-if (config_1.default.NODE_ENV === 'production') {
-    app.set('trust proxy', 1); // trust first proxy
-    // TODO: check how to enable HTTPS
-    sess.cookie.secure = true; // serve secure cookies
-}
+// if (config.NODE_ENV === 'production') {
+//   app.set('trust proxy', 1); // trust first proxy
+//   // TODO: check how to enable HTTPS
+//   sess.cookie.secure = true; // serve secure cookies
+// }
 app.use((0, express_session_1.default)(sess));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
