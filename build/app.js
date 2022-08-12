@@ -63,12 +63,12 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(middleware_1.default.morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 }
 const buildPath = path_1.default.join(__dirname, '..', 'build-fe');
-console.log('buildPath');
-console.log(buildPath);
 app.use(express_1.default.static(buildPath));
-app.use('/api/users', controllers_1.usersRouter);
-app.use('/api/plaid', controllers_1.plaidRouter);
-app.use('/api/auth', controllers_1.authRouter);
+if (!config_1.default.DEMO_ONLY) {
+    app.use('/api/users', controllers_1.usersRouter);
+    app.use('/api/plaid', controllers_1.plaidRouter);
+    app.use('/api/auth', controllers_1.authRouter);
+}
 app.use('/api/transactions', controllers_1.transactionsRouter);
 app.use('/api/accounts', controllers_1.accountsRouter);
 app.use('/api/categories', controllers_1.categoriesRouter);

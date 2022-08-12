@@ -12,7 +12,6 @@ const PLAID_ENV = process.env.PLAID_ENV || 'sandbox';
 const { SESSION_SECRET } = process.env;
 // Database confiruation
 let DATABASE_URI;
-console.log(NODE_ENV);
 switch (NODE_ENV) {
     case 'development':
         if (PLAID_ENV === 'sandbox') {
@@ -50,6 +49,7 @@ const PLAID_SECRET = PLAID_ENV === 'development'
     : process.env.SANDBOX_PLAID_SECRET;
 const PLAID_PRODUCTS = (process.env.PLAID_PRODUCTS || 'transactions').split(',');
 const PLAID_COUNTRY_CODES = (process.env.PLAID_COUNTRY_CODES || 'UK').split(',');
+const DEMO_ONLY = process.env.DEMO_ONLY || false;
 exports.default = {
     PORT,
     NODE_ENV,
@@ -61,4 +61,5 @@ exports.default = {
     PLAID_COUNTRY_CODES,
     DB_OPTIONS,
     SESSION_SECRET,
+    DEMO_ONLY,
 };

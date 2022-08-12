@@ -27,7 +27,7 @@ const toSetTransactionCategoryReq = ({ transactionId, categoryId, }) => {
 const toSpendingByOptions = ({ accountIds, startDate, refDate, endDate, categoryIds, removeZeroCounts, }) => {
     const requestParams = {};
     if (accountIds !== undefined) {
-        requestParams.categoryIds = (0, requestParamParser_1.parseNumbersArray)(accountIds, 'accountIds');
+        requestParams.accountIds = (0, requestParamParser_1.parseNumbersArray)(accountIds, 'accountIds');
     }
     if (startDate !== undefined) {
         requestParams.startDate = new Date((0, requestParamParser_1.parseDate)(startDate, 'startDate'));
@@ -68,12 +68,6 @@ router.get('/', middleware_1.isAuthenticated, async (req, res) => {
     }
     const transactions = await (0, transaction_queries_1.getTransactions)(req.user.id, queryOptions);
     res.json(transactions);
-});
-router.get('/top_merchants', middleware_1.isAuthenticated, async (req, res) => {
-    if (!req.user)
-        throw Error('Unauthorized');
-    const topMerchants = await (0, transaction_queries_1.getTopMerchants)(req.user.id, req.query);
-    res.json(topMerchants);
 });
 router.post('/exclude/', middleware_1.isAuthenticated, async (req, res) => {
     const { transactionId, exclude } = toExcludeTransactionReq(req.body);
@@ -243,5 +237,9 @@ router.get('/spending/compare/cumulative', middleware_1.isAuthenticated, async (
     options.endDate = dates.prev_12_month_end_date;
     const p12Values = await (0, transaction_queries_1.getCumulativeSpending)(req.user.id, options);
     res.json({ cmValues, pmValues, p12Values });
+});
+router.get('/dates', async (req, res) => {
+    const dates = await (0, transaction_queries_1.getMinMaxDate)(req.user.id);
+    return res.json(dates);
 });
 exports.default = router;
