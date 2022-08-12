@@ -80,13 +80,13 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const buildPath = path.join(__dirname, '..', 'build-fe');
-console.log('buildPath');
-console.log(buildPath);
 app.use(express.static(buildPath));
 
-app.use('/api/users', usersRouter);
-app.use('/api/plaid', plaidRouter);
-app.use('/api/auth', authRouter);
+if (!config.DEMO_ONLY) {
+  app.use('/api/users', usersRouter);
+  app.use('/api/plaid', plaidRouter);
+  app.use('/api/auth', authRouter);
+}
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/accounts', accountsRouter);
 app.use('/api/categories', categoriesRouter);

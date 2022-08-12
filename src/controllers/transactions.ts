@@ -3,7 +3,6 @@ import sequelize from 'sequelize';
 import { isAuthenticated } from '../utils/middleware';
 import {
   getTransactions,
-  getTopMerchants,
   setTransactionExcludeFlag,
   setTransactionCategory,
   getSimilarTransactions,
@@ -12,6 +11,7 @@ import {
   getSimilarTransactionsCount,
   getSpending,
   getCumulativeSpending,
+  getMinMaxDate,
 } from '../models/transaction-queries';
 import {
   AccountSummary,
@@ -77,7 +77,7 @@ const toSpendingByOptions = ({
   const requestParams: GetSpendingByOptions = {};
 
   if (accountIds !== undefined) {
-c    requestParams.accountIds = parseNumbersArray(accountIds, 'accountIds');
+    requestParams.accountIds = parseNumbersArray(accountIds, 'accountIds');
   }
 
   if (startDate !== undefined) {
@@ -128,13 +128,6 @@ router.get('/', isAuthenticated, async (req, res) => {
 
   const transactions = await getTransactions(req.user.id, queryOptions);
   res.json(transactions);
-});
-
-router.get('/top_merchants', isAuthenticated, async (req, res) => {
-  if (!req.user) throw Error('Unauthorized');
-
-  const topMerchants = await getTopMerchants(req.user.id, req.query);
-  res.json(topMerchants);
 });
 
 router.post('/exclude/', isAuthenticated, async (req, res) => {
@@ -368,5 +361,10 @@ router.get(
     res.json({ cmValues, pmValues, p12Values });
   },
 );
+
+router.get('/dates', async (req, res) => {
+  const dates = await getMinMaxDate(req.user!.id);
+  return res.json(dates);
+});
 
 export default router;
