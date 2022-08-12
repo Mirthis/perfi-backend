@@ -13,7 +13,6 @@ import {
   ExcludedTransactionsFilter,
   GetCumulativeSpendingOptions,
   GetSpendingByOptions,
-  GetTopMerchantsOptions,
   GetTransactionsOptions,
   TransactionsWhereClause,
 } from '../types/types';
@@ -29,24 +28,28 @@ export const getTransaction = async (userId: number, transactionId: number) => {
     include: [
       {
         model: Account,
+        attributes: ['id', 'name'],
+        required: true,
         include: [
           {
             model: Item,
-            where: { userId },
             attributes: ['id'],
+            required: true,
+            where: { userId },
             include: [
               { model: Institution, attributes: ['name', 'color', 'logo'] },
             ],
           },
         ],
-        attributes: ['id', 'name'],
       },
       {
         model: Category,
+        required: true,
         attributes: ['id', 'name', 'iconName', 'iconColor', 'exclude'],
       },
       {
         model: PlaidCategory,
+        required: true,
         attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
       },
     ],
@@ -140,25 +143,29 @@ export const getTransactions = async (
       {
         model: Account,
         where: accountWhere,
+        attributes: ['id', 'name'],
+        required: true,
         include: [
           {
             model: Item,
-            where: { userId },
             attributes: ['id'],
+            required: true,
+            where: { userId },
             include: [
               { model: Institution, attributes: ['name', 'color', 'logo'] },
             ],
           },
         ],
-        attributes: ['id', 'name'],
       },
       {
         model: Category,
+        required: true,
         where: categoryWhere,
         attributes: ['id', 'name', 'iconName', 'iconColor', 'exclude'],
       },
       {
         model: PlaidCategory,
+        required: true,
         attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
       },
     ],
@@ -194,24 +201,28 @@ export const getSimilarTransactionsByName = async (
     include: [
       {
         model: Account,
+        attributes: ['id', 'name'],
+        required: true,
         include: [
           {
             model: Item,
-            where: { userId },
             attributes: ['id'],
+            required: true,
+            where: { userId },
             include: [
               { model: Institution, attributes: ['name', 'color', 'logo'] },
             ],
           },
         ],
-        attributes: ['id', 'name'],
       },
       {
         model: Category,
+        required: true,
         attributes: ['id', 'name', 'iconName', 'iconColor'],
       },
       {
         model: PlaidCategory,
+        required: true,
         attributes: ['id', 'name_lvl1', 'name_lvl2', 'name_lvl3'],
       },
     ],
@@ -336,146 +347,6 @@ export const createOrUpdateTransactions = async (
   await Promise.all(pendingQueries);
 };
 
-export const getTransactionsSummary = async (
-  userId: number,
-  options?: GetSpendingByOptions,
-) => {
-  const where: TransactionsWhereClause = {};
-  const accountWhere: AccountWhereClause = {};
-  const startDate = options?.startDate;
-  const endDate = options?.endDate;
-  const accountIds = options?.accountIds;
-
-  if (startDate && endDate) {
-    where['$calendar.calendar_date$'] = { [Op.between]: [startDate, endDate] };
-  } else if (startDate) {
-    where['$calendar.calendar_date$'] = { [Op.gte]: startDate };
-  } else if (endDate) {
-    where['$calendar.calendar_date$'] = { [Op.lte]: endDate };
-  }
-
-  where['$account->item.userId$'] = userId;
-
-  if (accountIds) {
-    accountWhere.id = { [Op.in]: accountIds };
-  }
-  const having = options?.removeZeroCounts
-    ? sequelize.where(sequelize.fn('count', sequelize.col('transaction.id')), {
-        [Op.gt]: 0,
-      })
-    : {};
-
-  const transactionsSummary = await Transaction.findAll({
-    attributes: [
-      'calendar.year',
-      'calendar.month',
-      [
-        sequelize.fn(
-          'coalesce',
-          sequelize.fn('sum', sequelize.col('amount')),
-          '0',
-        ),
-        'txAmount',
-      ],
-      [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
-    ],
-    where,
-    include: [
-      {
-        model: Calendar,
-        attributes: [],
-        required: false,
-        right: true,
-      },
-      {
-        model: Account,
-        where: accountWhere,
-        required: false,
-        include: [
-          {
-            model: Item,
-            required: false,
-            attributes: [],
-          },
-        ],
-        attributes: [],
-      },
-    ],
-    group: ['calendar.year', 'calendar.month'],
-    order: [
-      [sequelize.col('calendar.year'), 'ASC'],
-      [sequelize.col('calendar.month'), 'ASC'],
-    ],
-    having,
-    raw: true,
-  });
-
-  return transactionsSummary;
-};
-
-export const getTopMerchants = async (
-  userId: number,
-  options: GetTopMerchantsOptions,
-) => {
-  const where: TransactionsWhereClause = {};
-
-  const startDate = options?.startDate;
-  const endDate = options?.endDate;
-
-  if (startDate && endDate) {
-    where.txDate = { [Op.between]: [startDate, endDate] };
-  } else if (startDate) {
-    where.txDate = { [Op.gte]: startDate };
-  } else if (endDate) {
-    where.txDate = { [Op.lte]: endDate };
-  }
-
-  // TODO: Move default value to config
-  const limit = options?.limit || 5;
-
-  const topMerchants = await Transaction.findAll({
-    attributes: [
-      [
-        sequelize.fn(
-          'coalesce',
-          sequelize.col('merchantName'),
-          sequelize.col('transaction.name'),
-        ),
-        'name',
-      ],
-      [sequelize.fn('sum', sequelize.col('amount')), 'txAmount'],
-      [sequelize.fn('count', sequelize.col('transaction.id')), 'txCount'],
-    ],
-    where,
-    include: [
-      {
-        model: Account,
-        required: false,
-        include: [
-          {
-            model: Item,
-            required: false,
-            where: { userId },
-            attributes: [],
-          },
-        ],
-        attributes: [],
-      },
-    ],
-    group: [
-      sequelize.fn(
-        'coalesce',
-        sequelize.col('merchantName'),
-        sequelize.col('transaction.name'),
-      ),
-    ],
-    order: [[sequelize.literal('"txAmount"'), 'DESC']],
-    limit,
-  });
-
-  return topMerchants;
-};
-
 export const setTransactionExcludeFlag = async (
   userId: number,
   transactionId: number,
@@ -542,9 +413,11 @@ export const getSimilarTransactionsCount = async (
     include: [
       {
         model: Account,
+        required: true,
         include: [
           {
             model: Item,
+            required: true,
             where: { userId },
             attributes: [],
           },
@@ -633,6 +506,7 @@ export const getSpending = async (
 ) => {
   const where: TransactionsWhereClause = {};
   const accountWhere: AccountWhereClause = {};
+  const categoryWhere: CategoryWhereClause = {};
   const startDate = options?.startDate;
   const endDate = options?.endDate;
   const refDate = options?.refDate;
@@ -662,10 +536,10 @@ export const getSpending = async (
     accountWhere.id = { [Op.in]: accountIds };
   }
   if (categoryIds) {
-    where['$category.id$'] = { [Op.in]: categoryIds };
+    categoryWhere.id = { [Op.in]: categoryIds };
   }
 
-  where['$account->item.userId$'] = userId;
+  // where['$account->item.userId$'] = userId;
 
   const having = options?.removeZeroCounts
     ? sequelize.where(
@@ -697,43 +571,37 @@ export const getSpending = async (
     where,
     include: [
       {
-        model: Calendar,
-        attributes: [],
-        required: false,
-        right: true,
-      },
-      {
         model: Category,
         attributes: [],
-        required: false,
-        // required: false,
-        // right: true,
-        // on: {
-        //   [Op.or]: [
-        //     { id: { [Op.eq]: sequelize.col('categoryId') } },
-        //     { '$transaction.id$': null },
-        //   ],
-        // },
+        where: categoryWhere,
+        required: true,
       },
       {
         model: Account,
         where: accountWhere,
-        required: false,
+        required: true,
         attributes: [],
         include: [
           {
             model: Item,
-            required: false,
+            required: true,
+            where: { userId },
             attributes: [],
             include: [
               {
                 model: Institution,
-                required: false,
+                required: true,
                 attributes: [],
               },
             ],
           },
         ],
+      },
+      {
+        model: Calendar,
+        attributes: [],
+        required: false,
+        right: true,
       },
     ],
     group: aggregateBy,
@@ -742,4 +610,31 @@ export const getSpending = async (
   });
 
   return spendingSummary;
+};
+
+export const getMinMaxDate = (userId: number) => {
+  const dates = Transaction.findOne({
+    attributes: [
+      [sequelize.fn('min', sequelize.col('txDate')), 'minDate'],
+      [sequelize.fn('max', sequelize.col('txDate')), 'maxDate'],
+    ],
+    include: [
+      {
+        model: Account,
+        required: true,
+        include: [
+          {
+            model: Item,
+            required: true,
+            attributes: [],
+            where: { userId },
+          },
+        ],
+        attributes: [],
+      },
+    ],
+    raw: true,
+  });
+
+  return dates;
 };

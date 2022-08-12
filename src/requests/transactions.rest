@@ -1,7 +1,7 @@
 GET http://localhost:8000/api/transactions
 
 ###
-GET http://localhost:8000/api/transactions/2256
+GET http://localhost:8000/api/transactions/id/3966
 
 ###
 GET http://localhost:8000/api/transactions/spending?startDate=2021-09-01&endDate=2022-08-31
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:8000/api/transactions/find_similar?transactionId=634
+GET http://localhost:8000/api/transactions/find_similar?transactionId=3966
 
 
 ###
@@ -72,11 +72,11 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/api/transactions/similar_count?transactionId=2246
+GET http://localhost:8000/api/transactions/similar_count?transactionId=3966
 
 
 ###
-GET http://localhost:8000/api/transactions/spending/trend?refDate=2022-05-15
+GET http://localhost:8000/api/transactions/spending/compare/cumulative?refDate=2022-08-15
 
 
 ###
@@ -97,4 +97,7 @@ GET http://localhost:8000/api/transactions/spending/bycategory?startDate=2022-07
 GET http://localhost:8000/api/transactions/spending/byaccount?startDate=2022-07-01&endDate=2022-07-31&removeZeroCounts=true
 
 ###
- http://localhost:8000/api/transactions/spending?startDate=2021-08-01&endDate=2022-07-31&categoryIds=56
+ http://localhost:8000/api/transactions/spending?startDate=2019-11-01&endDate=2020-12-31
+
+###
+GET http://localhost:8000/api/transactions/dates

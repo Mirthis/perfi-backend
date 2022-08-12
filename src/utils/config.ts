@@ -17,8 +17,6 @@ const { SESSION_SECRET } = process.env;
 // Database confiruation
 let DATABASE_URI;
 
-console.log(NODE_ENV);
-
 switch (NODE_ENV) {
   case 'development':
     if (PLAID_ENV === 'sandbox') {
@@ -65,6 +63,8 @@ const PLAID_COUNTRY_CODES = (process.env.PLAID_COUNTRY_CODES || 'UK').split(
   ',',
 ) as CountryCode[];
 
+const DEMO_ONLY = process.env.DEMO_ONLY || false;
+
 export default {
   PORT,
   NODE_ENV,
@@ -76,4 +76,5 @@ export default {
   PLAID_COUNTRY_CODES,
   DB_OPTIONS,
   SESSION_SECRET,
+  DEMO_ONLY,
 };

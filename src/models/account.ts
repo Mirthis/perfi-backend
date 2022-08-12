@@ -10,6 +10,7 @@ import {
   CreationOptional,
   ForeignKey,
   NonAttribute,
+  Association,
 } from 'sequelize';
 import { sequelize } from '../utils/db';
 import Item from './item';
@@ -51,6 +52,10 @@ class Account extends Model<
   declare updatedAt: CreationOptional<Date>;
 
   declare transactions: NonAttribute<Transaction[]>;
+
+  declare static associations: {
+    Transactions: Association<Account, Transaction>;
+  };
 }
 
 Account.init(

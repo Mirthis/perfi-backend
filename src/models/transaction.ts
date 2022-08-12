@@ -72,6 +72,8 @@ class Transaction extends Model<
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
+
+  declare account: NonAttribute<Account>;
 }
 
 Transaction.init(
