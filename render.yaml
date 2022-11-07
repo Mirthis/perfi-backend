@@ -21,3 +21,5 @@ services:
 databases: # Render PostgreSQL database
   - name: postgresql-horizontal-04909
     ipAllowList: [] # only allow internal connections
+    plan: free # optional; defaults to starter
+
